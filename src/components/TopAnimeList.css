@@ -1,0 +1,73 @@
+*{
+    box-sizing:border-box;
+}
+
+.listTitle {
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
+.cardList {
+    display: flex;
+    place-items: center;
+    line-height: 1.2;
+    background: white;
+    text-align: horizontal;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}   
+
+.card {
+    position: relative;
+    color: white;
+    padding: 5rem 0 0;
+    min-width: 230px;
+    max-width: 230px;
+    min-height: 324px;
+    max-height: 324px;
+    margin: 1rem;
+    border-radius: .4rem;
+    overflow: hidden;
+    transition: transform 500ms ease;
+}
+
+.card:hover{
+    transform: scale(1.05);
+}
+
+.cardContent {
+    position: absolute;
+    bottom: 0;
+    width: 230px;
+    padding: 1em;
+    background: linear-gradient(
+        hsl(0 0% 0% /0),
+        hsl(0 0% 0% /.7) 20%,
+        hsl(0 0% 0% /1)
+    );
+}
+
+.cardBody{
+    position: relative;
+    display: block;
+    height: 4rem;
+    width: 200px;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}
+
+.cardTitle {
+    position: relative;
+    width: 230px;
+    max-width: 100%;
+}
+
+.cardTitle::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgb(10, 191, 252);
+}

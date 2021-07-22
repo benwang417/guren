@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import './TopAnimeList.css'
 
@@ -39,7 +40,7 @@ const TopAnimeList = ({sortTerm, title}) => {
             const variables = {
                 search: query,
                 page: 1,
-                perPage: 10
+                perPage: 9
             }
 
             const headers = {
@@ -61,14 +62,16 @@ const TopAnimeList = ({sortTerm, title}) => {
     
     const renderedResults = results.map((result) => {
         return (
-            <div key={result.id} className='card' style={{backgroundImage: `url(${result.coverImage.extraLarge})`}}>
-                <div className='cardContent'>
-                    <h2 className='cardTitle'>{result.title.english}</h2>
-                    <p className='cardBody'>
-                        {result.description}
-                    </p>
+            <Link to={`/anime/${result.title.english.replace(/\s/g , "-")}`}>
+                <div key={result.id} className='card' style={{backgroundImage: `url(${result.coverImage.large})`}}>
+                    <div className='cardContent'>
+                        <h2 className='cardTitle'>{result.title.english}</h2>
+                        <p className='cardBody'>
+                            {result.description.replace(/(<([^>]+)>)/gi, "")}
+                        </p>
+                    </div>
                 </div>
-            </div>
+            </Link>
         )
     })
 
