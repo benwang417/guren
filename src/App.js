@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from './components/Header'
+import './App.css'
 import {
     BrowserRouter as Router,
     Switch,
@@ -12,9 +13,14 @@ function App() {
     return (
         <div className='App'>
             <Header />
-            <Route path='/' exact render={(props) => <TopAnimeList sortTerm='SCORE_DESC' title='Top Rated'/>}/>
-            <Route path='/' exact render={(props) => <TopAnimeList sortTerm='TRENDING_DESC' title='Trending'/>}/>
-            <Route path='/' exact render={(props) => <TopAnimeList sortTerm='POPULARITY_DESC' title='Most Popular'/>}/>
+            <div className='lists'>
+                <Route exact>
+                    <TopAnimeList sortTerm='SCORE_DESC' title='Top Rated'/>
+                    <TopAnimeList sortTerm='POPULARITY_DESC' title='Most Popular'/>
+                    <TopAnimeList sortTerm='TRENDING_DESC' title='Trending'/>
+                </Route>
+            </div>
+
         </div>
     )
 }
