@@ -10,9 +10,11 @@ import TopAnimeList from './components/TopAnimeList'
 
 function App() {
     return (
-        <div className="App">
+        <div className='App'>
             <Header />
-            <Route path='/' exact component={TopAnimeList}/>
+            <Route path='/' exact render={(props) => <TopAnimeList sortTerm='SCORE_DESC' title='Top Rated'/>}/>
+            <Route path='/' exact render={(props) => <TopAnimeList sortTerm='TRENDING_DESC' title='Trending'/>}/>
+            <Route path='/' exact render={(props) => <TopAnimeList sortTerm='POPULARITY_DESC' title='Most Popular'/>}/>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-const TopAnimeList = () => {
+const TopAnimeList = ({sortTerm, title}) => {
     const [results, setResults] = useState([])
 
     useEffect(() => {
@@ -16,7 +16,7 @@ const TopAnimeList = () => {
                             hasNextPage
                             perPage
                         }
-                        media (type: ANIME, sort: SCORE_DESC) {
+                        media (type: ANIME, sort: ${sortTerm}) {
                             id
                             title {
                                 english
@@ -68,7 +68,7 @@ const TopAnimeList = () => {
 
     return (
         <div>
-            <h2>Top Rated</h2>
+            <h2>{title}</h2>
             {renderedResults}
         </div>
     )
