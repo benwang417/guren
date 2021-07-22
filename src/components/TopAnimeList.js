@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-function TopAnimeList() {
+const TopAnimeList = () => {
+    const [results, setResults] = useState([])
 
     useEffect(() => {
         const getAnimePreview = async () => {
@@ -49,17 +50,26 @@ function TopAnimeList() {
                 query,
                 variables,
                 headers
-            } )
-            console.log(response)
+            })
+            setResults(response.data.data.Page.media)
         }
 
         getAnimePreview()
-        
     }, [])
+    console.log(results)
+    
+    const renderedResults = results.map((result) => {
+        return (
+            <div key={result.id}>
+                {result.title.english}
+            </div>
+        )
+    })
 
     return (
         <div>
-            top anime list
+            <h2>Top Rated</h2>
+            {renderedResults}
         </div>
     )
 }
