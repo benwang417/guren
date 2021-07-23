@@ -62,22 +62,19 @@ const TopAnimeList = ({sortTerm, title}) => {
     console.log(results)
 
     //TODO: add error check for no internet to api request
+    //TODO: move axios calls to a seperate file
     
     const renderedResults = results.map((result) => {
         if (result.title.english === null || result.title.description === null ) {
             return
         }
-        // const hyphenatedUrl = `/anime/series${result.title.english.replace(/\s/g , "-")}` //replace spaces with hyphen in urls
-        // const url = hyphenatedUrl.replace(/:/g,'')  // remove ':' from urls
+        
         const url = generateUrl(result.title.english, result.id)
         return (
             <Link key={result.id} to={url}>
                 <div className='card' style={{backgroundImage: `url(${result.coverImage.large})`}}>
                     <div className='cardContent'>
                         <h2 className='cardTitle'>{result.title.english}</h2>
-                        {/* <p className='cardBody'>
-                            {result.description.replace(/(<([^>]+)>)/gi, "")}
-                        </p> */}
                     </div>
                 </div>
             </Link>

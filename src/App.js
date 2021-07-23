@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './components/Header'
 import Search from './components/Search'
+import AnimePage from './components/AnimePage'
 import './App.css'
 import {
     BrowserRouter as Router,
@@ -22,6 +23,9 @@ function App() {
                 </Route>
                 <Route path='/search' exact>
                     <Search />
+                </Route>
+                <Route path='/anime/series'>
+                    <AnimePage />
                 </Route>
             </div>
 

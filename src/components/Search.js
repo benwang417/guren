@@ -75,19 +75,17 @@ function Search() {
 
     //console.log(searchResults)
     const renderedSearchResults = searchResults.map((result) => {
+        // possible issue caused by only native or romaji title being available, instead: check for english, then romaji, then native, then return if all null
         if (result.title.english === null || result.title.description === null ) {
             return
         }
         
 
         return (
-            // <Link to={`/anime/${result.title.english.replace(/\s/g , "-")}`}>
-            //     <SearchResult key={result.id} searchData={result}/>
-            // </Link>
             <SearchResult key={result.id} searchData={result}/>
         )
     })
-
+    
 
     return (
         <div>
