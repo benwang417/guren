@@ -61,8 +61,13 @@ const TopAnimeList = ({sortTerm, title}) => {
     console.log(results)
     
     const renderedResults = results.map((result) => {
+        if (result.title.english === null || result.title.description === null ) {
+            return
+        }
+        const hyphenatedUrl = `/anime/${result.title.english.replace(/\s/g , "-")}` //replace spaces with hyphen in urls
+        const url = hyphenatedUrl.replace(/:/g,'')  // remove ':' from urls
         return (
-            <Link key={result.id} to={`/anime/${result.title.english.replace(/\s/g , "-")}`}>
+            <Link key={result.id} to={url}>
                 <div className='card' style={{backgroundImage: `url(${result.coverImage.large})`}}>
                     <div className='cardContent'>
                         <h2 className='cardTitle'>{result.title.english}</h2>

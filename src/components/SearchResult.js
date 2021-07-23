@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom'
 import './SearchResult.css'
 
 function SearchResult({searchData}) {
-  
-    const url = `/anime/${searchData.title.english.replace(/\s/g , "-")}`
+    
+    //TODO: Remove ':' from all url's 
+    const hyphenatedUrl = `/anime/${searchData.title.english.replace(/\s/g , "-")}` //replace spaces with hyphen in urls
+    const url = hyphenatedUrl.replace(/:/g,'')  // remove ':' from urls
     return (
         
         <div className='search'>
