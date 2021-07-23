@@ -71,7 +71,7 @@ const TopAnimeList = ({sortTerm, title}) => {
         
         const url = generateUrl(result.title.english, result.id)
         return (
-            <Link key={result.id} to={url}>
+            <Link className='cardLink' key={result.id} to={url}>
                 <div className='card' style={{backgroundImage: `url(${result.coverImage.large})`}}>
                     <div className='cardContent'>
                         <h2 className='cardTitle'>{result.title.english}</h2>

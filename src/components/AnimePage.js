@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {useLocation} from 'react-router-dom'
 import axios from 'axios'
+import './AnimePage.css'
 
 function AnimePage() {
     const [anime, setAnime] = useState()
@@ -58,9 +59,12 @@ function AnimePage() {
 
     return (
         <div>
-            <img src={anime.coverImage.large}/>
-            <h1>{anime.title.english}</h1>
-            <p>{anime.description}</p>
+            <div className='main'>   
+                <h1 className='title'>{anime.title.english}</h1>
+                <p className='mainText'>Average Rating: {anime.averageScore}</p>
+                <img className='coverImg' src={anime.coverImage.extraLarge}/>
+                <p className='mainText'>{anime.description.replace(/(<([^>]+)>)/gi, "")}</p>
+            </div>
         </div>
     )
     

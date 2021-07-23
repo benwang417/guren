@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './components/Header'
 import Search from './components/Search'
 import AnimePage from './components/AnimePage'
+import Hero from './components/Hero'
 import './App.css'
 import {
     BrowserRouter as Router,
@@ -16,6 +17,9 @@ function App() {
         <div className='App'>
             <Header />
             <div className='lists'>
+                <Route path='/' exact>
+                    <Hero />
+                </Route>
                 <Route path='/anime' exact>
                     <TopAnimeList sortTerm='SCORE_DESC' title='Top Rated'/>
                     <TopAnimeList sortTerm='POPULARITY_DESC' title='Most Popular'/>

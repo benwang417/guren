@@ -5,6 +5,7 @@
 .container {
     margin-top: 1.5rem;
     margin-left: 3.5rem;
+    background-color: transparent;
 }
 
 .listTitle {
@@ -24,11 +25,15 @@
     display: flex;
     place-items: center;
     line-height: 1.2;
-    background: white;
+    background: transparent;
     text-align: horizontal;
     overflow-x: hidden;
     overflow-y: hidden;
 }   
+
+.cardLink {
+    background-color: transparent;
+}
 
 .card {
     position: relative;
