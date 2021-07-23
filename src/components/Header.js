@@ -19,17 +19,15 @@ function Header() {
                         <Link to='/anime' className='link'>top anime</Link>
                     </li>
                     <li>
+                        <Link to='/search' className='link'>search</Link>
+                    </li>
+                    <li>
                         <Link to='/login' className='link'>log in</Link>
                     </li>
                     <li>
                         <Link to='/register' className='link'>sign up</Link>
                     </li>
                 </ul>
-                <div className='burger'>
-                    <div className='line1'></div>
-                    <div className='line2'></div>
-                    <div className='line3'></div>
-                </div>
             </div>
     )
 }

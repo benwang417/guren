@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
+import SearchResult from './SearchResult'
 
 function Search() {
     const [searchTerm, setSearchTerm] = useState('')
@@ -74,8 +75,16 @@ function Search() {
 
     //console.log(searchResults)
     const renderedSearchResults = searchResults.map((result) => {
+        if (result.title.english === null || result.title.description === null ) {
+            return
+        }
+        
+
         return (
-            <div key={result.id}>{result.title.english}</div>
+            // <Link to={`/anime/${result.title.english.replace(/\s/g , "-")}`}>
+            //     <SearchResult key={result.id} searchData={result}/>
+            // </Link>
+            <SearchResult key={result.id} searchData={result}/>
         )
     })
 

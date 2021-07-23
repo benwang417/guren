@@ -62,8 +62,8 @@ const TopAnimeList = ({sortTerm, title}) => {
     
     const renderedResults = results.map((result) => {
         return (
-            <Link to={`/anime/${result.title.english.replace(/\s/g , "-")}`}>
-                <div key={result.id} className='card' style={{backgroundImage: `url(${result.coverImage.large})`}}>
+            <Link key={result.id} to={`/anime/${result.title.english.replace(/\s/g , "-")}`}>
+                <div className='card' style={{backgroundImage: `url(${result.coverImage.large})`}}>
                     <div className='cardContent'>
                         <h2 className='cardTitle'>{result.title.english}</h2>
                         <p className='cardBody'>
@@ -76,8 +76,8 @@ const TopAnimeList = ({sortTerm, title}) => {
     })
 
     return (
-        <div>
-            <h2 className='listTitle'>{title}</h2>
+        <div className='container'>
+            <Link to='/anime' className='listTitle'>{title}</Link>
             <div className='cardList'>
                 {renderedResults}
             </div>
