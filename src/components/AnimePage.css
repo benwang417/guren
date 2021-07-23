@@ -1,28 +1,35 @@
-.main {
+.contentWrapper {
+    justify-content: center;
     position: relative;
     padding: 6em;
+    display: flex;
 }
 
 .title {
     padding: 2em;
     width: max-content;
-    margin-left: 10em;
 }
 
 .coverImg {
-    position: absolute;
     right: 20em;
 
 }
 
 .rating {
-    margin-left: 24em;
     width: 20ch;
 }
 
 .mainText {
     margin-top: 1em;
-    margin-left: 24em;
-    width: 60ch;
+    width: 50ch;
     font-weight: 400;
 }
+
+.contentBody {
+    max-width: 100ch;
+}
+
+.contentImg {
+    margin-left: 2em;
+}
+
