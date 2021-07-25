@@ -72,6 +72,7 @@ function Search() {
         }
     }, [searchTerm])
 
+    //check for isAdult, only render non adult content
 
     //console.log(searchResults)
     const renderedSearchResults = searchResults.map((result) => {
@@ -95,7 +96,9 @@ function Search() {
                     value={searchTerm}
                     onChange={e => setSearchTerm(e.target.value)}
                 />
-                {renderedSearchResults}
+                <div className='searchContainer'>
+                    {renderedSearchResults}
+                </div>
             </div>
         </div>
     )

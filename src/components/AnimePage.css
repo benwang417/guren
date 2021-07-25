@@ -11,6 +11,7 @@
     position: absolute;
     left: 0;
     top: -9em;
+    font-size: 1.25rem;
 }
 
 .showInfo > * {
@@ -49,6 +50,8 @@
 .title {
     padding: 0em;
     width: max-content;
+    font-size: 2.5rem;
+    max-width: 40ch;
 }
 
 .coverImg {
@@ -64,12 +67,15 @@
     margin-top: 1em;
     width: 50ch;
     font-weight: 400;
+    font-size: 1.67rem;
 }
 
 .showInfo {
     padding: 2em;
     display: flex;
     justify-content: space-evenly;
+    font-weight: 700;
+    font-size: 1.67rem;
 }
 
 .middleInfo {
@@ -85,7 +91,7 @@
     height: 100%;
     width: 1px;
     left: 0em;
-    bottom: 0;
+    bottom: .3em;
     /* bottom: .8em; */
 }
 
@@ -96,7 +102,7 @@
     height: 100%;
     width: 1px;
     right: 0em;
-    bottom: 0;
+    bottom: .3em;
     /* bottom: .8em; */
 }
 .contentBody {
@@ -108,3 +114,16 @@
     margin-left: 2em;
 }
 
+.button {
+    color: white;
+    background-color: #793AFF;
+    text-align: center;
+    justify-content: center;
+    height: 4em;
+    line-height: 4em;
+    font-size: 1.25rem;
+    border-radius: .25em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    cursor: pointer;
+}

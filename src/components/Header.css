@@ -9,13 +9,14 @@
     justify-content: space-around;
     align-items: center;
     min-height: 6vh;
-    background: rgb(10, 10, 10);
+    /* background: rgb(10, 10, 10); */
+    background: white;
     font-family: 'Montserrat', sans-serif;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
 }
 
 .logo{
-    color: white;
+    color: #793AFF;
     font-weight: 600;
     font-size: 30px;
     text-decoration: none;
@@ -32,14 +33,14 @@
 }
 
 .link{
-    color: white;
+    color: black;
     text-decoration: none;
     font-weight: 400;
     font-size: 25px;
 }
 
 .link:hover {
-    color: lightskyblue;
+    color: #793AFF;
 }
 
 @media screen and (max-width:1500px){
@@ -59,7 +60,7 @@
         right: 0px;
         height: 92vh;
         top: 8vh;
-        background-color: black;
+        background-color: white;
         display: flex;
         flex-direction: column;
         align-items: center;

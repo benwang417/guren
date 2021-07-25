@@ -18,7 +18,7 @@
 }
 
 .listTitle:hover {
-    color: lightskyblue;
+    color: #793AFF;
 }
 
 .cardList {
@@ -88,5 +88,5 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    background: rgb(10, 191, 252);
+    background: #793AFF;
 }

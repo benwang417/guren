@@ -105,6 +105,7 @@ function AnimePage() {
                     </div>
                     <div className='contentImg'>
                         <img className='coverImg' src={anime.coverImage.extraLarge}/>
+                        <div className='button'>add to my list</div>
                     </div>
                 </div>
                 

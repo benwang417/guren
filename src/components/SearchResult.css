@@ -6,4 +6,7 @@
     color: rgb(0, 0, 143);
 }
 
-
+.search {
+    justify-content: center;
+    width: 50%;
+}
