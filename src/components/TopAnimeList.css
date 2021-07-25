@@ -79,6 +79,7 @@
     position: relative;
     width: 230px;
     max-width: 100%;
+    margin-bottom: .3em;
 }
 
 .cardTitle::after {
@@ -86,7 +87,7 @@
     position: absolute;
     height: 2px;
     left: 0;
-    bottom: 0;
+    bottom: -.3em;
     width: 100%;
     background: #793AFF;
 }

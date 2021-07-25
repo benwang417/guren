@@ -3,10 +3,30 @@
 }
 
 .searchTitle {
-    color: rgb(0, 0, 143);
+    color: #793AFF;
+    text-decoration: none;
+    max-width: 50ch;
+    margin-left: 5em;
 }
 
 .search {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 75%;
+}
+
+.searchWrapper {
+    display: flex;
     justify-content: center;
-    width: 50%;
+    padding: 3em;
+}
+
+.search::before {
+    content: '';
+    position: absolute;
+    background: black;
+    height: 1px;
+    width: 105%;
+    top: -2em;
 }

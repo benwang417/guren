@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import SearchResult from './SearchResult'
+import './Search.css'
 
 function Search() {
     const [searchTerm, setSearchTerm] = useState('')
@@ -90,15 +91,17 @@ function Search() {
 
     return (
         <div>
-            <div>
-                <label>search</label>
-                <input 
-                    value={searchTerm}
-                    onChange={e => setSearchTerm(e.target.value)}
-                />
-                <div className='searchContainer'>
-                    {renderedSearchResults}
+            <div className='searchBarContainer'>
+                <div className='searchBar'>
+                    <label>search</label>
+                    <input 
+                        value={searchTerm}
+                        onChange={e => setSearchTerm(e.target.value)}
+                    />
                 </div>
+            </div>
+            <div className='searchContainer'>
+                {renderedSearchResults}
             </div>
         </div>
     )

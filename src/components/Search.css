@@ -1,4 +1,17 @@
 .searchContainer {
+   
+}
+
+.searchBar > * {
+    justify-content: center;
+    text-align: center;
+    margin-top: 2em;
+    height: 2.5em;
+}
+
+.searchBarContainer {
     display: flex;
     justify-content: center;
+    text-align: center;
+    padding: 2em;
 }
