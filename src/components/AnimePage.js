@@ -9,6 +9,22 @@ function AnimePage() {
     const components = location.pathname.split('/')
     const id = components[3] //pulls the id off of the url
 
+    function getStudio() {
+        const studio = anime.studios.edges.find(node => node.isMain)
+        if (studio === undefined) {
+            return 
+        }
+        return studio.node.name
+    }
+
+
+    function getRank() {
+        const rank = anime.rankings.find(ranking => ranking.allTime && ranking.type === 'POPULAR')
+        if (rank === undefined) {
+            return 
+        } 
+        return rank.rank
+    }
 
     useEffect(() => {
         const getAnime = async () => {
@@ -80,11 +96,9 @@ function AnimePage() {
                         <h1 className='title'>{anime.title.english}</h1>
                         <div>
                             <div className='showInfo'> 
-                                <div>Rating: {anime.averageScore}<p># users</p></div>
-                                {/* {rankings[1].rank may not always be most popular ranking!} */}
-                                <div className='middleInfo'>#{anime.rankings[1].rank} most popular</div>
-                                {/* {studios.edges[0].node.name may not always be main studio!} */}
-                                <div>{anime.studios.edges[0].node.name}</div> 
+                                <div>Rating: {anime.averageScore}<p>{anime.popularity} users</p></div>
+                                <div className='middleInfo'>#{getRank()} most popular</div>
+                                <div>{getStudio()}</div>
                             </div>
                         </div>
                         <p className='mainText'>{anime.description.replace(/(<([^>]+)>)/gi, "")}</p>
