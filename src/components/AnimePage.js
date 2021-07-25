@@ -58,18 +58,26 @@ function AnimePage() {
     }
 
     return (
-        <div>
+        <div className='animePage'>
             <div className='contentWrapper'>
-                <div className='contentBody'>
-                    <h1 className='title'>{anime.title.english}</h1>
-                    <div>
-                        <p className='mainText'>Average Rating: {anime.averageScore}</p>
+                <div className='overviewContainer'> 
+                    <div className='contentBody'>
+                        <div className='topBar'>overview</div>
+                        <h1 className='title'>{anime.title.english}</h1>
+                        <div>
+                            <div className='showInfo'> 
+                                <div>Rating: {anime.averageScore}<p># users</p></div>
+                                <div className='middleInfo'>#{} most popular</div>
+                                <div>studio</div>
+                            </div>
+                        </div>
+                        <p className='mainText'>{anime.description.replace(/(<([^>]+)>)/gi, "")}</p>
                     </div>
-                    <p className='mainText'>{anime.description.replace(/(<([^>]+)>)/gi, "")}</p>
+                    <div className='contentImg'>
+                        <img className='coverImg' src={anime.coverImage.extraLarge}/>
+                    </div>
                 </div>
-                <div className='contentImg'>
-                    <img className='coverImg' src={anime.coverImage.extraLarge}/>
-                </div>
+                
             </div>
         </div>
     )

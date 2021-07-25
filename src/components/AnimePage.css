@@ -1,18 +1,54 @@
 .contentWrapper {
-    justify-content: center;
-    position: relative;
-    padding: 6em;
     display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 10em;
+}
+
+.topBar {
+    margin-top: 7em;
+    max-width: 20ch;
+    position: absolute;
+    left: 0;
+    top: -9em;
+}
+
+.overviewContainer {
+    display: flex;
+    justify-content: center;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    position: relative;
+    max-width: max-content;
+}
+
+.overviewContainer::before {
+    content: '';
+    position: absolute;
+    background: black;
+    height: 2px;
+    width: 105%;
+    top: 0;
+    
+}
+
+.overviewContainer::after {
+    content: '';
+    position: absolute;
+    background: black;
+    height: 2px;
+    width: 105%;
+    bottom: 0;
 }
 
 .title {
-    padding: 2em;
+    padding: 0em;
     width: max-content;
 }
 
 .coverImg {
     right: 20em;
-
+    
 }
 
 .rating {
@@ -25,8 +61,38 @@
     font-weight: 400;
 }
 
+.showInfo {
+    padding: 2em;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.middleInfo {
+    position: relative;
+}
+
+.middleInfo::before{
+    content:'';
+    position: absolute;
+    background: black;
+    height: 30px;
+    width: 1px;
+    right: 9.5em;
+    bottom: .8em;
+}
+
+.middleInfo::after{
+    content:'';
+    position: absolute;
+    background: black;
+    height: 30px;
+    width: 1px;
+    left: 9.5em;
+    bottom: .8em;
+}
 .contentBody {
     max-width: 100ch;
+    padding-right: 5em;
 }
 
 .contentImg {
