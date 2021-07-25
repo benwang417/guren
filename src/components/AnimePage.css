@@ -13,6 +13,11 @@
     top: -9em;
 }
 
+.showInfo > * {
+    flex-basis: 100%;
+    text-align: center;
+}
+
 .overviewContainer {
     display: flex;
     justify-content: center;
@@ -69,26 +74,30 @@
 
 .middleInfo {
     position: relative;
+    padding-left: .75em;
+    padding-right: .75em;
 }
 
 .middleInfo::before{
     content:'';
     position: absolute;
     background: black;
-    height: 30px;
+    height: 100%;
     width: 1px;
-    right: 9.5em;
-    bottom: .8em;
+    left: 0em;
+    bottom: 0;
+    /* bottom: .8em; */
 }
 
 .middleInfo::after{
     content:'';
     position: absolute;
     background: black;
-    height: 30px;
+    height: 100%;
     width: 1px;
-    left: 9.5em;
-    bottom: .8em;
+    right: 0em;
+    bottom: 0;
+    /* bottom: .8em; */
 }
 .contentBody {
     max-width: 100ch;
