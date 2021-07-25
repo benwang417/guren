@@ -57,13 +57,62 @@ function Search() {
             setSearchResults(response.data.data.Page.media)
         }
 
-        if (searchTerm && !searchResults.length){
-            getSearchResults()
+        const getDefaultResults = async () => {
+            const query = `
+                query ($page: Int, $perPage: Int) {
+                    Page (page: $page, perPage: $perPage) {
+                        pageInfo {
+                            total
+                            currentPage
+                            lastPage
+                            hasNextPage
+                            perPage
+                        }
+                        media (type: ANIME, sort: SCORE_DESC) {
+                            id
+                            title {
+                                english
+                            }
+                            description
+                            coverImage {
+                                extraLarge
+                                large
+                                medium
+                            }
+                            averageScore
+                            popularity
+                            genres
+                        }
+                    }
+                }
+            `
 
+            const variables = {
+                query,
+                page: 1,
+                perPage: 10
+            }
+
+            const headers = {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+
+            const response = await axios.post('https://graphql.anilist.co', {
+                query,
+                variables,
+                headers
+            })
+            setSearchResults(response.data.data.Page.media)
+        }
+
+        if (!searchTerm) {
+            getDefaultResults() // load top anime when there is no search term
+        } else if (searchTerm && !searchResults.length){
+            getSearchResults()
         } else {
             const timeoutId = setTimeout( () => {
                 if (searchTerm) {
-                    //only searches if term is not empty
                     getSearchResults()
                 }
             }, 500)
