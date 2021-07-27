@@ -4,6 +4,7 @@ import axios from 'axios'
 import './TopAnimeList.css'
 import generateUrl from '../generateUrl'
 import { ThemeContext } from '../ThemeContext'
+import AnimeCard from './AnimeCard'
 
 const TopAnimeList = ({sortTerm, title}) => {
     const {theme} = useContext(ThemeContext)
@@ -71,17 +72,26 @@ const TopAnimeList = ({sortTerm, title}) => {
             return
         }
         
-        const url = generateUrl(result.title.english, result.id)
+        //const url = generateUrl(result.title.english, result.id)
+        // return (
+        //     <Link className='cardLink' key={result.id} to={url}>
+        //         <div className='card' style={{backgroundImage: `url(${result.coverImage.large})`}}>
+        //             <div className='cardContent'>
+        //                 <h2 className='cardTitle'>{result.title.english}</h2>
+        //             </div>
+        //         </div>
+        //     </Link>
+        // )
         return (
-            <Link className='cardLink' key={result.id} to={url}>
-                <div className='card' style={{backgroundImage: `url(${result.coverImage.large})`}}>
-                    <div className='cardContent'>
-                        <h2 className='cardTitle'>{result.title.english}</h2>
-                    </div>
-                </div>
-            </Link>
+            <AnimeCard key={result.id} result={result}/>
         )
     })
+
+    // if (!results.length) {
+    //     return (
+
+    //     )
+    // }
 
     return (
         <div className='container'>

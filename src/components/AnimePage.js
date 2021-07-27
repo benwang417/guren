@@ -5,7 +5,7 @@ import './AnimePage.css'
 import {ThemeContext} from '../ThemeContext'
 
 function AnimePage() {
-    const {theme, setTheme} = useContext(ThemeContext)
+    const {theme} = useContext(ThemeContext)
     const [anime, setAnime] = useState()
     const location = useLocation()
     const components = location.pathname.split('/')

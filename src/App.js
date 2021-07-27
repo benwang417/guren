@@ -5,10 +5,7 @@ import AnimePage from './components/AnimePage'
 import Hero from './components/Hero'
 import './App.css'
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
+    Route
 } from 'react-router-dom'
 import TopAnimeList from './components/TopAnimeList'
 import Auth from './components/Auth'
