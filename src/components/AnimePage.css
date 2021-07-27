@@ -1,3 +1,17 @@
+.light {
+    color: black;
+    background-color: white;
+}
+
+.dark {
+    color: white;
+    background-color: black;
+}
+
+.animePage {
+    height: 100vh;
+}
+
 .contentWrapper {
     display: flex;
     align-items: center;
@@ -28,7 +42,7 @@
     max-width: max-content;
 }
 
-.overviewContainer::before {
+.overviewContainer.light::before {
     content: '';
     position: absolute;
     background: black;
@@ -38,10 +52,28 @@
     
 }
 
-.overviewContainer::after {
+.overviewContainer.light::after {
     content: '';
     position: absolute;
     background: black;
+    height: 2px;
+    width: 105%;
+    bottom: 0;
+}
+.overviewContainer.dark::before {
+    content: '';
+    position: absolute;
+    background: #793AFF;
+    height: 2px;
+    width: 105%;
+    top: 0;
+    
+}
+
+.overviewContainer.dark::after {
+    content: '';
+    position: absolute;
+    background: #793AFF;
     height: 2px;
     width: 105%;
     bottom: 0;
@@ -84,7 +116,7 @@
     padding-right: .75em;
 }
 
-.middleInfo::before{
+.middleInfo.light::before{
     content:'';
     position: absolute;
     background: black;
@@ -95,10 +127,31 @@
     /* bottom: .8em; */
 }
 
-.middleInfo::after{
+.middleInfo.light::after{
     content:'';
     position: absolute;
     background: black;
+    height: 100%;
+    width: 1px;
+    right: 0em;
+    bottom: .3em;
+    /* bottom: .8em; */
+}
+.middleInfo.dark::before{
+    content:'';
+    position: absolute;
+    background: white ;
+    height: 100%;
+    width: 1px;
+    left: 0em;
+    bottom: .3em;
+    /* bottom: .8em; */
+}
+
+.middleInfo.dark::after{
+    content:'';
+    position: absolute;
+    background: white;
     height: 100%;
     width: 1px;
     right: 0em;

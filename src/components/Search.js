@@ -1,9 +1,14 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import axios from 'axios'
 import SearchResult from './SearchResult'
 import './Search.css'
+import {getDefaultResults, getSearchResults} from '../searchQueries.js'
+import { AuthContext } from '../AuthContext'
+import {ThemeContext} from '../ThemeContext'
 
 function Search() {
+    const {theme} = useContext(ThemeContext)
+    const {token, setToken} = useContext(AuthContext)
     const [searchTerm, setSearchTerm] = useState('')
     const [searchResults, setSearchResults] = useState([])
 
@@ -137,6 +142,11 @@ function Search() {
         )
     })
     
+    // console.log(token)
+
+    if (!searchResults.length) {
+        return <div className='searchPage'></div>
+    }
 
     return (
         <div>

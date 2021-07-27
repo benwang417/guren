@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {useLocation} from 'react-router-dom'
 import axios from 'axios'
 import './AnimePage.css'
+import {ThemeContext} from '../ThemeContext'
 
 function AnimePage() {
+    const {theme, setTheme} = useContext(ThemeContext)
     const [anime, setAnime] = useState()
     const location = useLocation()
     const components = location.pathname.split('/')
@@ -84,20 +86,20 @@ function AnimePage() {
     console.log(anime)
     
     if (!anime) {
-        return <div></div>
+        return <div className='animePage'></div>
     }
 
     return (
         <div className='animePage'>
             <div className='contentWrapper'>
-                <div className='overviewContainer'> 
+                <div className={`overviewContainer ${theme}`}> 
                     <div className='contentBody'>
                         <div className='topBar'>overview</div>
                         <h1 className='title'>{anime.title.english}</h1>
                         <div>
                             <div className='showInfo'> 
                                 <div>Rating: {anime.averageScore}<p>{anime.popularity} users</p></div>
-                                <div className='middleInfo'>#{getRank()} most popular</div>
+                                <div className={`middleInfo ${theme}`}>#{getRank()} most popular</div>
                                 <div>{getStudio()}</div>
                             </div>
                         </div>

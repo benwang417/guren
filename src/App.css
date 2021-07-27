@@ -1,7 +1,14 @@
-.App {
-    /* background-color: rgb(223, 223, 223); */
+
+.dark {
+    color: white;
+    background-color: rgb(14, 14, 14);
 }
 
-* {
-    
+.light {
+    color: black;
+    background-color: white;
+}
+
+.App {
+    /* height: 100vh; */
 }

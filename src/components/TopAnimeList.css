@@ -17,6 +17,10 @@
     font-size: 1.7rem;
 }
 
+.listTitle.dark {
+    color:white;
+}
+
 .listTitle:hover {
     color: #793AFF;
 }

@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import './TopAnimeList.css'
 import generateUrl from '../generateUrl'
+import { ThemeContext } from '../ThemeContext'
 
 const TopAnimeList = ({sortTerm, title}) => {
+    const {theme} = useContext(ThemeContext)
     const [results, setResults] = useState([])
 
     useEffect(() => {
@@ -59,7 +61,7 @@ const TopAnimeList = ({sortTerm, title}) => {
 
         getAnimePreview()
     }, [])
-    console.log(results)
+    //console.log(results)
 
     //TODO: add error check for no internet to api request
     //TODO: move axios calls to a seperate file
@@ -83,7 +85,7 @@ const TopAnimeList = ({sortTerm, title}) => {
 
     return (
         <div className='container'>
-            <Link to='/anime' className='listTitle'>{title}</Link>
+            <Link to='/anime' className={`listTitle ${theme}`}>{title}</Link>
             <div className='cardList'>
                 {renderedResults}
             </div>

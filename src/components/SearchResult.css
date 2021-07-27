@@ -2,6 +2,32 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.searchWrapper {
+    display: flex;
+    justify-content: center;
+    padding: 3em;
+}
+
+.searchResult {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 75%;
+}
+
+.searchResult::before {
+    content: '';
+    position: absolute;
+    background: black;
+    height: 1px;
+    width: 105%;
+    top: -2em;
+}
+
+.searchResult.dark::before {
+    background: #793AFF;
+}
+
 .searchTitle {
     color: #793AFF;
     text-decoration: none;
@@ -9,24 +35,6 @@
     margin-left: 5em;
 }
 
-.search {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    width: 75%;
-}
-
-.searchWrapper {
-    display: flex;
-    justify-content: center;
-    padding: 3em;
-}
-
-.search::before {
-    content: '';
-    position: absolute;
-    background: black;
-    height: 1px;
-    width: 105%;
-    top: -2em;
+.searchTitle.dark {
+    color: white;
 }
