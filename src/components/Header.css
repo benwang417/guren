@@ -13,9 +13,6 @@
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
 }
 
-.nav.dark {
-    background-color: #23252b;
-}
 
 .logo{
     color: #793AFF;
@@ -40,26 +37,14 @@
     
 }
 
-.link.light{
-    color: black;
+.link {
+    color: inherit;
     text-decoration: none;
     font-weight: 400;
     font-size: 1.5em;
     display: flex;
     justify-content: center;
 }
-
-.link.dark{
-    background: transparent;
-    color:white;
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 1.5em;
-    display: flex;
-    justify-content: center;
-}
-
-
 
 .link:hover {
     color: #793AFF;

@@ -12,6 +12,10 @@ function SearchResult({searchData}) {
         return <Link to='/' className='genre' key={genre}>{genre}</Link>
     })
 
+    // onClick() {
+    //     return 
+    // }
+
     console.log(searchData)
     const url = generateUrl(searchData.title.english, searchData.id)
     return (
