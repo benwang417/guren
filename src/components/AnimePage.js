@@ -1,15 +1,23 @@
 import React, {useState, useEffect, useContext} from 'react'
-import {useLocation} from 'react-router-dom'
+import {Route, Link, useRouteMatch, useParams} from 'react-router-dom'
 import axios from 'axios'
 import './AnimePage.css'
 import {ThemeContext} from '../ThemeContext'
+import Watch from './animePageComponents/Watch'
+import Characters from './animePageComponents/Characters'
 
 function AnimePage() {
     const {theme} = useContext(ThemeContext)
     const [anime, setAnime] = useState()
-    const location = useLocation()
-    const components = location.pathname.split('/')
-    const id = components[3] //pulls the id off of the url
+    let {id} = useParams()
+    let {title} = useParams()
+    const {path, url} = useRouteMatch()
+
+    // console.log(url)
+    // console.log(path)
+    // console.log(id)
+    // console.log(title)
+
 
     function getStudio() {
         const studio = anime.studios.edges.find(node => node.isMain)
@@ -83,11 +91,11 @@ function AnimePage() {
         getAnime()
     }, [])
     
-    console.log(anime)
     
     if (!anime) {
         return <div className='animePage'></div>
     }
+
 
     return (
         <div className='animePage'>
@@ -107,10 +115,27 @@ function AnimePage() {
                     </div>
                     <div className='contentImg'>
                         <img className='coverImg' src={anime.coverImage.extraLarge}/>
-                        <div className='button'>add to my list</div>
+                        <button className='button'>add to my list</button>
                     </div>
                 </div>
-                
+            </div>
+            <div className='secondaryContent'>
+                <div className='selectionBar'>
+                    <ul className='navlinks'>
+                        <li><Link to={`/anime/series/${id}/${title}/`}>watch</Link></li>
+                        <li><Link to={`/anime/series/${id}/${title}/characters`}>characters</Link></li>
+                        <li><Link to={`/anime/series/${id}/${title}/stats`}>stats</Link></li>
+                        <li><Link to={`/anime/series/${id}/${title}/staff`}>staff</Link></li>
+                    </ul>
+                </div>
+                <div>
+                    <Route path={`/anime/series/${id}/${title}/`}>
+                        <Watch />
+                    </Route>
+                    <Route path={`/anime/series/${id}/${title}/characters`}>
+                        <Characters />
+                    </Route>
+                </div>
             </div>
         </div>
     )

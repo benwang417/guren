@@ -39,7 +39,7 @@ function App() {
                             <Route path='/search' exact>
                                 <Search />
                             </Route>
-                            <Route path='/anime/series'>
+                            <Route path='/anime/series/:id/:title'>
                                 <AnimePage />
                             </Route>
                         </div>
