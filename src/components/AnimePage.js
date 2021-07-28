@@ -5,18 +5,18 @@ import './AnimePage.css'
 import {ThemeContext} from '../ThemeContext'
 import Watch from './animePageComponents/Watch'
 import Characters from './animePageComponents/Characters'
+import Stats from './animePageComponents/Stats'
+import Staff from './animePageComponents/Staff'
 
 function AnimePage() {
     const {theme} = useContext(ThemeContext)
     const [anime, setAnime] = useState()
     let {id} = useParams()
-    let {title} = useParams()
     const {path, url} = useRouteMatch()
 
-    // console.log(url)
-    // console.log(path)
-    // console.log(id)
-    // console.log(title)
+    console.log(url)
+    console.log(path)
+   
 
 
     function getStudio() {
@@ -122,18 +122,24 @@ function AnimePage() {
             <div className='secondaryContent'>
                 <div className='selectionBar'>
                     <ul className='navlinks'>
-                        <li><Link to={`/anime/series/${id}/${title}/`}>watch</Link></li>
-                        <li><Link to={`/anime/series/${id}/${title}/characters`}>characters</Link></li>
-                        <li><Link to={`/anime/series/${id}/${title}/stats`}>stats</Link></li>
-                        <li><Link to={`/anime/series/${id}/${title}/staff`}>staff</Link></li>
+                        <li><Link to={`${url}`} className='link'>watch</Link></li>
+                        <li><Link to={`${url}/characters`} className='link'>characters</Link></li>
+                        <li><Link to={`${url}/stats`} className='link'>stats</Link></li>
+                        <li><Link to={`${url}/staff`} className='link'>staff</Link></li>
                     </ul>
                 </div>
                 <div>
-                    <Route path={`/anime/series/${id}/${title}/`}>
+                    <Route path={`${path}/`} exact>
                         <Watch />
                     </Route>
-                    <Route path={`/anime/series/${id}/${title}/characters`}>
+                    <Route path={`${path}/characters`}>
                         <Characters />
+                    </Route>
+                    <Route path={`${path}/stats`}>
+                        <Stats />
+                    </Route>
+                    <Route path={`${path}/staff`}>
+                        <Staff />
                     </Route>
                 </div>
             </div>
