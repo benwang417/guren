@@ -38,6 +38,8 @@ function Search() {
                             averageScore
                             popularity
                             genres
+                            format
+                            seasonYear
                         }
                     }
                 }
@@ -87,6 +89,8 @@ function Search() {
                             averageScore
                             popularity
                             genres
+                            format
+                            seasonYear
                         }
                     }
                 }

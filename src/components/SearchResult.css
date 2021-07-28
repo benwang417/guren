@@ -5,14 +5,14 @@
 .searchWrapper {
     display: flex;
     justify-content: center;
-    padding: 3em;
+    padding: 2.5em;
 }
 
 .searchResult {
     position: relative;
     display: flex;
     flex-direction: row;
-    width: 75%;
+    width: 60%;
 }
 
 .searchResult::before {
@@ -20,7 +20,7 @@
     position: absolute;
     background: black;
     height: 1px;
-    width: 105%;
+    width: 100%;
     top: -2em;
 }
 
@@ -32,9 +32,66 @@
     color: #793AFF;
     text-decoration: none;
     max-width: 50ch;
-    margin-left: 5em;
+    height: max-content;
+    flex: 2;
+    line-height: 1;
 }
 
 .searchTitle.dark {
     color: white;
+}
+
+.searchHeader {
+    display: flex;
+    width: 100%;
+    height: max-content;
+    align-items: left;
+    flex-direction: column;
+}
+
+.stats {
+    flex: 1;
+    text-align: center;
+    height: max-content;
+}
+
+.subhead {
+    line-height: 2.5;
+    font-size: 1.2rem;
+}
+.searchBody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 5em;
+    justify-content: space-between;
+}
+
+.addButton {
+    margin-top: 1em;
+    color: white;
+    background-color: #793AFF;
+    height: 3em;
+    font-size: 1.25rem;
+    border-radius: .25em;
+    width: 10em;
+    border: none;
+}
+
+.top {
+    display: flex;
+
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.genre {
+    text-decoration: none;
+    color: #793AFF;
+    font-size: 1.5rem;
 }

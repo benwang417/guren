@@ -71,17 +71,7 @@ const TopAnimeList = ({sortTerm, title}) => {
         if (result.title.english === null || result.title.description === null ) {
             return
         }
-        
-        //const url = generateUrl(result.title.english, result.id)
-        // return (
-        //     <Link className='cardLink' key={result.id} to={url}>
-        //         <div className='card' style={{backgroundImage: `url(${result.coverImage.large})`}}>
-        //             <div className='cardContent'>
-        //                 <h2 className='cardTitle'>{result.title.english}</h2>
-        //             </div>
-        //         </div>
-        //     </Link>
-        // )
+    
         return (
             <AnimeCard key={result.id} result={result}/>
         )
@@ -89,7 +79,7 @@ const TopAnimeList = ({sortTerm, title}) => {
 
     // if (!results.length) {
     //     return (
-
+    //         <AnimeCard key='' result={null}/>
     //     )
     // }
 
