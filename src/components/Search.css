@@ -2,16 +2,48 @@
     height: 100vh;
 }
 
-.searchBar > * {
-    justify-content: center;
-    text-align: center;
-    margin-top: 2em;
-    height: 2.5em;
+.mainContainer {
+    padding-left: 25em;
+    padding-right: 25em;
+   
 }
 
-.searchBarContainer {
+.filtersWrapper {
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.filterContainer {
     display: flex;
-    justify-content: center;
-    text-align: center;
-    padding: 2em;
+    padding: 2.5em;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.filterTitle {
+    padding: .5em 0;
+    font-size: 1.5rem;
+}
+
+.inputWrap {
+    padding: 1em;
+    background: rgb(36, 36, 36);
+    border-radius: .5em;
+}
+
+.searchBar {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.25rem;
+    width: 10em;
+
+}
+
+.searchBar:focus {
+    outline: none;
 }

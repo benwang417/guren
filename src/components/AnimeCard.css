@@ -33,14 +33,14 @@
     );
 }
 
-/* .cardBody{
+.cardBody{
     position: relative;
     display: block;
     height: 4rem;
     width: 200px;
     text-overflow: ellipsis;
     word-wrap: break-word;
-} */
+}
 
 .cardTitle {
     position: relative;

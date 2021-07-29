@@ -3,9 +3,7 @@
 }
 
 .container {
-    margin-top: 1.5rem;
-    margin-left: 3.5rem;
-    background-color: transparent;
+    display: flex;
 }
 
 .listTitle {
@@ -27,11 +25,7 @@
 
 .cardList {
     display: flex;
-    place-items: center;
-    line-height: 1.2;
-    background: transparent;
-    text-align: horizontal;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    flex-wrap: wrap;
+    width: 80em;
 }   
 

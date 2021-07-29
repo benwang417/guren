@@ -25,13 +25,10 @@ function App() {
                     <div className={`App ${theme}`}>
                         <Header />
                         <div className='lists'>
-                            <Route path='/' exact>
-                                <Hero />
-                            </Route>
                             <Route path='/auth' exact>
                                 <Auth />
                             </Route>
-                            <Route path='/anime' exact>
+                            <Route path='/' exact>
                                 <TopAnimeList sortTerm='SCORE_DESC' title='Top Rated'/>
                                 <TopAnimeList sortTerm='POPULARITY_DESC' title='Most Popular'/>
                                 <TopAnimeList sortTerm='TRENDING_DESC' title='Trending'/>

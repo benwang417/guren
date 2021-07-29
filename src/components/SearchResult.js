@@ -31,12 +31,14 @@ function SearchResult({searchData}) {
                         </div>
                         <p className='subhead'>{searchData.format} {searchData.seasonYear}</p>
                     </div>
-                    <div className='description'>
+                    {/* <div className='description'>
                         {searchData.description.replace(/(<([^>]+)>)/gi, "")}
-                    </div>
+                    </div> */}
                     <div className='footer'>
                         <button className='addButton'>add to my list</button>
-                        {renderedGenres}
+                        <div className='genres'>
+                            {renderedGenres}
+                        </div>
                     </div>
                 </div>
             </div>

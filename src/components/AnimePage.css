@@ -1,4 +1,4 @@
-.light {
+/* .light {
     color: black;
     background-color: white;
 }
@@ -6,7 +6,7 @@
 .dark {
     color: white;
     background-color: black;
-}
+} */
 
 .animePage {
     height: 100vh;
@@ -40,7 +40,7 @@
     padding-bottom: 1.5em;
     position: relative;
     /* max-width: max-content; */
-    max-width: 65%;
+    max-width: 60%;
 }
 
 .overviewContainer.light::before {
@@ -191,12 +191,11 @@
     flex-direction: column;
 }
 
-/* .navlinks{
+.navlinks{
     display: flex;
     justify-content: left;
     padding-top: 1.5em;
     padding-bottom: 1.5em;
-    max-width: 65%;
 }
 
 .navlinks li{
@@ -206,10 +205,12 @@
     margin-right: 4em;
     font-size: 1.25rem;
     
-} */
+}
 
-/* .link {
+.link {
     text-decoration: none;
     color: inherit;
-} */
+}
+
+
 

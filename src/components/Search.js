@@ -152,19 +152,27 @@ function Search() {
         return <div className='searchPage'></div>
     }
 
+    //TODO: Render search bar if no results show up, currently invalid search empties the page
+
     return (
         <div>
-            <div className='searchBarContainer'>
-                <div className='searchBar'>
-                    <label>search</label>
-                    <input 
-                        value={searchTerm}
-                        onChange={e => setSearchTerm(e.target.value)}
-                    />
+            <div className='mainContainer'>
+                <div className='filtersWrapper'>
+                    <div className='filterContainer'>
+                        <div className='filter'>
+                            <div className='filterTitle'>search</div>
+                            <div className='inputWrap'>
+                                <input className='searchBar'
+                                    value={searchTerm}
+                                    onChange={e => setSearchTerm(e.target.value)}
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className='searchContainer'>
-                {renderedSearchResults}
+                <div className='searchContainer'>
+                    {renderedSearchResults}
+                </div>
             </div>
         </div>
     )

@@ -12,7 +12,7 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    width: 60%;
+    width: 100%;
 }
 
 .searchResult::before {
@@ -28,14 +28,22 @@
     background: #793AFF;
 }
 
+.searchImage {
+    height: auto;
+    width: 10em;
+}
+
 .searchTitle {
-    color: #793AFF;
     text-decoration: none;
     max-width: 50ch;
     height: max-content;
     flex: 2;
     line-height: 1;
 }
+
+/* .title:hover {
+    color: #793AFF;
+} */
 
 .searchTitle.dark {
     color: white;
@@ -53,10 +61,12 @@
     flex: 1;
     text-align: center;
     height: max-content;
+    margin-left: 1em;
+    white-space: nowrap;
+    line-height: 1.5em;
 }
 
 .subhead {
-    line-height: 2.5;
     font-size: 1.2rem;
 }
 .searchBody {
@@ -67,31 +77,48 @@
     justify-content: space-between;
 }
 
+.description {
+    /* max-height: 10em;
+    overflow-y: hidden;
+    text-overflow: ellipsis; */
+}
+
 .addButton {
-    margin-top: 1em;
     color: white;
     background-color: #793AFF;
     height: 3em;
     font-size: 1.25rem;
     border-radius: .25em;
-    width: 10em;
+    min-width: 10em;
     border: none;
 }
 
 .top {
     display: flex;
-
+    flex-wrap: wrap;
 }
 
 .footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    margin-top: 2em;
+}
 
+.genres {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2em;
 }
 
 .genre {
     text-decoration: none;
     color: #793AFF;
     font-size: 1.5rem;
+    margin-left: .75em;
+    margin-right: .75em;
+}
+
+.genre:hover {
+    color: white;
 }
