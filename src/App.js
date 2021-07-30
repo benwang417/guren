@@ -7,42 +7,30 @@ import {
     Route
 } from 'react-router-dom'
 import TopAnimeList from './components/TopAnimeList'
-import Auth from './components/Auth'
-import { AuthContext } from './AuthContext'
-import { UserContext } from './UserContext' 
 import { ThemeContext } from './ThemeContext'
 
 function App() {
-    const [token, setToken] = useState('')
-    const [user, setUser] = useState()
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light')
 
     return (
-        <AuthContext.Provider value={{token, setToken}}>
-            <UserContext.Provider value={{user, setUser}}>
-                <ThemeContext.Provider value={{theme, setTheme}}>
-                    <div className={`App ${theme}`}>
-                        <Header />
-                        <div className='lists'>
-                            <Route path='/auth' exact>
-                                <Auth />
-                            </Route>
-                            <Route path='/' exact>
-                                <TopAnimeList sortTerm='SCORE_DESC' title='Top Rated'/>
-                                <TopAnimeList sortTerm='POPULARITY_DESC' title='Most Popular'/>
-                                <TopAnimeList sortTerm='TRENDING_DESC' title='Trending'/>
-                            </Route>
-                            <Route path='/search'>
-                                <Search />
-                            </Route>
-                            <Route path='/anime/series/:id/:title'>
-                                <AnimePage />
-                            </Route>
-                        </div>
-                    </div>
-                </ThemeContext.Provider>
-            </UserContext.Provider>
-        </AuthContext.Provider>
+        <ThemeContext.Provider value={{theme, setTheme}}>
+            <div className={`App ${theme}`}>
+                <Header />
+                <div className='lists'>
+                    <Route path='/' exact>
+                        <TopAnimeList sortTerm='SCORE_DESC' title='Top Rated'/>
+                        <TopAnimeList sortTerm='POPULARITY_DESC' title='Most Popular'/>
+                        <TopAnimeList sortTerm='TRENDING_DESC' title='Trending'/>
+                    </Route>
+                    <Route path='/search'>
+                        <Search />
+                    </Route>
+                    <Route path='/anime/series/:id/:title'>
+                        <AnimePage />
+                    </Route>
+                </div>
+            </div>
+        </ThemeContext.Provider>
     )
 }
 

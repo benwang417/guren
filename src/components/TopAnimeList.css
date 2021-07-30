@@ -4,7 +4,7 @@
 
 .container {
     display: flex;
-    padding: 0 20em;
+    padding: 0 10em;
     flex-direction: column;
 }
 

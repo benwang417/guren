@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useContext} from 'react'
 import axios from 'axios'
 import SearchResult from './SearchResult'
-import Dropdown from './Dropdown'
+// import Dropdown from './Dropdown'
 import './Search.css'
 import {ThemeContext} from '../ThemeContext'
 import {useLocation, useHistory} from 'react-router-dom'
