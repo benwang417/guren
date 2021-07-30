@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useContext} from 'react'
 import axios from 'axios'
 import SearchResult from './SearchResult'
+import Dropdown from './Dropdown'
 import './Search.css'
 import {ThemeContext} from '../ThemeContext'
 import {useLocation, useHistory} from 'react-router-dom'
@@ -40,6 +41,7 @@ function Search() {
                             genres
                             format
                             seasonYear
+                            isAdult
                         }
                     }
                 }
@@ -91,6 +93,7 @@ function Search() {
                             genres
                             format
                             seasonYear
+                            isAdult
                         }
                     }
                 }
@@ -131,8 +134,6 @@ function Search() {
         }
     }, [searchTerm])
 
-    //check for isAdult, only render non adult content
-
     const onInputChange = (e) => {
         setSearchTerm(e.target.value)
         if (e.target.value) {
@@ -145,10 +146,10 @@ function Search() {
 
     const renderedSearchResults = searchResults.map((result) => {
         // possible issue caused by only native or romaji title being available, instead: check for english, then romaji, then native, then return if all null
-        if (result.title.english === null || result.title.description === null ) {
+        if (result.title.english === null || result.title.description === null || result.isAdult) {
             return
         }
-        
+        // console.log(result)
 
         return (
             <SearchResult key={result.id} searchData={result}/>
@@ -156,11 +157,30 @@ function Search() {
     })
     
     if (!searchResults.length) {
-        return <div className='searchPage'></div>
+        return (
+            <div className='searchPage'>
+                <div className='filtersWrapper'>
+                    <div className='filterContainer'>
+                        <div className='filter'>
+                            <div className='filterTitle'>search</div>
+                            <div className={`inputWrap ${theme}`}>
+                                <input className='searchBar'
+                                    value={searchTerm}
+                                    onChange={onInputChange}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                No Search Results: Please enter valid search term
+            </div>
+        )
     }
 
-    //TODO: Render search bar if no results show up, currently invalid search empties the page
-    //TODO: convert searches into query param that is added to url
+    //TODO: add black background to bottom of screen when only a few search results are show, currently
+    //there is a large white area in dark mode
+    //TODO: add X button to clear search
+    //TODO: add other search filters: year, season, genre, etc
 
     return (
         <div>

@@ -1,5 +1,7 @@
 .searchPage {
     height: 100vh;
+    padding-left: 25em;
+    padding-right: 25em;
 }
 
 .mainContainer {
@@ -30,18 +32,23 @@
 }
 
 .inputWrap {
-    padding: 1em;
-    background: rgb(36, 36, 36);
+    padding: .75em;
     border-radius: .5em;
+}
+
+.inputWrap.light {
+    background-color: rgb(212, 212, 212);
+}
+.inputWrap.dark {
+    background-color: rgb(44, 44, 44);
 }
 
 .searchBar {
     background: transparent;
     border: none;
-    color: white;
     font-size: 1.25rem;
     width: 10em;
-
+    color: inherit;
 }
 
 .searchBar:focus {

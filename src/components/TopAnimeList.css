@@ -4,6 +4,8 @@
 
 .container {
     display: flex;
+    padding: 0 20em;
+    flex-direction: column;
 }
 
 .listTitle {
@@ -26,6 +28,5 @@
 .cardList {
     display: flex;
     flex-wrap: wrap;
-    width: 80em;
 }   
 

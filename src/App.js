@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import Header from './components/Header'
 import Search from './components/Search'
 import AnimePage from './components/AnimePage'
-import Hero from './components/Hero'
 import './App.css'
 import {
     Route
@@ -33,7 +32,7 @@ function App() {
                                 <TopAnimeList sortTerm='POPULARITY_DESC' title='Most Popular'/>
                                 <TopAnimeList sortTerm='TRENDING_DESC' title='Trending'/>
                             </Route>
-                            <Route path='/search' exact>
+                            <Route path='/search'>
                                 <Search />
                             </Route>
                             <Route path='/anime/series/:id/:title'>
