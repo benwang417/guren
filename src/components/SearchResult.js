@@ -16,7 +16,7 @@ function SearchResult({searchData}) {
     //     return 
     // }
 
-    console.log(searchData)
+    // console.log(searchData)
     const url = generateUrl(searchData.title.english, searchData.id)
     return (
         <div className='searchWrapper'>
