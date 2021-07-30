@@ -6,21 +6,20 @@ import './Search.css'
 import {ThemeContext} from '../ThemeContext'
 import {useLocation, useHistory} from 'react-router-dom'
 
-const genreOptions = ['Action', 'Adventure', 'Comedy', 'Drama']
-
 function Search() {
     const {theme} = useContext(ThemeContext)
     const searchParams = new URLSearchParams(useLocation().search)
     let history = useHistory()
     const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '')
     const [searchResults, setSearchResults] = useState([])
-    const [genreSelection, setGenreSelection] = useState('')
-
+    const [genreCollection, setGenreCollection] = useState([])
+    const [genreSelection, setGenreSelection] = useState('Any')
 
     useEffect(() => {
         const getSearchResults = async () => {
             const query = `
                 query ($page: Int, $perPage: Int, $search: String) {
+                    GenreCollection
                     Page (page: $page, perPage: $perPage) {
                         pageInfo {
                             total
@@ -29,7 +28,9 @@ function Search() {
                             hasNextPage
                             perPage
                         }
-                        media (type: ANIME, search: $search, sort: SCORE_DESC) {
+                        media (type: ANIME, search: $search, sort: SCORE_DESC,
+                            ${`${genreSelection !== 'Any' ? `genre: ${`"${genreSelection}"`}` : ''}`},
+                            ) {
                             id
                             title {
                                 english
@@ -46,10 +47,12 @@ function Search() {
                             format
                             seasonYear
                             isAdult
+                            season
                         }
                     }
                 }
             `
+            // console.log(query)
 
             const variables = {
                 search: searchTerm,
@@ -68,11 +71,14 @@ function Search() {
                 headers
             })
             setSearchResults(response.data.data.Page.media)
+            console.log(response)
+            setGenreCollection(response.data.data.GenreCollection)
         }
 
         const getDefaultResults = async () => {
             const query = `
                 query ($page: Int, $perPage: Int) {
+                    GenreCollection
                     Page (page: $page, perPage: $perPage) {
                         pageInfo {
                             total
@@ -81,7 +87,9 @@ function Search() {
                             hasNextPage
                             perPage
                         }
-                        media (type: ANIME, sort: SCORE_DESC) {
+                        media (type: ANIME, sort: SCORE_DESC,
+                            ${`${genreSelection !== 'Any' ? `genre: ${`"${genreSelection}"`}` : ''}`},
+                            ) {
                             id
                             title {
                                 english
@@ -120,6 +128,7 @@ function Search() {
                 headers
             })
             setSearchResults(response.data.data.Page.media)
+            setGenreCollection(response.data.data.GenreCollection)
         }
 
         if (!searchTerm) {
@@ -136,7 +145,7 @@ function Search() {
                 clearTimeout(timeoutId)
             }
         }
-    }, [searchTerm])
+    }, [searchTerm, genreSelection])
 
     const onInputChange = (e) => {
         setSearchTerm(e.target.value)
@@ -202,7 +211,7 @@ function Search() {
                         </div>
                     </div>
                     <Dropdown 
-                        options={genreOptions} filterTitle='genre' 
+                        options={genreCollection} filterTitle='genre' 
                         selection={genreSelection} setSelection={setGenreSelection}
                     />
                 </div>
