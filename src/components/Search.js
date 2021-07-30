@@ -1,10 +1,12 @@
 import React, {useEffect, useState, useContext} from 'react'
 import axios from 'axios'
 import SearchResult from './SearchResult'
-// import Dropdown from './Dropdown'
+import Dropdown from './Dropdown'
 import './Search.css'
 import {ThemeContext} from '../ThemeContext'
 import {useLocation, useHistory} from 'react-router-dom'
+
+const genreOptions = ['Action', 'Adventure', 'Comedy', 'Drama']
 
 function Search() {
     const {theme} = useContext(ThemeContext)
@@ -12,6 +14,8 @@ function Search() {
     let history = useHistory()
     const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '')
     const [searchResults, setSearchResults] = useState([])
+    const [genreSelection, setGenreSelection] = useState('')
+
 
     useEffect(() => {
         const getSearchResults = async () => {
@@ -197,6 +201,10 @@ function Search() {
                             </div>
                         </div>
                     </div>
+                    <Dropdown 
+                        options={genreOptions} filterTitle='genre' 
+                        selection={genreSelection} setSelection={setGenreSelection}
+                    />
                 </div>
                 <div className='searchContainer'>
                     {renderedSearchResults}

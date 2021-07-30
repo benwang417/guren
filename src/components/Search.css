@@ -12,12 +12,13 @@
 
 .filtersWrapper {
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: 400px 1fr;
 }
 
 .filterContainer {
     display: flex;
     padding: 2.5em;
+    width: max-content;
 }
 
 .filter {
@@ -43,7 +44,7 @@
     background-color: rgb(44, 44, 44);
 }
 
-.searchBar {
+.searchBar, .selection {
     background: transparent;
     border: none;
     font-size: 1.25rem;
@@ -51,6 +52,7 @@
     color: inherit;
 }
 
-.searchBar:focus {
+.searchBar:focus, .selection:focus {
     outline: none;
 }
+
