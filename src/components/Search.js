@@ -6,8 +6,10 @@ import './Search.css'
 import {ThemeContext} from '../ThemeContext'
 import {useLocation, useHistory} from 'react-router-dom'
 
-const yearCollection = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
+const yearCollection = [2021, 2020, 2019, 2018, 2017, 2016, 
+    2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006]
 const seasonCollection = ['WINTER', 'SPRING', 'SUMMER', 'FALL']
+const sortCollection = ['SCORE_DESC', 'POPULARITY_DESC', 'TRENDING_DESC']
 
 function Search() {
     const {theme} = useContext(ThemeContext)
@@ -19,6 +21,7 @@ function Search() {
     const [genreSelection, setGenreSelection] = useState(searchParams.get('genre') || 'Any')
     const [yearSelection, setYearSelection] = useState(searchParams.get('year') || 'Any')
     const [seasonSelection, setSeasonSelection] = useState(searchParams.get('season') || 'Any')
+    const [sortSelection, setSortSelection] = useState(sortCollection[0])
 
     useEffect(() => {
         const getSearchResults = async () => {
@@ -33,7 +36,7 @@ function Search() {
                             hasNextPage
                             perPage
                         }
-                        media (type: ANIME, search: $search, sort: SCORE_DESC,
+                        media (type: ANIME, search: $search, sort: ${sortSelection},
                             ${`${genreSelection !== 'Any' ? `genre: ${`"${genreSelection}"`}` : ''}`},
                             ${`${yearSelection !== 'Any' ? `seasonYear: ${`${yearSelection}`}` : ''}`},
                             ${`${seasonSelection !== 'Any' ? `season: ${`${seasonSelection}`}` : ''}`}
@@ -94,7 +97,7 @@ function Search() {
                             hasNextPage
                             perPage
                         }
-                        media (type: ANIME, sort: SCORE_DESC,
+                        media (type: ANIME, sort: ${sortSelection},
                             ${`${genreSelection !== 'Any' ? `genre: ${`"${genreSelection}"`}` : ''}`},
                             ${`${yearSelection !== 'Any' ? `seasonYear: ${`${yearSelection}`}` : ''}`},
                             ${`${seasonSelection !== 'Any' ? `season: ${`${seasonSelection}`}` : ''}`}
@@ -154,7 +157,7 @@ function Search() {
                 clearTimeout(timeoutId)
             }
         }
-    }, [searchTerm, genreSelection, yearSelection, seasonSelection])
+    }, [searchTerm, genreSelection, yearSelection, seasonSelection, sortSelection])
 
     const onInputChange = (e) => {
         setSearchTerm(e.target.value)
@@ -202,7 +205,7 @@ function Search() {
     //TODO: add black background to bottom of screen when only a few search results are show, currently
     //there is a large white area in dark mode
     //TODO: add X button to clear search
-    //TODO: add other search filters: year, season, genre, etc
+    //TODO: add search filters to query params: year, season, genre,
 
     return (
         <div>
@@ -230,6 +233,10 @@ function Search() {
                     <Dropdown 
                         options={seasonCollection} filterTitle='season' 
                         selection={seasonSelection} setSelection={setSeasonSelection}
+                    />
+                    <Dropdown 
+                        options={sortCollection} filterTitle='sort by' 
+                        selection={sortSelection} setSelection={setSortSelection}
                     />
                 </div>
                 <div className='searchContainer'>
