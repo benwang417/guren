@@ -6,7 +6,8 @@ import './Search.css'
 import {ThemeContext} from '../ThemeContext'
 import {useLocation, useHistory} from 'react-router-dom'
 
-const yearCollection = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2016, 2017, 2018, 2019, 2020, 2021]
+const yearCollection = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
+const seasonCollection = ['WINTER', 'SPRING', 'SUMMER', 'FALL']
 
 function Search() {
     const {theme} = useContext(ThemeContext)
@@ -15,13 +16,9 @@ function Search() {
     const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '')
     const [searchResults, setSearchResults] = useState([])
     const [genreCollection, setGenreCollection] = useState([])
-    const [genreSelection, setGenreSelection] = useState('Any')
-
-    function getQueryParams() {
-        return `/search?
-        ${searchTerm !== '' ? `search=${searchTerm}` : ''}&
-        ${genreSelection !== 'Any' ? `genre=${genreSelection}` : ''}`
-    }
+    const [genreSelection, setGenreSelection] = useState(searchParams.get('genre') || 'Any')
+    const [yearSelection, setYearSelection] = useState(searchParams.get('year') || 'Any')
+    const [seasonSelection, setSeasonSelection] = useState(searchParams.get('season') || 'Any')
 
     useEffect(() => {
         const getSearchResults = async () => {
@@ -38,6 +35,8 @@ function Search() {
                         }
                         media (type: ANIME, search: $search, sort: SCORE_DESC,
                             ${`${genreSelection !== 'Any' ? `genre: ${`"${genreSelection}"`}` : ''}`},
+                            ${`${yearSelection !== 'Any' ? `seasonYear: ${`${yearSelection}`}` : ''}`},
+                            ${`${seasonSelection !== 'Any' ? `season: ${`${seasonSelection}`}` : ''}`}
                             ) {
                             id
                             title {
@@ -97,6 +96,8 @@ function Search() {
                         }
                         media (type: ANIME, sort: SCORE_DESC,
                             ${`${genreSelection !== 'Any' ? `genre: ${`"${genreSelection}"`}` : ''}`},
+                            ${`${yearSelection !== 'Any' ? `seasonYear: ${`${yearSelection}`}` : ''}`},
+                            ${`${seasonSelection !== 'Any' ? `season: ${`${seasonSelection}`}` : ''}`}
                             ) {
                             id
                             title {
@@ -153,7 +154,7 @@ function Search() {
                 clearTimeout(timeoutId)
             }
         }
-    }, [searchTerm, genreSelection])
+    }, [searchTerm, genreSelection, yearSelection, seasonSelection])
 
     const onInputChange = (e) => {
         setSearchTerm(e.target.value)
@@ -221,6 +222,14 @@ function Search() {
                     <Dropdown 
                         options={genreCollection} filterTitle='genre' 
                         selection={genreSelection} setSelection={setGenreSelection}
+                    />
+                    <Dropdown 
+                        options={yearCollection} filterTitle='year' 
+                        selection={yearSelection} setSelection={setYearSelection}
+                    />
+                    <Dropdown 
+                        options={seasonCollection} filterTitle='season' 
+                        selection={seasonSelection} setSelection={setSeasonSelection}
                     />
                 </div>
                 <div className='searchContainer'>
