@@ -6,6 +6,8 @@ import './Search.css'
 import {ThemeContext} from '../ThemeContext'
 import {useLocation, useHistory} from 'react-router-dom'
 
+const yearCollection = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2016, 2017, 2018, 2019, 2020, 2021]
+
 function Search() {
     const {theme} = useContext(ThemeContext)
     const searchParams = new URLSearchParams(useLocation().search)
@@ -14,6 +16,12 @@ function Search() {
     const [searchResults, setSearchResults] = useState([])
     const [genreCollection, setGenreCollection] = useState([])
     const [genreSelection, setGenreSelection] = useState('Any')
+
+    function getQueryParams() {
+        return `/search?
+        ${searchTerm !== '' ? `search=${searchTerm}` : ''}&
+        ${genreSelection !== 'Any' ? `genre=${genreSelection}` : ''}`
+    }
 
     useEffect(() => {
         const getSearchResults = async () => {
