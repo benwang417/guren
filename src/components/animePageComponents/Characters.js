@@ -7,6 +7,7 @@ function Characters ({id}) {
 
     useEffect(() => {
         const getCharacters = async () => {
+            //TODO: add staff to query and filter by role : voice actor
             const query = `
                 query ($id: Int) {
                     Media (id: $id, type: ANIME) {
@@ -19,8 +20,18 @@ function Characters ({id}) {
                                     name {
                                         first
                                         last
+                                        full
                                     }
                                     id
+                                    image {
+                                        medium
+                                    }
+                                }
+                                voiceActors {
+                                    id
+                                    name {
+                                        full
+                                    }
                                     image {
                                         medium
                                     }
@@ -51,20 +62,29 @@ function Characters ({id}) {
         getCharacters()
     }, [])
 
+    const renderedChars = characters.map((character) => {
+        const char = character.node
+        const charName = char.name.full
+        const voiceActor = character.voiceActors[0]
+        const voiceActorName = voiceActor ? voiceActor.name.full : null
 
-    const renderedChars = characters.map((char) => {
-        const firstName = char.node.name.first
-        const lastName = char.node.name.last
-
-        const url = lastName ? `/characters/${id}/${firstName}-${lastName}` : `/characters/${id}/${firstName}`
+        const charURL = `/characters/${char.id}/${charName.replace(/\s/g , "-")}`
+        const vaURL = `/va/${voiceActor.id}/${voiceActorName.replace(/\s/g , "-")}`
         return (
-            <Link to={url} key={char.node.id}>
-                <div>{firstName} {lastName}</div>
-            </Link>
+            <div>
+                <Link to={charURL} key={char.id}>
+                    <div>{charName}</div>
+                    <img src={char.image.medium}/>
+                </Link>
+                <Link to={vaURL} key={voiceActor.id}>
+                    <div>{voiceActorName}</div>
+                    <img src={voiceActor.image.medium}/>
+                </Link>
+            </div>
         )
     })
 
-    // console.log(characters)
+    console.log(characters)
 
     if (!characters) {
         return (
