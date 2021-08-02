@@ -69,17 +69,18 @@ function Characters ({id}) {
         const voiceActorName = voiceActor ? voiceActor.name.full : null
 
         const charURL = `/characters/${char.id}/${charName.replace(/\s/g , "-")}`
-        const vaURL = `/va/${voiceActor.id}/${voiceActorName.replace(/\s/g , "-")}`
+        const vaURL = voiceActor ? `/va/${voiceActor.id}/${voiceActorName.replace(/\s/g , "-")}` : ''
         return (
             <div key={char.id}>
                 <Link to={charURL}>
                     <div>{charName}</div>
                     <img src={char.image.medium}/>
                 </Link>
+                { voiceActor ? 
                 <Link to={vaURL}>
                     <div>{voiceActorName}</div>
                     <img src={voiceActor.image.medium}/>
-                </Link>
+                </Link> : <div></div>}
             </div>
         )
     })
