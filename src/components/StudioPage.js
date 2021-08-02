@@ -63,6 +63,7 @@ function StudioPage() {
         const anime = show.node
 
         const showURL = anime.title.english ? generateUrl(anime.title.english, anime.id) : ''
+        //TODO: show romaji title if english not available
 
         return (
             <div key={anime.id}>

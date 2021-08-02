@@ -84,7 +84,7 @@ function VoiceActorPage() {
 
         const charURL = `/characters/${char.id}/${charName.replace(/\s/g , "-")}`
         const showURL = show.title.english ? generateUrl(show.title.english, show.id) : ''
-
+        //TODO: show romaji title if english not available
         return (
             <div key={char.id} style={{display: 'flex'}}>
                 <Link to={charURL}>

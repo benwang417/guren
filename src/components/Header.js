@@ -38,6 +38,9 @@ function Header() {
                         <a className={`link ${theme}`} href='https://anilist.co/api/v2/oauth/authorize?client_id=6197&response_type=token'>login with AniList</a>
                     </li>
                     <li>
+                        <Link to='/user/Benjiman/animelist' className={`link ${theme}`}>my list</Link>
+                    </li>
+                    <li>
                         <button onClick={toggleTheme} className='themeButton'>{theme === 'light' ? 'dark mode' : 'light mode'}</button>
                     </li>
                 </ul>
