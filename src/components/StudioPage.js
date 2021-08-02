@@ -68,13 +68,13 @@ function StudioPage() {
             <div key={anime.id}>
                 <Link to={showURL}>
                     <div>{anime.title.english}</div>
-                    <img src={anime.coverImage.medium} alt='show cover picture'/>
+                    <img src={anime.coverImage.medium} alt='show'/>
                 </Link>
             </div>
         )
     })
 
-    //TODO: sort shows by score, year released etc
+    //TODO: sort shows by score, year released, popularity etc
     console.log(studio)
     return (
         <div>

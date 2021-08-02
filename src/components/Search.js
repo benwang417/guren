@@ -224,7 +224,7 @@ function Search() {
                         </div>
                     </div>
                     <Dropdown 
-                        options={genreCollection} filterTitle='genre' 
+                        options={genreCollection.filter(e => e !== 'Hentai')} filterTitle='genre' 
                         selection={genreSelection} setSelection={setGenreSelection}
                     />
                     <Dropdown 

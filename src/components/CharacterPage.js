@@ -52,7 +52,7 @@ function CharacterPage() {
         )
     }
 
-    //TODO: parse description
+    //TODO: parse description and hide spoilers
     console.log(character)
     return (
         <div>

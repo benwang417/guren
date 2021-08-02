@@ -9,7 +9,6 @@ function VoiceActorPage() {
 
     useEffect(() => {
         const getVoiceActor = async () => {
-            //TODO: add staff to query and filter by role : voice actor
             const query = `
                 query ($id: Int) {
                     Staff (id: $id) {
@@ -77,6 +76,7 @@ function VoiceActorPage() {
         )
     }
 
+    //TODO: sort characters by popularity
     const renderedChars = voiceActor.characters.edges.map((character) => {
         const char = character.node
         const charName = char.name.full
