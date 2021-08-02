@@ -3,7 +3,6 @@ import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 import generateUrl from '../generateUrl'
 
-
 function VoiceActorPage() {
     const {id} = useParams()
     const [voiceActor, setVoiceActor] = useState()
