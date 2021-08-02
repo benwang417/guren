@@ -55,14 +55,14 @@ function Staff ({id}) {
         const firstName = staff.node.name.first
         const lastName = staff.node.name.last
 
-        const url = lastName ? `/staff/${id}/${firstName}-${lastName}` : `/staff/${id}/${firstName}`
+        const url = lastName ? `/staff/${staff.node.id}/${firstName}-${lastName}` : `/staff/${staff.node.id}/${firstName}`
         return (
             <Link to={url} key={staff.node.id}>
                 <div>{firstName} {lastName}</div>
             </Link>
         )
     })
-    console.log(staff)
+    // console.log(staff)
 
     if (!staff) {
         return (

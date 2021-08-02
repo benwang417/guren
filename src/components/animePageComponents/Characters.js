@@ -71,12 +71,12 @@ function Characters ({id}) {
         const charURL = `/characters/${char.id}/${charName.replace(/\s/g , "-")}`
         const vaURL = `/va/${voiceActor.id}/${voiceActorName.replace(/\s/g , "-")}`
         return (
-            <div>
-                <Link to={charURL} key={char.id}>
+            <div key={char.id}>
+                <Link to={charURL}>
                     <div>{charName}</div>
                     <img src={char.image.medium}/>
                 </Link>
-                <Link to={vaURL} key={voiceActor.id}>
+                <Link to={vaURL}>
                     <div>{voiceActorName}</div>
                     <img src={voiceActor.image.medium}/>
                 </Link>

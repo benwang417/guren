@@ -35,12 +35,12 @@
 
 .overviewContainer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     padding-top: 1.5em;
     padding-bottom: 1.5em;
     position: relative;
     /* max-width: max-content; */
-    max-width: 60%;
 }
 
 .overviewContainer.light::before {
@@ -83,7 +83,7 @@
 .title {
     padding: 0em;
     width: max-content;
-    font-size: 2rem;
+    font-size: 1.5rem;
     max-width: 40ch;
 }
 
@@ -98,9 +98,9 @@
 
 .mainText {
     margin-top: 1em;
-    /* width: 70ch; */
+    width: 70ch;
     font-weight: 400;
-    font-size: 1.3rem;
+    font-size: 1rem;
 }
 
 .showInfo {
@@ -108,7 +108,7 @@
     display: flex;
     justify-content: space-evenly;
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .middleInfo {
@@ -167,7 +167,7 @@
     margin-left: 2em;
     display: flex;
     flex-direction: column;
-    width: 20em;
+    width: 15em;
     justify-content: space-between;
 }
 
@@ -176,7 +176,7 @@
     background-color: #793AFF;
     height: 4em;
     line-height: 4em;
-    font-size: 1.25rem;
+    font-size: 1rem;
     border-radius: .25em;
     margin-top: 2em;
     margin-bottom: 1em;
@@ -203,7 +203,7 @@
     list-style: none;
     margin-left: 4em;
     margin-right: 4em;
-    font-size: 1.25rem;
+    font-size: 1rem;
     
 }
 
@@ -212,5 +212,9 @@
     color: inherit;
 }
 
-
+@media (min-width: 600px) {
+    .overviewContainer{
+        flex-direction: row;
+    }
+}
 

@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react'
 import {Route, Link, useRouteMatch, useParams} from 'react-router-dom'
 import axios from 'axios'
-import './AnimePage.css'
+// import './AnimePage.css'
 import {ThemeContext} from '../ThemeContext'
 import Watch from './animePageComponents/Watch'
 import Characters from './animePageComponents/Characters'
@@ -14,10 +14,8 @@ function AnimePage() {
     let {id} = useParams()
     const {path, url} = useRouteMatch()
 
-    console.log(url)
-    console.log(path)
-   
-
+    // console.log(url)
+    // console.log(path)
 
     function getStudio() {
         const studio = anime.studios.edges.find(node => node.isMain)
@@ -133,13 +131,13 @@ function AnimePage() {
                         <Watch />
                     </Route>
                     <Route path={`${path}/characters`}>
-                        <Characters />
+                        <Characters id={id} />
                     </Route>
                     <Route path={`${path}/stats`}>
-                        <Stats />
+                        <Stats id={id} />
                     </Route>
                     <Route path={`${path}/staff`}>
-                        <Staff />
+                        <Staff id={id} />
                     </Route>
                 </div>
             </div>
