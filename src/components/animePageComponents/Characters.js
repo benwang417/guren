@@ -64,6 +64,8 @@ function Characters ({id}) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+
+    //TODO: sort characters by popularity
     const renderedChars = characters.map((character) => {
         const char = character.node
         const charName = char.name.full
