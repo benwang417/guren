@@ -75,7 +75,7 @@ function Characters ({id}) {
         const charURL = `/characters/${char.id}/${charName.replace(/\s/g , "-")}`
         const vaURL = voiceActor ? `/va/${voiceActor.id}/${voiceActorName.replace(/\s/g , "-")}` : ''
         return (
-            <div key={char.id}>
+            <div key={char.id} style={{display: 'flex'}}>
                 <Link to={charURL}>
                     <div>{charName}</div>
                     <img src={char.image.medium} alt='character'/>
@@ -101,7 +101,7 @@ function Characters ({id}) {
 
     return (
         <div>
-            <h1>Chars</h1>
+            <h1>Characters</h1>
             {renderedChars}
         </div>
     )
