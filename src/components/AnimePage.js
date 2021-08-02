@@ -97,6 +97,7 @@ function AnimePage() {
         }
 
         getAnime()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
     
@@ -122,7 +123,7 @@ function AnimePage() {
                         <p className='mainText'>{anime.description.replace(/(<([^>]+)>)/gi, "")}</p>
                     </div>
                     <div className='contentImg'>
-                        <img className='coverImg' src={anime.coverImage.extraLarge}/>
+                        <img className='coverImg' src={anime.coverImage.extraLarge} alt=''/>
                         <button className='button'>add to my list</button>
                     </div>
                 </div>

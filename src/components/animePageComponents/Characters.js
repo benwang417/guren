@@ -57,9 +57,11 @@ function Characters ({id}) {
                 headers
             })
             setCharacters(response.data.data.Media.characters.edges)
+            
         }
 
         getCharacters()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const renderedChars = characters.map((character) => {
@@ -74,12 +76,12 @@ function Characters ({id}) {
             <div key={char.id}>
                 <Link to={charURL}>
                     <div>{charName}</div>
-                    <img src={char.image.medium}/>
+                    <img src={char.image.medium} alt='character'/>
                 </Link>
                 { voiceActor ? 
                 <Link to={vaURL}>
                     <div>{voiceActorName}</div>
-                    <img src={voiceActor.image.medium}/>
+                    <img src={voiceActor.image.medium} alt='voice actor'/>
                 </Link> : <div></div>}
             </div>
         )

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import './TopAnimeList.css'
-import generateUrl from '../generateUrl'
 import { ThemeContext } from '../ThemeContext'
 import AnimeCard from './AnimeCard'
 
@@ -61,6 +60,7 @@ const TopAnimeList = ({sortTerm, title}) => {
         }
 
         getAnimePreview()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     //console.log(results)
 
@@ -69,7 +69,7 @@ const TopAnimeList = ({sortTerm, title}) => {
     
     const renderedResults = results.map((result) => {
         if (result.title.english === null || result.title.description === null ) {
-            return
+            return null
         }
     
         return (

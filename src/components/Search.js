@@ -157,6 +157,7 @@ function Search() {
                 clearTimeout(timeoutId)
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchTerm, genreSelection, yearSelection, seasonSelection, sortSelection])
 
     const onInputChange = (e) => {
@@ -172,7 +173,7 @@ function Search() {
     const renderedSearchResults = searchResults.map((result) => {
         // possible issue caused by only native or romaji title being available, instead: check for english, then romaji, then native, then return if all null
         if (result.title.english === null || result.title.description === null || result.isAdult) {
-            return
+            return null
         }
         // console.log(result)
 

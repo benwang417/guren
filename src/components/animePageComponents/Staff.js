@@ -49,6 +49,7 @@ function Staff ({id}) {
         }
 
         getStaff()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const renderedStaff = staff.map((staff) => {

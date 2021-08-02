@@ -21,7 +21,7 @@ function SearchResult({searchData}) {
     return (
         <div className='searchWrapper'>
             <div className={`searchResult ${theme}`}>
-                <Link to={url}><img className='searchImage' src={searchData.coverImage.large} /></Link>
+                <Link to={url}><img className='searchImage' src={searchData.coverImage.large} alt=''/></Link>
                 <div className='searchBody'>
                     <div className='searchHeader'>
                         <div className='top'>
