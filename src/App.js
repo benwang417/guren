@@ -7,6 +7,9 @@ import {
     Route
 } from 'react-router-dom'
 import TopAnimeList from './components/TopAnimeList'
+import StudioPage from './components/StudioPage'
+import VoiceActorPage from './components/VoiceActorPage'
+import CharacterPage from './components/CharacterPage'
 import { ThemeContext } from './ThemeContext'
 
 function App() {
@@ -27,6 +30,15 @@ function App() {
                     </Route>
                     <Route path='/anime/series/:id/:title'>
                         <AnimePage />
+                    </Route>
+                    <Route path='/characters/:id/:charName'>
+                        <CharacterPage />
+                    </Route>
+                    <Route path='/studios/:id/:studioName'>
+                        <StudioPage />
+                    </Route>
+                    <Route path='/va/:id/:vaName'>
+                        <VoiceActorPage />
                     </Route>
                 </div>
             </div>

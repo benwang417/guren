@@ -17,12 +17,21 @@ function AnimePage() {
     // console.log(url)
     // console.log(path)
 
-    function getStudio() {
+    // instead of using getStudio, refactor query to filter by studio: isMain
+    function getStudioName() {
         const studio = anime.studios.edges.find(node => node.isMain)
         if (studio === undefined) {
             return 
         }
         return studio.node.name
+    }
+
+    function getStudioId() {
+        const studio = anime.studios.edges.find(node => node.isMain)
+        if (studio === undefined) {
+            return 
+        }
+        return studio.node.id
     }
 
 
@@ -57,6 +66,7 @@ function AnimePage() {
                                 isMain
                                 node {
                                     name
+                                    id
                                 }
                             }
                         }
@@ -106,7 +116,7 @@ function AnimePage() {
                             <div className='showInfo'> 
                                 <div>Rating: {anime.averageScore}<p>{anime.popularity} users</p></div>
                                 <div className={`middleInfo ${theme}`}>#{getRank()} most popular</div>
-                                <div>{getStudio()}</div>
+                                <Link to={`/studios/${getStudioId()}/${getStudioName().replace(/\s/g , "-")}`}>{getStudioName()}</Link>
                             </div>
                         </div>
                         <p className='mainText'>{anime.description.replace(/(<([^>]+)>)/gi, "")}</p>

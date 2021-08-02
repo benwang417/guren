@@ -64,8 +64,7 @@ function Stats ({id}) {
 
         return (
             <div key={ranking.id}>
-                #{ranking.rank} 
-                most {ranking.type}
+                #{ranking.rank} most {ranking.type}
             </div>
         )
     })
