@@ -26,6 +26,7 @@ function Characters ({id}) {
                                     image {
                                         medium
                                     }
+                                    favourites
                                 }
                                 voiceActors {
                                     id
@@ -64,9 +65,15 @@ function Characters ({id}) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    if (!characters) {
+        return (
+            <div>
+                
+            </div>
+        )
+    }
 
-    //TODO: sort characters by popularity
-    const renderedChars = characters.map((character) => {
+    const renderedChars = [...characters].sort((a,b) => a.node.favourites > b.node.favourites ? -1 : 1).map((character) => {
         const char = character.node
         const charName = char.name.full
         const voiceActor = character.voiceActors[0]
@@ -85,19 +92,12 @@ function Characters ({id}) {
                     <div>{voiceActorName}</div>
                     <img src={voiceActor.image.medium} alt='voice actor'/>
                 </Link> : <div></div>}
+                {char.favourites}
             </div>
         )
     })
 
     console.log(characters)
-
-    if (!characters) {
-        return (
-            <div>
-                
-            </div>
-        )
-    }
 
     return (
         <div>
