@@ -29,11 +29,11 @@ function App() {
             const query = `
                 query {
                     Viewer {
-                       id
-                       name
-                       avatar {
-                           medium
-                       }
+                        id
+                        name
+                        avatar {
+                            medium
+                        }
                     }
                 }
             `
@@ -56,14 +56,14 @@ function App() {
         // }
     }, [])
 
-    console.log(user)
+    // console.log(user)
     return (
         <ThemeContext.Provider value={{theme, setTheme}}>
             <UserContext.Provider value={{user, setUser}}>
                 <div className={`App ${theme}`}>
                     <Header />
                     <div className='lists'>
-                        <Route path='/user/:userName/animelist'>
+                        <Route path='/user/:listOwnerName/animelist'>
                             <AnimeList />
                         </Route>
                         <Route path='/auth'>

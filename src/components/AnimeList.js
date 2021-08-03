@@ -1,21 +1,24 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 import generateUrl from '../generateUrl'
+import { UserContext } from '../UserContext'
 
 function AnimeList() {
+    const {user} = useContext(UserContext)
     const [lists, setLists] = useState([])
     const [completed, setCompleted] = useState([])
     const [planned, setPlanned] = useState([])
     const [watching, setWatching] = useState([])
-    const [user, setUser] = useState()
-    const {userName, userId} = useParams()
+    const [listOwner, setListOwner] = useState()
+    const {listOwnerName} = useParams()
 
     useEffect(() => {
-        const getUser = async () => {
+
+        const getListOwner = async () => {
             const query = `
                 query {
-                    User (name: "${userName}") {
+                    User (name: "${listOwnerName}") {
                         id
                         name
                         avatar {
@@ -23,7 +26,7 @@ function AnimeList() {
                         }
                         bannerImage
                         favourites {
-                            anime (page: 25) {
+                            anime (page: 1) {
                                 edges {
                                     node {
                                         id
@@ -36,7 +39,7 @@ function AnimeList() {
                                     }
                                 }
                             }
-                            characters (page: 25) {
+                            characters (page: 1) {
                                 edges {
                                     node {
                                         id
@@ -55,7 +58,7 @@ function AnimeList() {
             `
 
             const variables = {
-                userName
+                listOwnerName
             }
 
             const headers = {
@@ -68,22 +71,20 @@ function AnimeList() {
                 variables,
                 headers
             })
-            setUser(response.data.data.User)
-            
+            setListOwner(response.data.data.User)
         }
-
-        getUser()
+        getListOwner()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
-        if (!user) {
+        if (!listOwner) {
             return
         }
         const getLists = async () => {
             const query = `
                 query {
-                    MediaListCollection (userId: ${user.id}, type: ANIME) {
+                    MediaListCollection (userId: ${listOwner.id}, type: ANIME) {
                         lists {
                             name
                             status
@@ -107,7 +108,7 @@ function AnimeList() {
             `
 
             const variables = {
-                userId
+                listOwner
             }
 
             const headers = {
@@ -126,77 +127,47 @@ function AnimeList() {
 
         getLists()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user])
+    }, [listOwner])
 
+    console.log(listOwner)
     console.log(lists)
 
-    if (!user || !lists.length) {
+    if (!listOwner || !lists.length) {
         return (
             <div></div>
         )
     }
 
-    //TODO: refactor into one function that is passed one list
-    const renderedListCompleted = lists[0].entries.map((listEntry) => {
-        const show = listEntry.media
-        const showURL = show.title.english ? generateUrl(show.title.english, show.id) : ''
-        //TODO: sort list by score
+    function renderList(list) {
         return (
-            <div key={show.id} style={{}}>
-                <Link to={showURL}>
-                    <div>{show.title.english}</div>
-                    <img src={show.coverImage.medium} alt='show'/>
-                </Link>
-                <div>
-                    Score: {listEntry.score}
-                </div>
-            </div>
+            [...list].sort((a,b) => a.score > b.score ? -1 : 1).map((listEntry) => {
+                const show = listEntry.media
+                const showURL = show.title.english ? generateUrl(show.title.english, show.id) : ''
+                return (
+                    <div key={show.id} style={{}}>
+                        <Link to={showURL}>
+                            <div>{show.title.english}</div>
+                            <img src={show.coverImage.medium} alt='show'/>
+                        </Link>
+                        <div>
+                            Score: {listEntry.score}
+                        </div>
+                    </div>
+                )
+            })
         )
-    })
-    const renderedListWatching = lists[2].entries.map((listEntry) => {
-        const show = listEntry.media
-        const showURL = show.title.english ? generateUrl(show.title.english, show.id) : ''
-        //TODO: sort list by score
-        return (
-            <div key={show.id} style={{}}>
-                <Link to={showURL}>
-                    <div>{show.title.english}</div>
-                    <img src={show.coverImage.medium} alt='show'/>
-                </Link>
-                <div>
-                    Score: {listEntry.score}
-                </div>
-            </div>
-        )
-    })
-    const renderedListPlanned = lists[1].entries.map((listEntry) => {
-        const show = listEntry.media
-        const showURL = show.title.english ? generateUrl(show.title.english, show.id) : ''
-        //TODO: sort list by score
-        return (
-            <div key={show.id} style={{}}>
-                <Link to={showURL}>
-                    <div>{show.title.english}</div>
-                    <img src={show.coverImage.medium} alt='show'/>
-                </Link>
-                <div>
-                    Score: {listEntry.score}
-                </div>
-            </div>
-        )
-    })
+    }
 
-    // console.log(lists[0])
     return (
         <div>
-            <h1>{userName}</h1>
-            <img src={user.avatar.medium}/>
+            <h1>{listOwnerName}</h1>
+            <img src={listOwner.avatar.medium}/>
             <h2>watching</h2>
-            {renderedListWatching}
+            {renderList(lists[2].entries)}
             <h2>completed</h2>
-            {renderedListCompleted}
+            {renderList(lists[0].entries)}
             <h2>plan to watch</h2>
-            {renderedListPlanned}
+            {renderList(lists[1].entries)}
         </div>
     )
 }
