@@ -14,9 +14,10 @@ function StudioPage() {
                     Studio (id: $id) {
                         id
                         name 
-                        media {
+                        media (sort: POPULARITY_DESC){
                             edges {
                                 node {
+                                    popularity
                                     id
                                     title {
                                         english
@@ -71,6 +72,7 @@ function StudioPage() {
                     <div>{anime.title.english}</div>
                     <img src={anime.coverImage.medium} alt='show'/>
                 </Link>
+                {anime.popularity}
             </div>
         )
     })

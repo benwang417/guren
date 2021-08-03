@@ -18,10 +18,10 @@ function VoiceActorPage() {
                         image {
                             medium
                         }
-                        description
+                        description (asHtml: true)
                         age
                         favourites
-                        characters {
+                        characters (sort: FAVOURITES_DESC){
                             edges {
                                 node {
                                     id
@@ -31,6 +31,7 @@ function VoiceActorPage() {
                                     image {
                                         medium
                                     }
+                                    favourites
                                 }
                                 media {
                                     id
@@ -95,6 +96,7 @@ function VoiceActorPage() {
                     <div>{show.title.english}</div>
                     <img src={show.coverImage.medium} alt='show'/>
                 </Link>
+                {char.favourites}
             </div>
         )
     })
@@ -106,7 +108,7 @@ function VoiceActorPage() {
         <div>
             <h1>{voiceActor.name.full}</h1>
             <img src={voiceActor.image.medium} alt=''/>
-            <div>{voiceActor.description}</div>
+            <div dangerouslySetInnerHTML={{__html: voiceActor.description}}></div>
             <h3>Characters</h3>
             {renderedChars}
         </div>

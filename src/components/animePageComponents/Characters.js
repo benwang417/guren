@@ -14,7 +14,7 @@ function Characters ({id}) {
                         title {
                             english
                         }
-                        characters (page: 1) {
+                        characters (sort: FAVOURITES_DESC) {
                             edges {
                                 node {
                                     name {
@@ -73,7 +73,7 @@ function Characters ({id}) {
         )
     }
 
-    const renderedChars = [...characters].sort((a,b) => a.node.favourites > b.node.favourites ? -1 : 1).map((character) => {
+    const renderedChars = characters.map((character) => {
         const char = character.node
         const charName = char.name.full
         const voiceActor = character.voiceActors[0]

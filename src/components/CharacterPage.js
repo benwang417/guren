@@ -18,7 +18,7 @@ function CharacterPage() {
                         image {
                             medium
                         }
-                        description
+                        description (asHtml: true)
                         age
                         favourites
                     }
@@ -58,7 +58,7 @@ function CharacterPage() {
         <div>
             <h1>{character.name.full}</h1>
             <img src={character.image.medium} alt=''/>
-            <div>{character.description}</div>
+            <div dangerouslySetInnerHTML={{__html: character.description}}></div>
         </div>
     )
 }
