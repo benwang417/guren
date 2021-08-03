@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import './Dropdown.css'
 
 function Dropdown({filterTitle, options, selection, setSelection}) {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(true)
 
     const renderedOptions = options.map((option) => {
         return (
-            <div className='menu-item' key={option} onClick={() => setSelection(option)}>
+            <option className='menu-item' key={option} onClick={() => setSelection(option)}>
                 {option}
-            </div>
+            </option>
         )
     })
 
@@ -17,12 +17,18 @@ function Dropdown({filterTitle, options, selection, setSelection}) {
             <div className='filter'>
                 <div className='filterTitle'>{filterTitle}</div>
                 <div className={`inputWrap`}>
-                    <div className='selection'>
+                    <div className='selection' style={{display: 'flex', justifyContent: 'space-between'}}>
                         {selection}
+                        {filterTitle !== 'sort by' ?
+                        <div className='x' onClick={() => setSelection('Any')}>
+                        X 
+                        </div> : null
+                        }
                     </div>
+                    
                 </div>
                 <div className={`menu ${open ? 'active' : 'hidden'}`}>
-                    {renderedOptions}
+                    {open ? renderedOptions : null}
                 </div>
             </div>
         </div>

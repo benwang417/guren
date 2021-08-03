@@ -1,3 +1,15 @@
 .menu-item {
     cursor: pointer;
 }
+
+option:hover {
+    color: #793AFF;
+}
+
+.x {
+    cursor: pointer;
+}
+
+.x:hover {
+    color: #793AFF;
+}

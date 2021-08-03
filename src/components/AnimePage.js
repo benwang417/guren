@@ -7,12 +7,14 @@ import Watch from './animePageComponents/Watch'
 import Characters from './animePageComponents/Characters'
 import Stats from './animePageComponents/Stats'
 import Staff from './animePageComponents/Staff'
+import Modal from './Modal'
 import { UserContext } from '../UserContext'
 
 function AnimePage() {
     const {user} = useContext(UserContext)
     const {theme} = useContext(ThemeContext)
     const [anime, setAnime] = useState()
+    const [modalOpen, setModalOpen] = useState(false)
     let {id} = useParams()
     const {path, url} = useRouteMatch()
 
@@ -126,10 +128,13 @@ function AnimePage() {
                     </div>
                     <div className='contentImg'>
                         <img className='coverImg' src={anime.coverImage.extraLarge} alt=''/>
-                        <button className='button'>add to my list</button>
+                        <button onClick={() => setModalOpen(true)} className='button'>add to my list</button>
+                        {modalOpen ? 
+                        <Modal setModalOpen={setModalOpen} /> : null
+                        }
                     </div>
                 </div>
-            </div>
+            </div>  
             <div className='secondaryContent'>
                 <div className='selectionBar'>
                     <ul className='navlinks'>
