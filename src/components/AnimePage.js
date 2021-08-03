@@ -7,8 +7,10 @@ import Watch from './animePageComponents/Watch'
 import Characters from './animePageComponents/Characters'
 import Stats from './animePageComponents/Stats'
 import Staff from './animePageComponents/Staff'
+import { UserContext } from '../UserContext'
 
 function AnimePage() {
+    const {user} = useContext(UserContext)
     const {theme} = useContext(ThemeContext)
     const [anime, setAnime] = useState()
     let {id} = useParams()
@@ -105,7 +107,7 @@ function AnimePage() {
         return <div className='animePage'></div>
     }
 
-
+    console.log(user)
     return (
         <div className='animePage'>
             <div className='contentWrapper'>

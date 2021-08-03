@@ -1,23 +1,17 @@
 import React, {useContext, useEffect, useState} from 'react'
-import {useLocation, useParams } from 'react-router-dom'
-// import {AuthContext} from '../AuthContext'
-// import {UserContext} from '../UserContext'
+import {useLocation, useParams, Redirect } from 'react-router-dom'
+import {UserContext} from '../UserContext'
 import axios from 'axios'
 
 function Auth() {
-    // const {token, setToken} = useContext(AuthContext)
-    // const {user, setUser} = useContext(UserContext)
-    const [user, setUser] = useState()
-    const location = useLocation()
-    // let params = useParams()
-    // console.log(params)
+    const {user, setUser} = useContext(UserContext)
     var hash = window.location.hash.substr(1);
     const result = hash.split('&').reduce(function (res, item) {
         var parts = item.split('=')
         res[parts[0]] = parts[1]
         return res
     }, {})
-
+    localStorage.setItem('token', result.access_token)
 
     
     useEffect(() => {
@@ -59,10 +53,9 @@ function Auth() {
         )
     }
 
-    console.log(user)
     return (
         <div>
-            Hello {user.name}    
+            <Redirect to='/' />
         </div>
     )
 }
