@@ -2,10 +2,12 @@ import React, { useContext, useEffect } from 'react'
 import './Header.css'
 import { Link } from 'react-router-dom'
 import { ThemeContext } from '../ThemeContext'
+import { UserContext } from '../UserContext'
 
 
 function Header() {
     const {theme, setTheme} = useContext(ThemeContext)
+    const {user} = useContext(UserContext)
 
     const toggleTheme = (() => {
         if (theme === 'light') {
@@ -34,12 +36,20 @@ function Header() {
                     <li>
                         <Link to='/search' className={`link ${theme}`}>search</Link>
                     </li>
+                    { !user ? 
                     <li>
                         <a className={`link ${theme}`} href='https://anilist.co/api/v2/oauth/authorize?client_id=6197&response_type=token'>login with AniList</a>
-                    </li>
+                    </li> :
                     <li>
-                        <Link to='/user/Benjiman/animelist' className={`link ${theme}`}>my list</Link>
+                        <Link to={`/user/${user.name}/animelist`} className={`link ${theme}`}>my list</Link>
                     </li>
+                    }
+                    { user ?
+                    <li>
+                        <img src={user.avatar.medium} style={{height: 'auto', width: '60px'}}/>
+                    </li> :
+                    <li></li>
+                    }
                     <li>
                         <button onClick={toggleTheme} className='themeButton'>{theme === 'light' ? 'dark mode' : 'light mode'}</button>
                     </li>
