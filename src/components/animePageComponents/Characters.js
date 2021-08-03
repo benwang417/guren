@@ -28,7 +28,7 @@ function Characters ({id}) {
                                     }
                                     favourites
                                 }
-                                voiceActors {
+                                voiceActors (language: JAPANESE){
                                     id
                                     name {
                                         full
@@ -97,7 +97,7 @@ function Characters ({id}) {
         )
     })
 
-    console.log(characters)
+    // console.log(characters)
 
     return (
         <div>

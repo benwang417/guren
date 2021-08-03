@@ -37,6 +37,7 @@ function VoiceActorPage() {
                                     id
                                     title {
                                         english
+                                        romaji
                                     }
                                     coverImage {
                                         medium
@@ -84,8 +85,7 @@ function VoiceActorPage() {
         const show = character.media[0]
 
         const charURL = `/characters/${char.id}/${charName.replace(/\s/g , "-")}`
-        const showURL = show.title.english ? generateUrl(show.title.english, show.id) : ''
-        //TODO: show romaji title if english not available
+        const showURL = show.title.english ? generateUrl(show.title.english, show.id) : generateUrl(show.title.romaji, show.id)
         return (
             <div key={char.id} style={{display: 'flex'}}>
                 <Link to={charURL}>
@@ -93,7 +93,7 @@ function VoiceActorPage() {
                     <img src={char.image.medium} alt='character'/>
                 </Link>
                 <Link to={showURL}>
-                    <div>{show.title.english}</div>
+                    <div>{show.title.english ? show.title.english : show.title.romaji}</div>
                     <img src={show.coverImage.medium} alt='show'/>
                 </Link>
                 {char.favourites}
