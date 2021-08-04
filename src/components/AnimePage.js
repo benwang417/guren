@@ -128,9 +128,10 @@ function AnimePage() {
                     </div>
                     <div className='contentImg'>
                         <img className='coverImg' src={anime.coverImage.extraLarge} alt=''/>
-                        <button onClick={() => setModalOpen(true)} className='button'>add to my list</button>
+                        {user ? <button onClick={() => setModalOpen(true)} className='button'>add to my list</button>
+                        : null}
                         {modalOpen ? 
-                        <Modal setModalOpen={setModalOpen} /> : null
+                        <Modal show={anime} setModalOpen={setModalOpen} /> : null
                         }
                     </div>
                 </div>
