@@ -226,18 +226,22 @@ function Search() {
                     <Dropdown 
                         options={genreCollection.filter(e => e !== 'Hentai')} filterTitle='genre' 
                         selection={genreSelection} setSelection={setGenreSelection}
+                        canBeEmpty={true}
                     />
                     <Dropdown 
                         options={yearCollection} filterTitle='year' 
                         selection={yearSelection} setSelection={setYearSelection}
+                        canBeEmpty={true}
                     />
                     <Dropdown 
                         options={seasonCollection} filterTitle='season' 
                         selection={seasonSelection} setSelection={setSeasonSelection}
+                        canBeEmpty={true}
                     />
                     <Dropdown 
                         options={sortCollection} filterTitle='sort by' 
                         selection={sortSelection} setSelection={setSortSelection}
+                        canBeEmpty={false}
                     />
                 </div>
                 <div className='searchContainer'>

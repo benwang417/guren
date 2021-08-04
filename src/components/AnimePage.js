@@ -65,6 +65,7 @@ function AnimePage() {
                         averageScore
                         popularity
                         genres
+                        episodes
                         studios {
                             edges {
                                 isMain

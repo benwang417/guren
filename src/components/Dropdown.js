@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import './Dropdown.css'
 
-function Dropdown({filterTitle, options, selection, setSelection}) {
-    const [open, setOpen] = useState(true)
+function Dropdown({filterTitle, options, selection, setSelection, canBeEmpty}) {
+    const [open, setOpen] = useState(false)
 
     const renderedOptions = options.map((option) => {
         return (
@@ -22,7 +22,7 @@ function Dropdown({filterTitle, options, selection, setSelection}) {
                 <div className={`inputWrap`} onClick={() => setOpen(!open)}>
                     <div className='selection' style={{display: 'flex', justifyContent: 'space-between'}}>
                         {selection}
-                        {filterTitle !== 'sort by' ?
+                        {canBeEmpty ?
                         <div className='x' onClick={() => setSelection('Any')}>
                         X 
                         </div> : null
