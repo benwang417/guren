@@ -6,7 +6,10 @@ function Dropdown({filterTitle, options, selection, setSelection}) {
 
     const renderedOptions = options.map((option) => {
         return (
-            <option className='menu-item' key={option} onClick={() => setSelection(option)}>
+            <option className='menu-item' key={option} onClick={() => {
+                setSelection(option)
+                setOpen(!open)
+                }}>
                 {option}
             </option>
         )
@@ -16,7 +19,7 @@ function Dropdown({filterTitle, options, selection, setSelection}) {
         <div className='filterContainer'>
             <div className='filter'>
                 <div className='filterTitle'>{filterTitle}</div>
-                <div className={`inputWrap`}>
+                <div className={`inputWrap`} onClick={() => setOpen(!open)}>
                     <div className='selection' style={{display: 'flex', justifyContent: 'space-between'}}>
                         {selection}
                         {filterTitle !== 'sort by' ?
@@ -27,7 +30,7 @@ function Dropdown({filterTitle, options, selection, setSelection}) {
                     </div>
                     
                 </div>
-                <div className={`menu ${open ? 'active' : 'hidden'}`}>
+                <div>
                     {open ? renderedOptions : null}
                 </div>
             </div>
