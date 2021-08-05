@@ -3,12 +3,6 @@ import ReactDOM from 'react-dom'
 import axios from 'axios'
 import Dropdown from './Dropdown'
 
-// const watchStatus = [{name: 'watching', status: 'CURRENT'},
-//     {name: 'plan to watch', status:'PLANNING'},
-//     {name: 'commpleted', status: 'COMPLETED'},
-//     {name: 'dropped', status: 'DROPPED'}, 
-//     {name: 'on hold', status: 'PAUSED'}, 
-//     {name: 'rewatching', status: 'REPEATING'}]
 const watchStatus = [
     'current', 'planning', 'completed', 'dropped', 'paused', 'repeating'
 ]
@@ -104,13 +98,12 @@ function Modal({show, modalOpen, setModalOpen, userLists}) {
         }, {
             headers
         })
-        // console.log(response)
-        setModalOpen(false)
+        setEntryId(response.data.data.SaveMediaListEntry.id)
+        setModalOpen(!modalOpen)
     }
 
     const deleteEntry = async () => {
         //add second modal to ask if user is sure if they want to delete
-        console.log(entryId)
         const query = `
                 mutation ($id: Int) {
                     DeleteMediaListEntry (id: $id) {
@@ -135,12 +128,13 @@ function Modal({show, modalOpen, setModalOpen, userLists}) {
         }, {
             headers
         })
-        // console.log(response)
-        setModalOpen(false)
+        setEntryId(0)
+        setModalOpen(!modalOpen)
     }
 
     useEffect(() => {
         if (findInLists()) {
+            console.log(findInLists())
             setEntryId(findInLists()[0].id)
         } 
     }, [])
@@ -148,7 +142,7 @@ function Modal({show, modalOpen, setModalOpen, userLists}) {
     if (!modalOpen) {
         return (
             <button onClick={() => setModalOpen(true)} className='button'>
-                {findInLists() ? 'edit' : 'add to my list'}
+                {entryId !== 0 ? 'edit' : 'add to my list'}
             </button>
         )
     }
