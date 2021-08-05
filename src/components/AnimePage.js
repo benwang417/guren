@@ -186,9 +186,7 @@ function AnimePage() {
                             {findInLists() ? 'edit' : 'add to my list'}
                         </button>
                         : null}
-                        {modalOpen ? 
-                        <Modal show={anime} setModalOpen={setModalOpen} entryId={entryId} /> : null
-                        }
+                        <Modal show={anime} modalOpen={modalOpen} setModalOpen={setModalOpen} entryId={entryId} />
                     </div>
                 </div>
             </div>  

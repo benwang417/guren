@@ -51,9 +51,7 @@ function SearchResult({searchData, userLists}) {
                             {findInLists() ? 'edit' : 'add to my list'}
                         </button>
                         : null}
-                        {modalOpen ? 
-                        <Modal show={searchData} setModalOpen={setModalOpen} entryId={entryId} /> : null
-                        }
+                        <Modal show={searchData} modalOpen={modalOpen} setModalOpen={setModalOpen} entryId={entryId} />
                         <div className='genres'>
                             {renderedGenres}
                         </div>

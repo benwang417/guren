@@ -33,7 +33,7 @@ const OVERLAY_STYLES = {
     zIndex: '1000'
 }
 
-function Modal({show, setModalOpen, entryId}) {
+function Modal({show, modalOpen, setModalOpen, entryId}) {
     const token = localStorage.getItem('token')
     const [score, setScore] = useState(0)
     const [progress, setProgress] = useState(0)
@@ -127,6 +127,10 @@ function Modal({show, setModalOpen, entryId}) {
         })
         // console.log(response)
         setModalOpen(false)
+    }
+
+    if (!modalOpen) {
+        return <div></div>
     }
 
     return ReactDOM.createPortal(
