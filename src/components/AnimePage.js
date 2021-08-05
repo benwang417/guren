@@ -46,6 +46,9 @@ function AnimePage() {
     }
 
     const findInLists = () => {
+        if (!userLists || !anime) {
+            return
+        }
         return userLists.map((collection) => {
             return collection.entries.filter((entry) => anime.id === entry.media.id)
         }).filter((list) => list.length)[0]
