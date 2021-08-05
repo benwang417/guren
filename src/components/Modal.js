@@ -47,19 +47,12 @@ function Modal({show, setModalOpen}) {
                             name
                             status
                             entries {
-                                media {
-                                title {
-                                    english
-                                }
                                 id
-                                coverImage {
-                                    medium
-                                    }
+                                media {
+                                    id
                                 }
-                                score
-                                progress
-                                status
                             }
+                            
                         }
                     }
                 }
@@ -84,8 +77,22 @@ function Modal({show, setModalOpen}) {
             
         }
 
+        
+
         getLists()
+
     }, [])
+
+    const findInLists = () => {
+        return userLists.map((collection) => {
+            return collection.entries.filter((entry) => entry.media.id === show.id)
+        }).filter((list) => list.length)[0]
+    }
+
+    if (findInLists()) {
+        console.log(findInLists()[0])
+    }
+    // setEntryId(findInLists())
 
     console.log(userLists)
     const scoreIsValid = () => {
