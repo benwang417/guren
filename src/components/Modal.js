@@ -137,7 +137,9 @@ function Modal({show, modalOpen, setModalOpen, userLists}) {
             console.log(findInLists())
             setEntryId(findInLists()[0].id)
         } 
-    }, [])
+    }, [userLists])
+
+    // console.log(entryId)
 
     if (!modalOpen) {
         return (
