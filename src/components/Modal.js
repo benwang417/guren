@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import Dropdown from './Dropdown'
@@ -33,11 +33,12 @@ const OVERLAY_STYLES = {
     zIndex: '1000'
 }
 
-function Modal({show, modalOpen, setModalOpen, entryId}) {
+function Modal({show, modalOpen, setModalOpen, userLists}) {
     const token = localStorage.getItem('token')
     const [score, setScore] = useState(0)
     const [progress, setProgress] = useState(0)
     const [statusSelection, setStatusSelection] = useState('completed')
+    const [entryId, setEntryId] = useState(0)
     
     const scoreIsValid = () => {
         if (typeof(score) !== 'number') {
@@ -62,6 +63,15 @@ function Modal({show, modalOpen, setModalOpen, entryId}) {
             setProgress(0)
         }
 
+    }
+
+    const findInLists = () => {
+        if (!userLists || !show) {
+            return
+        }
+        return userLists.map((collection) => {
+            return collection.entries.filter((entry) => show.id === entry.media.id)
+        }).filter((list) => list.length)[0]
     }
 
     const submit = async () => {
@@ -129,8 +139,18 @@ function Modal({show, modalOpen, setModalOpen, entryId}) {
         setModalOpen(false)
     }
 
+    useEffect(() => {
+        if (findInLists()) {
+            setEntryId(findInLists()[0].id)
+        } 
+    }, [])
+
     if (!modalOpen) {
-        return <div></div>
+        return (
+            <button onClick={() => setModalOpen(true)} className='button'>
+                {findInLists() ? 'edit' : 'add to my list'}
+            </button>
+        )
     }
 
     return ReactDOM.createPortal(

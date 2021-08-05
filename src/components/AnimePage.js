@@ -15,7 +15,6 @@ function AnimePage() {
     const {theme} = useContext(ThemeContext)
     const [anime, setAnime] = useState()
     const [modalOpen, setModalOpen] = useState(false)
-    const [entryId, setEntryId] = useState(0)
     const [userLists, setUserLists] = useState([])
     let {id} = useParams()
     const {path, url} = useRouteMatch()
@@ -43,15 +42,6 @@ function AnimePage() {
             return 
         } 
         return rank.rank
-    }
-
-    const findInLists = () => {
-        if (!userLists || !anime) {
-            return
-        }
-        return userLists.map((collection) => {
-            return collection.entries.filter((entry) => anime.id === entry.media.id)
-        }).filter((list) => list.length)[0]
     }
 
     useEffect(() => {
@@ -152,12 +142,6 @@ function AnimePage() {
             getLists()
         }
     }, [user])
-    
-    useEffect(() => {
-        if (userLists && findInLists()) {
-            setEntryId(findInLists()[0].id)
-        } 
-    }, [userLists, modalOpen])
 
     if (!anime) {
         return <div className='animePage'></div>
@@ -181,12 +165,9 @@ function AnimePage() {
                     </div>
                     <div className='contentImg'>
                         <img className='coverImg' src={anime.coverImage.extraLarge} alt=''/>
-                        {user && userLists ? 
-                        <button onClick={() => setModalOpen(true)} className='button'>
-                            {findInLists() ? 'edit' : 'add to my list'}
-                        </button>
-                        : null}
-                        <Modal show={anime} modalOpen={modalOpen} setModalOpen={setModalOpen} entryId={entryId} />
+                        <Modal show={anime} modalOpen={modalOpen} 
+                            setModalOpen={setModalOpen} userLists={userLists}
+                         />
                     </div>
                 </div>
             </div>  

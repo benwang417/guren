@@ -9,20 +9,7 @@ import { UserContext } from '../UserContext'
 function SearchResult({searchData, userLists}) {
     const {theme} = useContext(ThemeContext)
     const {user} = useContext(UserContext)
-    const [entryId, setEntryId] = useState(0)
     const [modalOpen, setModalOpen] = useState(false)
-
-    const findInLists = () => {
-        return userLists.map((collection) => {
-            return collection.entries.filter((entry) => searchData.id === entry.media.id)
-        }).filter((list) => list.length)[0]
-    }
-
-    useEffect(() => {
-        if (userLists && findInLists()) {
-            setEntryId(findInLists()[0].id)
-        }
-    }, [])
 
     const renderedGenres = searchData.genres.map((genre) => {
         return <Link to='/' className='genre' key={genre}>{genre}</Link>
@@ -46,12 +33,9 @@ function SearchResult({searchData, userLists}) {
                         {searchData.description.replace(/(<([^>]+)>)/gi, "")}
                     </div> */}
                     <div className='footer'>
-                        {user && userLists ? 
-                        <button onClick={() => setModalOpen(true)} className='addButton'>
-                            {findInLists() ? 'edit' : 'add to my list'}
-                        </button>
-                        : null}
-                        <Modal show={searchData} modalOpen={modalOpen} setModalOpen={setModalOpen} entryId={entryId} />
+                        <Modal show={searchData} modalOpen={modalOpen} 
+                            setModalOpen={setModalOpen} userLists={userLists}
+                        />
                         <div className='genres'>
                             {renderedGenres}
                         </div>
