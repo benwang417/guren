@@ -1,15 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 import generateUrl from '../generateUrl'
-import { UserContext } from '../UserContext'
 
 function AnimeList() {
-    const {user} = useContext(UserContext)
     const [lists, setLists] = useState([])
-    const [completed, setCompleted] = useState([])
-    const [planned, setPlanned] = useState([])
-    const [watching, setWatching] = useState([])
     const [listOwner, setListOwner] = useState()
     const {listOwnerName} = useParams()
 

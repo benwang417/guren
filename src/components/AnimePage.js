@@ -15,11 +15,10 @@ function AnimePage() {
     const {theme} = useContext(ThemeContext)
     const [anime, setAnime] = useState()
     const [modalOpen, setModalOpen] = useState(false)
+    const [entryId, setEntryId] = useState(0)
+    const [userLists, setUserLists] = useState([])
     let {id} = useParams()
     const {path, url} = useRouteMatch()
-
-    // console.log(url)
-    // console.log(path)
 
     // instead of using getStudio, refactor query to filter by studio: isMain
     function getStudioName() {
@@ -38,13 +37,18 @@ function AnimePage() {
         return studio.node.id
     }
 
-
     function getRank() {
         const rank = anime.rankings.find(ranking => ranking.allTime && ranking.type === 'POPULAR')
         if (rank === undefined) {
             return 
         } 
         return rank.rank
+    }
+
+    const findInLists = () => {
+        return userLists.map((collection) => {
+            return collection.entries.filter((entry) => anime.id === entry.media.id)
+        }).filter((list) => list.length)[0]
     }
 
     useEffect(() => {
@@ -100,17 +104,62 @@ function AnimePage() {
             })
             setAnime(response.data.data.Media)
         }
-
         getAnime()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
+    useEffect(() => {
+        const getLists = async () => {
+            const query = `
+                query ($userId: Int){
+                    MediaListCollection (userId: $userId, type: ANIME) {
+                        lists {
+                            name
+                            status
+                            entries {
+                                id
+                                media {
+                                    id
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+            `
+
+            const variables = {
+                userId: user.id
+            }
+
+            const headers = {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+
+            const response = await axios.post('https://graphql.anilist.co', {
+                query,
+                variables
+            }, {
+                headers
+            })
+            setUserLists(response.data.data.MediaListCollection.lists)
+        }
+        if (user) {
+            getLists()
+        }
+    }, [user])
     
+    useEffect(() => {
+        if (userLists && findInLists()) {
+            setEntryId(findInLists()[0].id)
+        } 
+    }, [userLists, modalOpen])
+
     if (!anime) {
         return <div className='animePage'></div>
     }
 
-    console.log(user)
     return (
         <div className='animePage'>
             <div className='contentWrapper'>
@@ -129,10 +178,13 @@ function AnimePage() {
                     </div>
                     <div className='contentImg'>
                         <img className='coverImg' src={anime.coverImage.extraLarge} alt=''/>
-                        {user ? <button onClick={() => setModalOpen(true)} className='button'>add to my list</button>
+                        {user && userLists ? 
+                        <button onClick={() => setModalOpen(true)} className='button'>
+                            {findInLists() ? 'edit' : 'add to my list'}
+                        </button>
                         : null}
                         {modalOpen ? 
-                        <Modal show={anime} setModalOpen={setModalOpen} /> : null
+                        <Modal show={anime} setModalOpen={setModalOpen} entryId={entryId} /> : null
                         }
                     </div>
                 </div>

@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import Dropdown from './Dropdown'
-import { UserContext } from '../UserContext'
 
 // const watchStatus = [{name: 'watching', status: 'CURRENT'},
 //     {name: 'plan to watch', status:'PLANNING'},
@@ -34,75 +33,12 @@ const OVERLAY_STYLES = {
     zIndex: '1000'
 }
 
-function Modal({show, setModalOpen}) {
+function Modal({show, setModalOpen, entryId}) {
     const token = localStorage.getItem('token')
     const [score, setScore] = useState(0)
     const [progress, setProgress] = useState(0)
     const [statusSelection, setStatusSelection] = useState('completed')
-    const [entryId, setEntryId] = useState(0)
-    const [userLists, setUserLists] = useState([])
-    const {user} = useContext(UserContext)
-
-    useEffect(() => {
-        if (!user) {
-            return
-        }
-        const getLists = async () => {
-            const query = `
-                query ($userId: Int){
-                    MediaListCollection (userId: $userId, type: ANIME) {
-                        lists {
-                            name
-                            status
-                            entries {
-                                id
-                                media {
-                                    id
-                                }
-                            }
-                            
-                        }
-                    }
-                }
-            `
-
-            const variables = {
-                userId: user.id
-            }
-
-            const headers = {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-
-            const response = await axios.post('https://graphql.anilist.co', {
-                query,
-                variables
-            }, {
-                headers
-            })
-            setUserLists(response.data.data.MediaListCollection.lists)
-            
-        }
-
-        
-
-        getLists()
-
-    }, [])
-
-    const findInLists = () => {
-        return userLists.map((collection) => {
-            return collection.entries.filter((entry) => entry.media.id === show.id)
-        }).filter((list) => list.length)[0]
-    }
-
-    if (findInLists()) {
-        console.log(findInLists()[0])
-    }
-    // setEntryId(findInLists())
-
-    console.log(userLists)
+    
     const scoreIsValid = () => {
         if (typeof(score) !== 'number') {
             setScore(0)
@@ -158,14 +94,17 @@ function Modal({show, setModalOpen}) {
         }, {
             headers
         })
-        console.log(response)
+        // console.log(response)
         setModalOpen(false)
     }
 
     const deleteEntry = async () => {
+        //add second modal to ask if user is sure if they want to delete
+        console.log(entryId)
         const query = `
                 mutation ($id: Int) {
                     DeleteMediaListEntry (id: $id) {
+                        deleted
                     }
                 }
             `
@@ -186,11 +125,10 @@ function Modal({show, setModalOpen}) {
         }, {
             headers
         })
-        console.log(response)
+        // console.log(response)
         setModalOpen(false)
     }
-    console.log(statusSelection.toUpperCase())
-    console.log(show)
+
     return ReactDOM.createPortal(
         <div style={OVERLAY_STYLES}>
             <div style={MODAL_STYLES}>
@@ -218,8 +156,13 @@ function Modal({show, setModalOpen}) {
                         cancel
                     </div>
                     <button onClick={submit}>
-                        submit
+                        save
                     </button>
+                    {entryId !== 0 ?
+                    <button onClick={deleteEntry}>
+                        delete
+                    </button> : null
+                    }
                 </div>
             </div>
         </div>,
