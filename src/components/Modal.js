@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import Dropdown from './Dropdown'
+import { UserContext } from '../UserContext'
 
 const watchStatus = [
     'current', 'planning', 'completed', 'dropped', 'paused', 'repeating'
@@ -28,6 +29,7 @@ const OVERLAY_STYLES = {
 }
 
 function Modal({show, modalOpen, setModalOpen, userLists}) {
+    const {user} = useContext(UserContext)
     const token = localStorage.getItem('token')
     const [score, setScore] = useState(0)
     const [progress, setProgress] = useState(0)
@@ -142,8 +144,15 @@ function Modal({show, modalOpen, setModalOpen, userLists}) {
     // console.log(entryId)
 
     if (!modalOpen) {
+        if (!user) {
+            return (
+                <div></div>
+            )
+            // <a className='addButton' href='https://anilist.co/api/v2/oauth/authorize?client_id=6197&response_type=token'>add to my list</a>
+
+        }
         return (
-            <button onClick={() => setModalOpen(true)} className='button'>
+            <button onClick={() => setModalOpen(true)} className='addButton'>
                 {entryId !== 0 ? 'edit' : 'add to my list'}
             </button>
         )

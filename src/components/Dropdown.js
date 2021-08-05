@@ -19,16 +19,15 @@ function Dropdown({filterTitle, options, selection, setSelection, canBeEmpty}) {
         <div className='filterContainer'>
             <div className='filter'>
                 <div className='filterTitle'>{filterTitle}</div>
-                <div className={`inputWrap`} onClick={() => setOpen(!open)}>
-                    <div className='selection' style={{display: 'flex', justifyContent: 'space-between'}}>
+                <div className={`inputWrap`} style={{display: 'flex', justifyContent: 'space-between'}}>
+                    <div className='selection' onClick={() => setOpen(!open)}>
                         {selection}
-                        {canBeEmpty ?
-                        <div className='x' onClick={() => setSelection('Any')}>
-                        X 
-                        </div> : null
-                        }
                     </div>
-                    
+                    {canBeEmpty ?
+                    <div className='x' onClick={() => setSelection('Any')}>
+                    X 
+                    </div> : null
+                    }
                 </div>
                 <div>
                     {open ? renderedOptions : null}

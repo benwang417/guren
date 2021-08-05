@@ -40,9 +40,9 @@ function Search() {
                             perPage
                         }
                         media (type: ANIME, search: $search, sort: ${sortSelection},
-                            ${`${genreSelection !== 'Any' ? `genre: ${`"${genreSelection}"`}` : ''}`},
-                            ${`${yearSelection !== 'Any' ? `seasonYear: ${`${yearSelection}`}` : ''}`},
-                            ${`${seasonSelection !== 'Any' ? `season: ${`${seasonSelection}`}` : ''}`}
+                            ${genreSelection !== 'Any' ? `genre: ${`"${genreSelection}"`}` : ''},
+                            ${yearSelection !== 'Any' ? `seasonYear: ${yearSelection}` : ''},
+                            ${seasonSelection !== 'Any' ? `season: ${seasonSelection}` : ''}
                             ) {
                             id
                             title {
@@ -83,7 +83,6 @@ function Search() {
                 headers
             })
             setSearchResults(response.data.data.Page.media)
-            console.log(response)
             setGenreCollection(response.data.data.GenreCollection)
         }
 
