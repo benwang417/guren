@@ -142,7 +142,7 @@ function AnimeList() {
                     <div key={show.id} style={{}}>
                         <Link to={showURL}>
                             <div>{show.title.english}</div>
-                            <img src={show.coverImage.medium} alt='show'/>
+                            <img loading='lazy' src={show.coverImage.medium} alt='show'/>
                         </Link>
                         <div>
                             Score: {listEntry.score}

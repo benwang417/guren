@@ -70,7 +70,7 @@ function StudioPage() {
             <div key={anime.id}>
                 <Link to={showURL}>
                     <div>{anime.title.english}</div>
-                    <img src={anime.coverImage.medium} alt='show'/>
+                    <img loading='lazy' src={anime.coverImage.medium} alt='show'/>
                 </Link>
                 {anime.popularity}
             </div>

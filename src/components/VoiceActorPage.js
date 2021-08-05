@@ -90,11 +90,11 @@ function VoiceActorPage() {
             <div key={char.id} style={{display: 'flex'}}>
                 <Link to={charURL}>
                     <div>{charName}</div>
-                    <img src={char.image.medium} alt='character'/>
+                    <img loading='lazy' src={char.image.medium} alt='character'/>
                 </Link>
                 <Link to={showURL}>
                     <div>{show.title.english ? show.title.english : show.title.romaji}</div>
-                    <img src={show.coverImage.medium} alt='show'/>
+                    <img loading='lazy' src={show.coverImage.medium} alt='show'/>
                 </Link>
                 {char.favourites}
             </div>

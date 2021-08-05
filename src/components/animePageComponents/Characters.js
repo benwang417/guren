@@ -85,12 +85,12 @@ function Characters ({id}) {
             <div key={char.id} style={{display: 'flex'}}>
                 <Link to={charURL}>
                     <div>{charName}</div>
-                    <img src={char.image.medium} alt='character'/>
+                    <img loading='lazy' src={char.image.medium} alt='character'/>
                 </Link>
                 { voiceActor ? 
                 <Link to={vaURL}>
                     <div>{voiceActorName}</div>
-                    <img src={voiceActor.image.medium} alt='voice actor'/>
+                    <img loading='lazy' src={voiceActor.image.medium} alt='voice actor'/>
                 </Link> : <div></div>}
                 {char.favourites}
             </div>

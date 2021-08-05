@@ -57,7 +57,7 @@ function CharacterPage() {
     return (
         <div>
             <h1>{character.name.full}</h1>
-            <img src={character.image.medium} alt=''/>
+            <img loading='lazy' src={character.image.medium} alt=''/>
             <div dangerouslySetInnerHTML={{__html: character.description}}></div>
         </div>
     )
