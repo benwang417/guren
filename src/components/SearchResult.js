@@ -1,22 +1,33 @@
-import React, {useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import './SearchResult.css'
+import Modal from './Modal'
 import generateUrl from '../generateUrl'
 import { ThemeContext } from '../ThemeContext'
+import { UserContext } from '../UserContext'
 
-function SearchResult({searchData}) {
+function SearchResult({searchData, userLists}) {
     const {theme} = useContext(ThemeContext)
+    const {user} = useContext(UserContext)
+    const [entryId, setEntryId] = useState(0)
+    const [modalOpen, setModalOpen] = useState(false)
 
+    const findInLists = () => {
+        return userLists.map((collection) => {
+            return collection.entries.filter((entry) => searchData.id === entry.media.id)
+        }).filter((list) => list.length)[0]
+    }
+
+    useEffect(() => {
+        if (userLists && findInLists()) {
+            setEntryId(findInLists()[0].id)
+        }
+    }, [])
 
     const renderedGenres = searchData.genres.map((genre) => {
         return <Link to='/' className='genre' key={genre}>{genre}</Link>
     })
 
-    // onClick() {
-    //     return 
-    // }
-
-    // console.log(searchData)
     const url = generateUrl(searchData.title.english, searchData.id)
     return (
         <div className='searchWrapper'>
@@ -35,7 +46,14 @@ function SearchResult({searchData}) {
                         {searchData.description.replace(/(<([^>]+)>)/gi, "")}
                     </div> */}
                     <div className='footer'>
-                        <button className='addButton'>add to my list</button>
+                        {user && userLists ? 
+                        <button onClick={() => setModalOpen(true)} className='addButton'>
+                            {findInLists() ? 'edit' : 'add to my list'}
+                        </button>
+                        : null}
+                        {modalOpen ? 
+                        <Modal show={searchData} setModalOpen={setModalOpen} entryId={entryId} /> : null
+                        }
                         <div className='genres'>
                             {renderedGenres}
                         </div>
@@ -43,7 +61,6 @@ function SearchResult({searchData}) {
                 </div>
             </div>
         </div>
-        
     )
 }
 
