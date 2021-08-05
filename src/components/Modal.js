@@ -4,7 +4,15 @@ import axios from 'axios'
 import Dropdown from './Dropdown'
 import { UserContext } from '../UserContext'
 
-const watchStatus = ['CURRENT', 'PLANNED', 'COMPLETED', 'DROPPED', 'PAUSED', 'REPEATING']
+// const watchStatus = [{name: 'watching', status: 'CURRENT'},
+//     {name: 'plan to watch', status:'PLANNING'},
+//     {name: 'commpleted', status: 'COMPLETED'},
+//     {name: 'dropped', status: 'DROPPED'}, 
+//     {name: 'on hold', status: 'PAUSED'}, 
+//     {name: 'rewatching', status: 'REPEATING'}]
+const watchStatus = [
+    'current', 'planning', 'completed', 'dropped', 'paused', 'repeating'
+]
 
 const MODAL_STYLES = {
     position: 'fixed',
@@ -30,7 +38,7 @@ function Modal({show, setModalOpen}) {
     const token = localStorage.getItem('token')
     const [score, setScore] = useState(0)
     const [progress, setProgress] = useState(0)
-    const [statusSelection, setStatusSelection] = useState('COMPLETED')
+    const [statusSelection, setStatusSelection] = useState('completed')
     const [entryId, setEntryId] = useState(0)
     const [userLists, setUserLists] = useState([])
     const {user} = useContext(UserContext)
@@ -134,7 +142,7 @@ function Modal({show, setModalOpen}) {
 
         const variables = {
             mediaId: show.id,
-            status: statusSelection,
+            status: statusSelection.toUpperCase(),
             score: score
         }
 
@@ -181,7 +189,7 @@ function Modal({show, setModalOpen}) {
         console.log(response)
         setModalOpen(false)
     }
-
+    console.log(statusSelection.toUpperCase())
     console.log(show)
     return ReactDOM.createPortal(
         <div style={OVERLAY_STYLES}>

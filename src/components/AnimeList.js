@@ -163,11 +163,11 @@ function AnimeList() {
             <h1>{listOwnerName}</h1>
             <img src={listOwner.avatar.medium}/>
             <h2>watching</h2>
-            {renderList(lists[2].entries)}
+            {renderList(lists[lists.findIndex((list) => list.name === 'Watching')].entries)}
             <h2>completed</h2>
-            {renderList(lists[0].entries)}
+            {renderList(lists[lists.findIndex((list) => list.name === 'Completed')].entries)}
             <h2>plan to watch</h2>
-            {renderList(lists[1].entries)}
+            {renderList(lists[lists.findIndex((list) => list.name === 'Planning')].entries)}
         </div>
     )
 }
