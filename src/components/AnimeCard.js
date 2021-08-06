@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import generateUrl from '../generateUrl'
 import './AnimeCard.css'
+import Modal from './Modal'
 
 function AnimeCard({result}) {
     const url = generateUrl(result.title.english, result.id)

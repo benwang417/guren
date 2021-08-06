@@ -1,7 +1,7 @@
 
 
 .container {
-   margin-top: 1.5em;
+   margin-top: 3em;
    padding-left: 1em;
    padding-right: 1em;
 }
@@ -19,11 +19,13 @@
 }
 
 .cardList {
-    padding-top: 1em;
+    margin-top: .5em;
+    padding-top: 1.5em;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     grid-gap: 1em;
     position: relative;
+    margin-bottom: 3em;
 }   
 
 .cardList::before {

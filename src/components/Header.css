@@ -3,6 +3,9 @@
 }
 
 .header {
+    align-self: flex-start;
+    position: sticky;
+    top: 0;
     display: flex;
     flex-direction: column;
     background-color: var(--bg-secondary);
@@ -124,5 +127,9 @@
 
     .theme-toggle {
         margin-right: 3em;
+    }
+
+    .logo {
+        margin-left: 3em;
     }
 }

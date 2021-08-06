@@ -8,14 +8,13 @@ import Characters from './animePageComponents/Characters'
 import Stats from './animePageComponents/Stats'
 import Staff from './animePageComponents/Staff'
 import Modal from './Modal'
-import { UserContext } from '../UserContext'
+import { UserListContext } from '../UserListContext'
 
 function AnimePage() {
-    const {user} = useContext(UserContext)
+    const {userLists} = useContext(UserListContext)
     const {theme} = useContext(ThemeContext)
     const [anime, setAnime] = useState()
     const [modalOpen, setModalOpen] = useState(false)
-    const [userLists, setUserLists] = useState([])
     let {id} = useParams()
     const {path, url} = useRouteMatch()
 
@@ -100,48 +99,6 @@ function AnimePage() {
         getAnime()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    
-    useEffect(() => {
-        const getLists = async () => {
-            const query = `
-                query ($userId: Int){
-                    MediaListCollection (userId: $userId, type: ANIME) {
-                        lists {
-                            name
-                            status
-                            entries {
-                                id
-                                media {
-                                    id
-                                }
-                            }
-                            
-                        }
-                    }
-                }
-            `
-
-            const variables = {
-                userId: user.id
-            }
-
-            const headers = {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-
-            const response = await axios.post('https://graphql.anilist.co', {
-                query,
-                variables
-            }, {
-                headers
-            })
-            setUserLists(response.data.data.MediaListCollection.lists)
-        }
-        if (user) {
-            getLists()
-        }
-    }, [user])
 
     if (!anime) {
         return <div className='animePage'></div>

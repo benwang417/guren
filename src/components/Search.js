@@ -4,7 +4,7 @@ import SearchResult from './SearchResult'
 import Dropdown from './Dropdown'
 import './Search.css'
 import {ThemeContext} from '../ThemeContext'
-import {UserContext} from '../UserContext'
+import {UserListContext} from '../UserListContext'
 import {useLocation, useHistory} from 'react-router-dom'
 
 const yearCollection = [2021, 2020, 2019, 2018, 2017, 2016, 
@@ -14,8 +14,8 @@ const sortCollection = ['SCORE_DESC', 'POPULARITY_DESC', 'TRENDING_DESC']
 
 function Search() {
     const {theme} = useContext(ThemeContext)
-    const {user} = useContext(UserContext)
-    const [userLists, setUserLists] = useState([])
+    const {userLists} = useContext(UserListContext)
+    // const [userLists, setUserLists] = useState([])
     const searchParams = new URLSearchParams(useLocation().search)
     let history = useHistory()
     const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '')
@@ -160,48 +160,6 @@ function Search() {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchTerm, genreSelection, yearSelection, seasonSelection, sortSelection])
-
-    useEffect(() => {
-        const getLists = async () => {
-            const query = `
-                query ($userId: Int){
-                    MediaListCollection (userId: $userId, type: ANIME) {
-                        lists {
-                            name
-                            status
-                            entries {
-                                id
-                                media {
-                                    id
-                                }
-                            }
-                            
-                        }
-                    }
-                }
-            `
-
-            const variables = {
-                userId: user.id
-            }
-
-            const headers = {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-
-            const response = await axios.post('https://graphql.anilist.co', {
-                query,
-                variables
-            }, {
-                headers
-            })
-            setUserLists(response.data.data.MediaListCollection.lists)
-        }
-        if (user) {
-            getLists()
-        }
-    }, [user])
 
     const onInputChange = (e) => {
         setSearchTerm(e.target.value)
