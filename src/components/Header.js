@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './Header.css'
 import { FiMenu } from 'react-icons/fi'
+import { FaMoon, FaSun } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { ThemeContext } from '../ThemeContext'
 import { UserContext } from '../UserContext'
@@ -39,26 +40,29 @@ function Header() {
                     <Link to={`/user/${user.name}/animelist`} className={`link ${theme}`}>my list</Link>
                     }
                     { user ?
-                    <img src={user.avatar.medium} style={{height: 'auto', width: '60px'}}/>
+                    <img src={user.avatar.medium} className='avatar'/>
                      : null
                     }
-                    <button onClick={toggleTheme} className='themeButton'>{theme === 'light' ? 'dark mode' : 'light mode'}</button>
+                    { theme === 'dark' ? 
+                        <FaMoon onClick={toggleTheme} className='theme-toggle'/>
+                        :
+                        <FaSun onClick={toggleTheme} className='theme-toggle'/>
+                    }
                 </div>
+                <div className='mobile-nav'>
                 <FiMenu className={burgerOpen ? 'burger active' : 'burger'} onClick={() => setBurgerOpen(!burgerOpen)} />
-                {/* { user ?
-                    <img src={user.avatar.medium} style={{height: 'auto', width: '60px'}}/>
-                 : null
-                } */}
+                </div>
             </div>
             {burgerOpen ? 
             <div className='mobile-menu'>
-                    <Link to='/' className={`link ${theme}`}>home</Link>
-                    <Link to='/search' className={`link ${theme}`}>top anime</Link>
+                <Link to='/' className={`link ${theme}`}>home</Link>
+                <Link to='/search' className={`link ${theme}`}>top anime</Link>
                 { !user ? 
-                    <a className={`link ${theme}`} href='https://anilist.co/api/v2/oauth/authorize?client_id=6197&response_type=token'>login with AniList</a>
+                <a className={`link ${theme}`} href='https://anilist.co/api/v2/oauth/authorize?client_id=6197&response_type=token'>login with AniList</a>
                  :
-                    <Link to={`/user/${user.name}/animelist`} className={`link ${theme}`}>my list</Link>
+                <Link to={`/user/${user.name}/animelist`} className={`link ${theme}`}>my list</Link>
                 }
+                <div onClick={toggleTheme} className='link'>change theme</div>
             </div> : null
             }
         </div>

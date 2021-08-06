@@ -172,13 +172,11 @@ function AnimePage() {
                 </div>
             </div>  
             <div className='secondaryContent'>
-                <div className='selectionBar'>
-                    <ul className='navlinks'>
-                        <li><Link to={`${url}`} className='link'>watch</Link></li>
-                        <li><Link to={`${url}/characters`} className='link'>characters</Link></li>
-                        <li><Link to={`${url}/stats`} className='link'>stats</Link></li>
-                        <li><Link to={`${url}/staff`} className='link'>staff</Link></li>
-                    </ul>
+                <div className='selectionBar' style={{display: 'flex', justifyContent: 'space-evenly'}}>
+                    <Link to={`${url}`} className=''>watch</Link>
+                    <Link to={`${url}/characters`} className=''>characters</Link>
+                    <Link to={`${url}/stats`} className=''>stats</Link>
+                    <Link to={`${url}/staff`} className=''>staff</Link>
                 </div>
                 <div>
                     <Route path={`${path}/`} exact>

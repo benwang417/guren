@@ -1,4 +1,6 @@
-
+* {
+    overflow-x: hidden;
+}
 
 .dark {
     color: white;
