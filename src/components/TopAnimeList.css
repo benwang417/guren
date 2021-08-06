@@ -14,6 +14,10 @@
     font-size: 2rem;
 }
 
+.listTitle:hover {
+    color: var(--accent);
+}
+
 .cardList {
     padding-top: 1em;
     display: grid;
@@ -27,7 +31,7 @@
     position: absolute;
     width: 100%;
     left: 0;
-    height: 3px;
+    height: 4px;
     background: linear-gradient(90deg, #5100FC 20.94%, #0075FF 60.99%, #94C5FF 100%);
 }
 

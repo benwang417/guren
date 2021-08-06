@@ -58,7 +58,7 @@
 
 .theme-toggle {
     font-size: 1.25rem;
-    margin-left: .5em;
+    margin-right: .5em;
     cursor: pointer;
 } 
 
@@ -75,7 +75,7 @@
 .avatar {
     height: auto;
     width: 2em;
-    margin: .2em;
+    margin-right: .5em;
 }
 
 .burger {
@@ -111,4 +111,18 @@
         display: none;
     }
 
+}
+
+@media screen and (min-width: 1200px) {
+    .link {
+        margin-right: 3em;
+    }
+    
+    .avatar {
+        margin-right: 3em;
+    }
+
+    .theme-toggle {
+        margin-right: 3em;
+    }
 }
