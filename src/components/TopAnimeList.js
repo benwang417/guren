@@ -43,7 +43,7 @@ const TopAnimeList = ({sortTerm, title}) => {
             const variables = {
                 search: query,
                 page: 1,
-                perPage: 10
+                perPage: 6
             }
 
             const headers = {
@@ -85,7 +85,7 @@ const TopAnimeList = ({sortTerm, title}) => {
 
     return (
         <div className='container'>
-            <Link to='/anime' className={`listTitle ${theme}`}>{title}</Link>
+            <Link to='/anime' className='listTitle'>{title}</Link>
             <div className='cardList'>
                 {renderedResults}
             </div>

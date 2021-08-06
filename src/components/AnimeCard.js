@@ -8,11 +8,15 @@ function AnimeCard({result}) {
 
     return (
         <Link className='card' to={url}>
-            <img className='card-img' src={result.coverImage.large} />
-            <h2 className='card-title'>{result.title.english}</h2>
+            <div className='card-img-container'>
+                <img className='card-img' src={result.coverImage.large} />
+            </div>
             <div className='card-body'>
-                <div className='card-score'>{result.averageScore}</div>
-                <div className='card-popularity'>{result.popularity} users</div>
+                <h2 className='card-title'>{result.title.english}</h2>
+                <div className='card-info'>
+                    <div className='card-score'>{result.averageScore}</div>
+                    <div className='card-popularity'>{result.popularity} users</div>
+                </div>
             </div>
         </Link>
     )

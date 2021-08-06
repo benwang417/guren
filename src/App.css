@@ -6,19 +6,23 @@
 }
 
 :root {
-    --dark0: rgb(24, 22, 22);
+    --dark0: #23252B;
+    --dark1: rgb(19, 19, 19);
     --light0: white;
+    --light1: #f8f8f8;
     --accent0: #793AFF;
 }
 
 .dark {
-    --bg: var(--dark0);
+    --bg: var(--dark1);
+    --bg-secondary: var(--dark0);
     --text: var(--light0);
     --accent: var(--accent0);
 }
 
 .light {
-    --bg: var(--light);
+    --bg: var(--light1);
+    --bg-secondary: var(--light0);
     --text: var(--dark0);
     --accent: var(--accent0);
 }

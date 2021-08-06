@@ -157,7 +157,7 @@ function AnimePage() {
                         <div>
                             <div className='showInfo'> 
                                 <div>Rating: {anime.averageScore}<p>{anime.popularity} users</p></div>
-                                <div className={`middleInfo ${theme}`}>#{getRank()} most popular</div>
+                                <div className='middleInfo'>#{getRank()} most popular</div>
                                 <Link to={`/studios/${getStudioId()}/${getStudioName().replace(/\s/g , "-")}`}>{getStudioName()}</Link>
                             </div>
                         </div>
