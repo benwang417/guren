@@ -2,16 +2,25 @@
     overflow-x: hidden;
 }
 
+:root {
+    --dark0: black;
+    --light0: white;
+    --accent0: #793AFF;
+}
+
 .dark {
-    color: white;
-    background-color: rgb(18, 17, 20);
+    --bg: var(--dark0);
+    --text: var(--light0);
+    --accent: var(--accent0);
 }
 
 .light {
-    color: black;
-    background-color: white;
+    --bg: var(--light);
+    --text: var(--dark0);
+    --accent: var(--accent0);
 }
 
 .App {
-    /* height: 100vh; */
+    background-color: var(--bg);
+    color: var(--text);
 }

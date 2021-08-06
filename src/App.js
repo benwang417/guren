@@ -13,7 +13,6 @@ import AnimeList from './components/AnimeList'
 import Auth from './components/Auth'
 import { ThemeContext } from './ThemeContext'
 import { UserContext } from './UserContext'
-// import { UserListContext } from './UserListContext'
 
 function App() {
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light')
@@ -21,7 +20,6 @@ function App() {
     const [userList, setUserList] = useState([])
     let token = (localStorage.getItem('token') || '')
 
-    //only runs when there is not a user in userContext
     useEffect(() => {
         if (user || !token) {
             return 
@@ -62,39 +60,37 @@ function App() {
     return (
         <ThemeContext.Provider value={{theme, setTheme}}>
             <UserContext.Provider value={{user, setUser}}>
-                {/* <UserListContext.Provider value={{userList, setUserList}}> */}
-                    <div className={`App ${theme}`}>
-                        <Header />
-                        <div className='lists'>
-                            <Route path='/user/:listOwnerName/animelist'>
-                                <AnimeList />
-                            </Route>
-                            <Route path='/auth'>
-                                <Auth />
-                            </Route>
-                            <Route path='/' exact>
-                                <TopAnimeList sortTerm='SCORE_DESC' title='Top Rated'/>
-                                <TopAnimeList sortTerm='POPULARITY_DESC' title='Most Popular'/>
-                                <TopAnimeList sortTerm='TRENDING_DESC' title='Trending'/>
-                            </Route>
-                            <Route path='/search'>
-                                <Search />
-                            </Route>
-                            <Route path='/anime/series/:id/:title'>
-                                <AnimePage />
-                            </Route>
-                            <Route path='/characters/:id/:charName'>
-                                <CharacterPage />
-                            </Route>
-                            <Route path='/studios/:id/:studioName'>
-                                <StudioPage />
-                            </Route>
-                            <Route path='/va/:id/:vaName'>
-                                <VoiceActorPage />
-                            </Route>
-                        </div>
+                <div className={`App ${theme}`}>
+                    <Header />
+                    <div className='lists'>
+                        <Route path='/user/:listOwnerName/animelist'>
+                            <AnimeList />
+                        </Route>
+                        <Route path='/auth'>
+                            <Auth />
+                        </Route>
+                        <Route path='/' exact>
+                            <TopAnimeList sortTerm='SCORE_DESC' title='Top Rated'/>
+                            <TopAnimeList sortTerm='POPULARITY_DESC' title='Most Popular'/>
+                            <TopAnimeList sortTerm='TRENDING_DESC' title='Trending'/>
+                        </Route>
+                        <Route path='/search'>
+                            <Search />
+                        </Route>
+                        <Route path='/anime/series/:id/:title'>
+                            <AnimePage />
+                        </Route>
+                        <Route path='/characters/:id/:charName'>
+                            <CharacterPage />
+                        </Route>
+                        <Route path='/studios/:id/:studioName'>
+                            <StudioPage />
+                        </Route>
+                        <Route path='/va/:id/:vaName'>
+                            <VoiceActorPage />
+                        </Route>
                     </div>
-                {/* </UserListContext.Provider> */}
+                </div>
             </UserContext.Provider>
         </ThemeContext.Provider>
     )
