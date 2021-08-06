@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+.active {
+    color: #793AFF;
+}
+
 .header {
     display: flex;
     flex-direction: column;
@@ -70,6 +74,7 @@
 .burger {
     margin-right: 1em;
     font-size: 1.5rem;
+    cursor: pointer;
 }
 
 .mobile-menu {

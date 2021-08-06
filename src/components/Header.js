@@ -44,12 +44,11 @@ function Header() {
                     }
                     <button onClick={toggleTheme} className='themeButton'>{theme === 'light' ? 'dark mode' : 'light mode'}</button>
                 </div>
-                <FiMenu className='burger' onClick={() => setBurgerOpen(!burgerOpen)} />
-                { user ?
-                <li>
+                <FiMenu className={burgerOpen ? 'burger active' : 'burger'} onClick={() => setBurgerOpen(!burgerOpen)} />
+                {/* { user ?
                     <img src={user.avatar.medium} style={{height: 'auto', width: '60px'}}/>
-                </li> : null
-                }
+                 : null
+                } */}
             </div>
             {burgerOpen ? 
             <div className='mobile-menu'>
