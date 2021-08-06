@@ -6,32 +6,14 @@ import './AnimeCard.css'
 function AnimeCard({result}) {
     const url = generateUrl(result.title.english, result.id)
 
-    // if (!result) {
-    //     <div className='card'>
-    //         <div className='cardContent'>
-    //             <h2 className='cardTitle'></h2>
-    //         </div>
-    //     </div>   
-    // } else {
-        
-    // }
-    // return (
-    //     <Link className='cardLink' to={url}>
-    //             <div className='card' style={{backgroundImage: `url(${result.coverImage.large})`}}>
-    //                 <div className='cardContent'>
-    //                     <h2 className='cardTitle'>{result.title.english}</h2>
-    //                 </div>
-    //             </div>
-    //     </Link>
-    // )
-
     return (
-        <Link className='cardLink' to={url}>
-                <div className='card' style={{backgroundImage: `url(${result.coverImage.large})`}}>
-                    <div className='cardContent'>
-                        <h2 className='cardTitle'>{result.title.english}</h2>
-                    </div>
-                </div>
+        <Link className='card' to={url}>
+            <img className='card-img' src={result.coverImage.large} />
+            <h2 className='card-title'>{result.title.english}</h2>
+            <div className='card-body'>
+                <div className='card-score'>{result.averageScore}</div>
+                <div className='card-popularity'>{result.popularity} users</div>
+            </div>
         </Link>
     )
 }

@@ -1,9 +1,12 @@
 * {
     overflow-x: hidden;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
 }
 
 :root {
-    --dark0: black;
+    --dark0: rgb(24, 22, 22);
     --light0: white;
     --accent0: #793AFF;
 }

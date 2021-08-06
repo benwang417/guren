@@ -43,7 +43,7 @@ const TopAnimeList = ({sortTerm, title}) => {
             const variables = {
                 search: query,
                 page: 1,
-                perPage: 12
+                perPage: 10
             }
 
             const headers = {

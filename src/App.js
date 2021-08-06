@@ -71,8 +71,8 @@ function App() {
                         </Route>
                         <Route path='/' exact>
                             <TopAnimeList sortTerm='SCORE_DESC' title='Top Rated'/>
-                            <TopAnimeList sortTerm='POPULARITY_DESC' title='Most Popular'/>
-                            <TopAnimeList sortTerm='TRENDING_DESC' title='Trending'/>
+                            {/* <TopAnimeList sortTerm='POPULARITY_DESC' title='Most Popular'/>
+                            <TopAnimeList sortTerm='TRENDING_DESC' title='Trending'/> */}
                         </Route>
                         <Route path='/search'>
                             <Search />
