@@ -5,7 +5,6 @@ import { MdEdit} from 'react-icons/md'
 import { BiPlus} from 'react-icons/bi'
 import Dropdown from './Dropdown'
 import { UserContext } from '../UserContext'
-import './Modal.css'
 
 const watchStatus = [
     'current', 'planning', 'completed', 'dropped', 'paused', 'repeating'
