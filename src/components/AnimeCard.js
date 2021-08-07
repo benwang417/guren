@@ -13,7 +13,7 @@ function AnimeCard({result}) {
     return (
         <Link className='card' to={url}>
             <div className='card-img-container'>
-                <img className='card-img' src={result.coverImage.large} />
+                <img className='card-img' src={result.coverImage.large} alt='show'/>
                 <Modal className='card-modal' 
                     show={result} modalOpen={modalOpen} 
                     setModalOpen={setModalOpen} userLists={userLists}

@@ -132,6 +132,7 @@ function Modal({show, modalOpen, setModalOpen, userLists, isOnCard}) {
         }, {
             headers
         })
+        console.log(response)
         setEntryId(0)
         setModalOpen(!modalOpen)
     }

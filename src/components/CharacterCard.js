@@ -8,7 +8,7 @@ function CharacterCard({character}) {
     return (
         <Link className='card' to={charURL}>
             <div className='card-img-container'>
-                <img className='card-img' src={character.image.large} />
+                <img className='card-img' src={character.image.large} alt='character'/>
             </div>
             <div className='card-body'>
                 <h2 className='card-title'>{character.name.full}</h2>

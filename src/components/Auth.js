@@ -1,5 +1,5 @@
-import React, {useContext, useEffect, useState} from 'react'
-import {useLocation, useParams, Redirect } from 'react-router-dom'
+import React, {useContext, useEffect} from 'react'
+import { Redirect } from 'react-router-dom'
 import {UserContext} from '../UserContext'
 import axios from 'axios'
 
@@ -45,6 +45,7 @@ function Auth() {
         }
 
         getCurrentUser()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     if (!user) {
