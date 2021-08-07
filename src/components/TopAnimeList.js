@@ -23,6 +23,7 @@ const TopAnimeList = ({sortTerm, title}) => {
                             id
                             title {
                                 english
+                                romaji
                             }
                             description
                             coverImage {
@@ -60,16 +61,12 @@ const TopAnimeList = ({sortTerm, title}) => {
         getAnimePreview()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    //console.log(results)
+    console.log(results)
 
     //TODO: add error check for no internet to api request
     //TODO: move axios calls to a seperate file
     
     const renderedResults = results.map((result) => {
-        if (result.title.english === null || result.title.description === null ) {
-            return null
-        }
-    
         return (
             <AnimeCard key={result.id} result={result}/>
         )

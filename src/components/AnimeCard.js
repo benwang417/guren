@@ -8,7 +8,8 @@ import { UserListContext } from '../UserListContext'
 function AnimeCard({result}) {
     const {userLists} = useContext(UserListContext)
     const [modalOpen, setModalOpen] = useState(false)
-    const url = generateUrl(result.title.english, result.id)
+    const title = result.title.english ? result.title.english : result.title.romaji
+    const url = generateUrl(title, result.id)
 
     return (
         <Link className='card' to={url}>
@@ -21,7 +22,7 @@ function AnimeCard({result}) {
                 />
             </div>
             <div className='card-body'>
-                <h2 className='card-title'>{result.title.english}</h2>
+                <h2 className='card-title'>{title}</h2>
                 <div className='card-info'>
                     <div className='card-score'>{result.averageScore}</div>
                     <div className='card-popularity'>{result.popularity} users</div>
