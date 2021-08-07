@@ -8,8 +8,10 @@
 :root {
     --dark0: #23252B;
     --dark1: rgb(19, 19, 19);
+    --dark2: rgb(62, 62, 62);
     --light0: white;
     --light1: #f8f8f8;
+    --light2: #edeef1;
     --accent0: #793AFF;
 }
 
@@ -18,6 +20,8 @@
     --bg-secondary: var(--dark0);
     --text: var(--light0);
     --accent: var(--accent0);
+    --gradient-light: var(--dark2);
+    --gradient-dark: var(--dark0);
 }
 
 .light {
@@ -25,6 +29,8 @@
     --bg-secondary: var(--light0);
     --text: var(--dark0);
     --accent: var(--accent0);
+    --gradient-light: var(--light1);
+    --gradient-dark: var(--light2);
 }
 
 .App {

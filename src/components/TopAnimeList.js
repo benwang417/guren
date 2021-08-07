@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import './TopAnimeList.css'
 import AnimeCard from './AnimeCard'
+import CardPlaceholder from './CardPlaceholder'
 
 const TopAnimeList = ({sortTerm, title}) => {
     const [results, setResults] = useState([])
@@ -72,17 +73,27 @@ const TopAnimeList = ({sortTerm, title}) => {
         )
     })
 
-    // if (!results.length) {
-    //     return (
-    //         <AnimeCard key='' result={null}/>
-    //     )
-    // }
+    if (!results.length) {
+        return (
+            <div className='container'>
+                <Link to='/anime' className='listTitle'>{title}</Link>
+                <div className='cardList'>
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className='container'>
             <Link to='/anime' className='listTitle'>{title}</Link>
             <div className='cardList'>
-                {renderedResults}
+                {renderedResults} 
             </div>
         </div>
     )

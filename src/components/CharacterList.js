@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import './TopAnimeList.css'
 import CharacterCard from './CharacterCard'
+import CardPlaceholder from './CardPlaceholder'
 
 const CharacterList = () => {
     const [characters, setCharacters] = useState([])
@@ -61,6 +62,22 @@ const CharacterList = () => {
             <CharacterCard key={character.id} character={character}/>
         )
     })
+
+    if (!characters.length) {
+        return (
+            <div className='container'>
+                <Link to='/anime' className='listTitle'>Top Characters</Link>
+                <div className='cardList'>
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className='container'>
