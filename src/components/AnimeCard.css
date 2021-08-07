@@ -63,6 +63,7 @@
 
 .card-score {
     color: var(--accent);
+    font-weight: 700;
 }
 
 .card-popularity {
