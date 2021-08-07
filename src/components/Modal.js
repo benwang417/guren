@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
+import { MdEdit} from 'react-icons/md'
+import { BiPlus} from 'react-icons/bi'
 import Dropdown from './Dropdown'
 import { UserContext } from '../UserContext'
+import './Modal.css'
 
 const watchStatus = [
     'current', 'planning', 'completed', 'dropped', 'paused', 'repeating'
@@ -28,7 +31,7 @@ const OVERLAY_STYLES = {
     zIndex: '1000'
 }
 
-function Modal({show, modalOpen, setModalOpen, userLists}) {
+function Modal({show, modalOpen, setModalOpen, userLists, isOnCard}) {
     const {user} = useContext(UserContext)
     const token = localStorage.getItem('token')
     const [score, setScore] = useState(0)
@@ -141,21 +144,36 @@ function Modal({show, modalOpen, setModalOpen, userLists}) {
         } 
     }, [userLists])
 
-    // console.log(entryId)
+    const handleClick = e => {
+        e.preventDefault()
+        e.stopPropagation()
+        setModalOpen(true)
+    }
 
     if (!modalOpen) {
         if (!user) {
             return (
                 <div></div>
             )
-            // <a className='addButton' href='https://anilist.co/api/v2/oauth/authorize?client_id=6197&response_type=token'>add to my list</a>
-
         }
-        return (
-            <button onClick={() => setModalOpen(true)} className='addButton'>
-                {entryId !== 0 ? 'edit' : 'add to my list'}
-            </button>
-        )
+
+        if (isOnCard === false) {
+            return (
+                <button onClick={() => setModalOpen(true)} className='addButton'>
+                    {entryId !== 0 ? 'edit' : 'add to my list'}
+                </button> 
+            )
+        } else {
+            return (
+                <>
+                { entryId === 0 ?
+                <BiPlus onClick={handleClick} className='card-modal' />
+                : 
+                <MdEdit onClick={handleClick} className='card-modal' />
+                }
+                </>
+            )
+        }
     }
 
     return ReactDOM.createPortal(

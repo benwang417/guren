@@ -34,7 +34,7 @@ function SearchResult({searchData, userLists}) {
                     </div> */}
                     <div className='footer'>
                         <Modal show={searchData} modalOpen={modalOpen} 
-                            setModalOpen={setModalOpen} userLists={userLists}
+                            setModalOpen={setModalOpen} userLists={userLists} isOnCard={false}
                         />
                         <div className='genres'>
                             {renderedGenres}

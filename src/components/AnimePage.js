@@ -123,7 +123,7 @@ function AnimePage() {
                     <div className='contentImg'>
                         <img className='coverImg' src={anime.coverImage.extraLarge} alt=''/>
                         <Modal show={anime} modalOpen={modalOpen} 
-                            setModalOpen={setModalOpen} userLists={userLists}
+                            setModalOpen={setModalOpen} userLists={userLists} isOnCard={false}
                          />
                     </div>
                 </div>
