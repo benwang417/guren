@@ -16,7 +16,6 @@
     justify-content: space-between;
     align-items: center;
     min-height: 6vh;
-    font-family: 'Montserrat', sans-serif;
 }
 
 
@@ -33,6 +32,7 @@
     flex-direction: row;
     align-items: center;
     margin-right: 1em;
+    font-weight: 400;
 }
 
 .link {
@@ -51,7 +51,7 @@
     height: 1px;
     width: 100%;
     left: 0;
-    bottom: 00;
+    bottom: 0;
     overflow: hidden;
 }
 
@@ -104,6 +104,11 @@
 
     .link {
         width: max-content;
+        margin-right: 1.75em;
+    }
+
+    .avatar {
+        margin-right: 1.75em;
     }
 
     .link::after {

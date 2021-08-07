@@ -7,10 +7,10 @@
 }
 
 .listTitle {
-    width: 100%;
+    padding: 1.5rem;
+    margin: .5rem;
     text-decoration: none;
     color: var(--text);
-    font-weight: 700;
     font-size: 2rem;
 }
 
@@ -19,8 +19,8 @@
 }
 
 .cardList {
-    margin-top: .5em;
-    padding-top: 1.5em;
+    margin: .5em;
+    padding: 1.5em;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     grid-gap: 1em;
@@ -31,10 +31,10 @@
 .cardList::before {
     content: '';
     position: absolute;
-    width: 100%;
-    left: 0;
+    width: calc(100% - 3em);
+    left: 1.5em;
     height: 4px;
-    background: linear-gradient(90deg, #5100FC 20.94%, #0075FF 60.99%, #94C5FF 100%);
+    background: linear-gradient(90deg, #5100FC 20.94%, #0075FF 60.99%, #2883f3 100%);
 }
 
 

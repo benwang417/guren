@@ -8,7 +8,7 @@
 :root {
     --dark0: #23252B;
     --dark1: rgb(19, 19, 19);
-    --dark2: rgb(62, 62, 62);
+    --dark2: rgb(29, 29, 34);
     --light0: white;
     --light1: #f8f8f8;
     --light2: #edeef1;
@@ -36,4 +36,6 @@
 .App {
     background-color: var(--bg);
     color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
 }
