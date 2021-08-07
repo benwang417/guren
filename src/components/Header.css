@@ -87,6 +87,10 @@
     cursor: pointer;
 }
 
+.burger:hover {
+    color: var(--accent);
+}
+
 .mobile-menu {
     display: flex;
     flex-direction: column;

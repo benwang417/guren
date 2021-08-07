@@ -156,7 +156,7 @@ function AnimeList() {
     return (
         <div>
             <h1>{listOwnerName}</h1>
-            <img src={listOwner.avatar.medium}/>
+            <img src={listOwner.avatar.medium} alt='user'/>
             <h2>watching</h2>
             {renderList(lists[lists.findIndex((list) => list.name === 'Watching')].entries)}
             <h2>completed</h2>

@@ -10,6 +10,7 @@ import StudioPage from './components/StudioPage'
 import VoiceActorPage from './components/VoiceActorPage'
 import CharacterPage from './components/CharacterPage'
 import AnimeList from './components/AnimeList'
+import CharacterList from './components/CharacterList'
 import Auth from './components/Auth'
 import { ThemeContext } from './ThemeContext'
 import { UserContext } from './UserContext'
@@ -116,6 +117,7 @@ function App() {
                                 <TopAnimeList sortTerm='SCORE_DESC' title='Top Rated'/>
                                 <TopAnimeList sortTerm='POPULARITY_DESC' title='Most Popular'/>
                                 <TopAnimeList sortTerm='TRENDING_DESC' title='Trending'/>
+                                <CharacterList />
                             </Route>
                             <Route path='/search'>
                                 <Search />

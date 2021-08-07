@@ -1,14 +1,14 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import './TopAnimeList.css'
-import AnimeCard from './AnimeCard'
+import CharacterCard from './CharacterCard'
 
-const TopAnimeList = ({sortTerm, title}) => {
-    const [results, setResults] = useState([])
+const CharacterList = () => {
+    const [characters, setCharacters] = useState([])
 
     useEffect(() => {
-        const getAnimePreview = async () => {
+        const getCharacters = async () => {
             const query = `
                 query ($page: Int, $perPage: Int) {
                     Page (page: $page, perPage: $perPage) {
@@ -19,20 +19,15 @@ const TopAnimeList = ({sortTerm, title}) => {
                             hasNextPage
                             perPage
                         }
-                        media (type: ANIME, sort: ${sortTerm}) {
+                        characters (sort: FAVOURITES_DESC) {
+                            name {
+                                full
+                            }
                             id
-                            title {
-                                english
-                            }
-                            description
-                            coverImage {
-                                extraLarge
+                            image {
                                 large
-                                medium
                             }
-                            averageScore
-                            popularity
-                            genres
+                            favourites
                         }
                     }
                 }
@@ -54,36 +49,22 @@ const TopAnimeList = ({sortTerm, title}) => {
                 variables,
                 headers
             })
-            setResults(response.data.data.Page.media)
+            setCharacters(response.data.data.Page.characters)
         }
 
-        getAnimePreview()
+        getCharacters()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    //console.log(results)
-
-    //TODO: add error check for no internet to api request
-    //TODO: move axios calls to a seperate file
     
-    const renderedResults = results.map((result) => {
-        if (result.title.english === null || result.title.description === null ) {
-            return null
-        }
-    
+    const renderedResults = characters.map((character) => {
         return (
-            <AnimeCard key={result.id} result={result}/>
+            <CharacterCard key={character.id} character={character}/>
         )
     })
 
-    // if (!results.length) {
-    //     return (
-    //         <AnimeCard key='' result={null}/>
-    //     )
-    // }
-
     return (
         <div className='container'>
-            <Link to='/anime' className='listTitle'>{title}</Link>
+            <Link to='/anime' className='listTitle'>Top Characters</Link>
             <div className='cardList'>
                 {renderedResults}
             </div>
@@ -91,4 +72,4 @@ const TopAnimeList = ({sortTerm, title}) => {
     )
 }
 
-export default TopAnimeList
+export default CharacterList

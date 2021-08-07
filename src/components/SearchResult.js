@@ -1,14 +1,12 @@
-import React, {useState, useContext, useEffect} from 'react'
+import React, {useState, useContext} from 'react'
 import { Link } from 'react-router-dom'
 import './SearchResult.css'
 import Modal from './Modal'
 import generateUrl from '../generateUrl'
 import { ThemeContext } from '../ThemeContext'
-import { UserContext } from '../UserContext'
 
 function SearchResult({searchData, userLists}) {
     const {theme} = useContext(ThemeContext)
-    const {user} = useContext(UserContext)
     const [modalOpen, setModalOpen] = useState(false)
 
     const renderedGenres = searchData.genres.map((genre) => {
