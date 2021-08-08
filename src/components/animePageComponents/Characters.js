@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import CharacterCard from '../CharacterCard'
 
 function Characters ({id}) {
     const [characters, setCharacters] = useState([])
@@ -25,6 +25,7 @@ function Characters ({id}) {
                                     id
                                     image {
                                         medium
+                                        large
                                     }
                                     favourites
                                 }
@@ -35,7 +36,9 @@ function Characters ({id}) {
                                     }
                                     image {
                                         medium
+                                        large
                                     }
+                                    favourites
                                 }
                             }
                         }
@@ -75,29 +78,16 @@ function Characters ({id}) {
 
     const renderedChars = characters.map((character) => {
         const char = character.node
-        const charName = char.name.full
         const voiceActor = character.voiceActors[0]
-        const voiceActorName = voiceActor ? voiceActor.name.full : null
 
-        const charURL = `/characters/${char.id}/${charName.replace(/\s/g , "-")}`
-        const vaURL = voiceActor ? `/va/${voiceActor.id}/${voiceActorName.replace(/\s/g , "-")}` : ''
         return (
             <div key={char.id} style={{display: 'flex'}}>
-                <Link to={charURL}>
-                    <div>{charName}</div>
-                    <img loading='lazy' src={char.image.medium} alt='character'/>
-                </Link>
-                { voiceActor ? 
-                <Link to={vaURL}>
-                    <div>{voiceActorName}</div>
-                    <img loading='lazy' src={voiceActor.image.medium} alt='voice actor'/>
-                </Link> : <div></div>}
-                {char.favourites}
+                <CharacterCard character={char} />
+                { voiceActor ? <CharacterCard character={voiceActor} isVoiceActor={true} /> : null}
             </div>
         )
-    })
 
-    // console.log(characters)
+    })
 
     return (
         <div>

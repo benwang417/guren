@@ -22,7 +22,7 @@ function AnimePage() {
     function getStudioName() {
         const studio = anime.studios.edges.find(node => node.isMain)
         if (studio === undefined) {
-            return 
+            return ''
         }
         return studio.node.name
     }
@@ -30,7 +30,7 @@ function AnimePage() {
     function getStudioId() {
         const studio = anime.studios.edges.find(node => node.isMain)
         if (studio === undefined) {
-            return 
+            return ''
         }
         return studio.node.id
     }
@@ -104,6 +104,7 @@ function AnimePage() {
         return <div className='animePage'></div>
     }
 
+    //TODO: add checks for undefined properties
     return (
         <div className='animePage'>
             <div className='contentWrapper'>
