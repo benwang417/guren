@@ -22,7 +22,7 @@
     margin: .5em;
     padding: 1.5em;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     grid-gap: 1em;
     position: relative;
     margin-bottom: 3em;
@@ -40,7 +40,7 @@
 
 @media screen and (min-width: 300px) {
     .cardList {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 }
 
@@ -51,14 +51,14 @@
     }
 
     .cardList {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         grid-gap: 2em;
     }
 } */
 
 @media screen and (min-width: 800px) {
     .cardList {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         grid-gap: 2em;
     }
     .container {

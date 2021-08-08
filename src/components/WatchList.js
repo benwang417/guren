@@ -24,7 +24,7 @@ const WatchList = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userLists])
-    console.log(watchList)
+    // console.log(watchList)
 
     //TODO: add error check for no internet to api request
     //TODO: move axios calls to a seperate file
@@ -57,7 +57,7 @@ const WatchList = () => {
         )
     }
 
-    console.log('ready')
+    //TODO: make horizontal cards for watchlist
     const renderedList = watchList.map((entry) => {
         return (
             <AnimeCard key={entry.media.id} result={entry.media} progress={entry.progress}/>
