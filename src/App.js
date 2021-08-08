@@ -11,6 +11,7 @@ import VoiceActorPage from './components/VoiceActorPage'
 import CharacterPage from './components/CharacterPage'
 import AnimeList from './components/AnimeList'
 import CharacterList from './components/CharacterList'
+import WatchList from './components/WatchList'
 import Auth from './components/Auth'
 import { ThemeContext } from './ThemeContext'
 import { UserContext } from './UserContext'
@@ -21,7 +22,7 @@ function App() {
     const [user, setUser] = useState()
     const [userLists, setUserLists] = useState([])
     let token = (localStorage.getItem('token') || '')
-
+    console.log(userLists)
     useEffect(() => {
         if (user || !token) {
             return 
@@ -68,8 +69,18 @@ function App() {
                             status
                             entries {
                                 id
+                                progress
                                 media {
                                     id
+                                    title {
+                                        english
+                                        romaji
+                                    }
+                                    coverImage {
+                                        medium
+                                        large
+                                    }
+                                    episodes
                                 }
                             }
                             
@@ -117,6 +128,7 @@ function App() {
                                 <TopAnimeList sortTerm='SCORE_DESC' title='Top Rated'/>
                                 <TopAnimeList sortTerm='POPULARITY_DESC' title='Most Popular'/>
                                 <TopAnimeList sortTerm='TRENDING_DESC' title='Trending'/>
+                                { user ? <WatchList /> : null }
                                 <CharacterList />
                             </Route>
                             <Route path='/search'>

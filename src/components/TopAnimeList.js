@@ -27,6 +27,7 @@ const TopAnimeList = ({sortTerm, title}) => {
                                 romaji
                             }
                             description
+                            bannerImage
                             coverImage {
                                 extraLarge
                                 large
@@ -69,7 +70,7 @@ const TopAnimeList = ({sortTerm, title}) => {
     
     const renderedResults = results.map((result) => {
         return (
-            <AnimeCard key={result.id} result={result}/>
+            <AnimeCard key={result.id} result={result} progress={null}/>
         )
     })
 
