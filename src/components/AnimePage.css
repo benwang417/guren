@@ -1,30 +1,17 @@
 .anime-page {
-    padding: .5em;
-}
-
-.primary-content {
     padding: 1em;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
-.cover-img {
-    object-fit: cover;
-    width: 100%;
-    height: auto;
-}
-
-.content-body {
-    margin: 1em 0 1em 0;
+.primary-content {
+    margin: .75em 0 .75em 0;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .title {
     position: relative;
-    padding: .25em 0 .25em 0;
     width: max-content;
     font-size: 1.5rem;
 }
@@ -39,21 +26,35 @@
     bottom: 0;
 }
 
-.subhead {
-    margin-top: .5em;
-    color: var(--textalt);
+.img-container {
 }
+
+.cover-img {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+}
+
+.content-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+
 
 .show-info {
     display: flex;
-    flex-wrap: wrap;
-    line-height: 1.75rem;
-    font-size: 1rem;
-    margin: .8em 0 .8em 0;
+    flex-direction: column;
 }
 
-.show-info > * {
-    margin-right: 2em;
+.info-title {
+    font-size: .8rem;
+    font-weight: 400;
+}
+
+.info {
+
 }
  
 .standard-link {
@@ -67,7 +68,6 @@
 
 .description {
     font-size: .8rem;
-    margin-bottom: 2em;
 }
 
 .addButton {
@@ -87,50 +87,13 @@
 }
 
 @media screen and (min-width: 600px) {
-    .primary-content {
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    .img-container {
-        order: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .cover-img {
-        order: 1;
-        margin-left: 1.5em;
-        height: 85%;
-        width: auto;
-        max-height: 500px;
-    }
-
-    .description {
-        max-width: 50em;
-    }
+   
 }
 
 @media screen and (min-width: 800px) {
-    .title {
-        font-size: 2rem;
-    }
-
-    .show-info {
-        font-size: 1.2rem;
-        margin: 1.25em 0 1.25em 0;
-    }
-
-    .description {
-        font-size: .9rem;
-        margin-bottom: 3em;
-    }
+   
 }
 
 @media screen and (min-width: 1200px) {
-    .title {
-        font-size: 2.25rem;
-    }
-
+   
 }

@@ -64,6 +64,7 @@ function AnimePage() {
                         genres
                         episodes
                         seasonYear
+                        season
                         format
                         studios {
                             edges {
@@ -107,28 +108,51 @@ function AnimePage() {
         return <div className='anime-page'></div>
     }
 
+    const renderedGenres = anime.genres.map((genre) => {
+        return <Link to='/' key={genre}>{genre}</Link>
+    })
     //TODO: add checks for undefined properties
     return (
         <div className='anime-page'>
-            <div className='primary-content'>
-                <div className='img-container'>
-                    <img className='cover-img' src={anime.coverImage.extraLarge} alt=''/>
-                </div>
-                <div className='content-body'>
-                    <h1 className='title'>{anime.title.english ? anime.title.english : anime.title.romaji}</h1>
-                    <div className='subhead'>{anime.format} {anime.seasonYear}</div>
-                    <div className='show-info'> 
-                        <div>Average Score: {anime.averageScore}</div>
-                        <div>{getRank() ? `#${getRank()} most popular` : ''}</div>
-                        <Link className='standard-link' to={`/studios/${getStudioId()}/${getStudioName().replace(/\s/g , "-")}`}>{getStudioName()}</Link>
-                        <div>{anime.popularity} users</div>
+            <div className='content-container'>
+            <h1 className='title'>{anime.title.english ? anime.title.english : anime.title.romaji}</h1>
+                <div className='primary-content'>
+                    <div className='img-container'>
+                        <img className='cover-img' src={anime.coverImage.extraLarge} alt=''/>
                     </div>
-                    <p className='description'>{anime.description.replace(/(<([^>]+)>)/gi, "")}</p>
-                    <Modal show={anime} modalOpen={modalOpen} 
-                        setModalOpen={setModalOpen} userLists={userLists} isOnCard={false}
-                    />
-                </div>
-            </div>  
+                    <div className='content-body'>
+                        <div className='show-info'>
+                            <div className='info-title'>score</div>
+                            <div className='info'>{anime.averageScore}</div>
+                        </div>
+                        <div className='show-info'>
+                            <div className='info-title'>format</div>
+                            <div className='info'>{anime.format} ({anime.episodes} eps)</div>
+                        </div>
+                        <div className='show-info'>
+                            <div className='info-title'>aired</div>
+                            <div className='info'>{anime.season} {anime.seasonYear}</div>
+                        </div>
+                        <div className='show-info'>
+                            <div className='info-title'>rank</div>
+                            <div className='info'>{getRank() ? `#${getRank()} most popular` : ''}</div>
+                        </div>
+                        <div className='show-info'>
+                            <div className='info-title'>studio</div>
+                            <Link className='standard-link' to={`/studios/${getStudioId()}/${getStudioName().replace(/\s/g , "-")}`}>{getStudioName()}</Link>
+                        </div>
+                        <div className='show-info'>
+                            <div className='info-title'>genres</div>
+                            <div className='info' style={{display: 'flex', flexWrap: 'wrap'}}>{renderedGenres}</div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <Modal show={anime} modalOpen={modalOpen} 
+                setModalOpen={setModalOpen} userLists={userLists} isOnCard={false}
+            />
+            <div>description</div>
+            <div className='description'>{anime.description.replace(/(<([^>]+)>)/gi, "")}</div>
             <div className='secondary-content'>
                 <div className='selectionBar' style={{display: 'flex', justifyContent: 'space-evenly'}}>
                     <Link to={`${url}`} className='standard-link'>watch</Link>
