@@ -19,6 +19,7 @@
     --bg: var(--dark1);
     --bg-secondary: var(--dark0);
     --text: var(--light0);
+    --textalt: var(--light2);
     --accent: var(--accent0);
     --gradient-light: var(--dark2);
     --gradient-dark: var(--dark0);
@@ -28,6 +29,7 @@
     --bg: var(--light1);
     --bg-secondary: var(--light0);
     --text: var(--dark0);
+    --textalt: var(--dark2);
     --accent: var(--accent0);
     --gradient-light: var(--light1);
     --gradient-dark: var(--light2);

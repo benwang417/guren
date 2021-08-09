@@ -1,220 +1,136 @@
-/* .light {
-    color: black;
-    background-color: white;
+.anime-page {
+    padding: .5em;
 }
 
-.dark {
-    color: white;
-    background-color: black;
-} */
-
-.animePage {
-    height: 100vh;
-}
-
-.contentWrapper {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding-top: 10em;
-}
-
-.topBar {
-    margin-top: 7em;
-    max-width: 20ch;
-    position: absolute;
-    left: 0;
-    top: -9em;
-    font-size: 1.25rem;
-}
-
-.showInfo > * {
-    flex-basis: 100%;
-    text-align: center;
-}
-
-.overviewContainer {
+.primary-content {
+    padding: 1em;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 1.5em;
-    padding-bottom: 1.5em;
-    position: relative;
-    /* max-width: max-content; */
 }
 
-.overviewContainer.light::before {
-    content: '';
-    position: absolute;
-    background: black;
-    height: 2px;
-    width: 105%;
-    top: 0;
-    
-}
-
-.overviewContainer.light::after {
-    content: '';
-    position: absolute;
-    background: black;
-    height: 2px;
-    width: 105%;
-    bottom: 0;
-}
-.overviewContainer.dark::before {
-    content: '';
-    position: absolute;
-    background: #793AFF;
-    height: 2px;
-    width: 105%;
-    top: 0;
-    
-}
-
-.overviewContainer.dark::after {
-    content: '';
-    position: absolute;
-    background: #793AFF;
-    height: 2px;
-    width: 105%;
-    bottom: 0;
-}
-
-.title {
-    padding: 0em;
-    width: max-content;
-    font-size: 1.5rem;
-    max-width: 40ch;
-}
-
-.coverImg {
-    right: 20em;
+.cover-img {
+    object-fit: cover;
+    width: 100%;
     height: auto;
 }
 
-.rating {
-    width: 20ch;
-}
-
-.mainText {
-    margin-top: 1em;
-    width: 70ch;
-    font-weight: 400;
-    font-size: 1rem;
-}
-
-.showInfo {
-    padding: 2em;
-    display: flex;
-    justify-content: space-evenly;
-    font-weight: 700;
-    font-size: 1.2rem;
-}
-
-.middleInfo {
-    position: relative;
-    padding-left: .75em;
-    padding-right: .75em;
-}
-
-.middleInfo.light::before{
-    content:'';
-    position: absolute;
-    background: black;
-    height: 100%;
-    width: 1px;
-    left: 0em;
-    bottom: .3em;
-    /* bottom: .8em; */
-}
-
-.middleInfo.light::after{
-    content:'';
-    position: absolute;
-    background: black;
-    height: 100%;
-    width: 1px;
-    right: 0em;
-    bottom: .3em;
-    /* bottom: .8em; */
-}
-.middleInfo.dark::before{
-    content:'';
-    position: absolute;
-    background: white ;
-    height: 100%;
-    width: 1px;
-    left: 0em;
-    bottom: .3em;
-    /* bottom: .8em; */
-}
-
-.middleInfo.dark::after{
-    content:'';
-    position: absolute;
-    background: white;
-    height: 100%;
-    width: 1px;
-    right: 0em;
-    bottom: .3em;
-    /* bottom: .8em; */
-}
-.contentBody {
-    padding-right: 5em;
-}
-
-.contentImg {
-    margin-left: 2em;
+.content-body {
+    margin: 1em 0 1em 0;
     display: flex;
     flex-direction: column;
-    width: 15em;
-    justify-content: space-between;
-}
-
-.button {
-    color: white;
-    background-color: #793AFF;
-    height: 4em;
-    line-height: 4em;
-    font-size: 1rem;
-    border-radius: .25em;
-    margin-top: 2em;
-    margin-bottom: 1em;
-    border: none;
-}
-
-.secondaryContent {
-    padding: 2em;
-    display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
 }
 
-.navlinks{
+.title {
+    position: relative;
+    padding: .25em 0 .25em 0;
+    width: max-content;
+    font-size: 1.5rem;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    background-color: var(--accent);
+    width: 100%;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+}
+
+.subhead {
+    margin-top: .5em;
+    color: var(--textalt);
+}
+
+.show-info {
     display: flex;
-    justify-content: left;
-    padding-top: 1.5em;
-    padding-bottom: 1.5em;
-}
-
-.navlinks li{
-
-    list-style: none;
-    margin-left: 4em;
-    margin-right: 4em;
+    flex-wrap: wrap;
+    line-height: 1.75rem;
     font-size: 1rem;
-    
+    margin: .8em 0 .8em 0;
 }
 
-.link {
+.show-info > * {
+    margin-right: 2em;
+}
+ 
+.standard-link {
     text-decoration: none;
     color: inherit;
 }
 
-@media (min-width: 600px) {
-    .overviewContainer{
+.standard-link:hover {
+    color: var(--accent);
+}
+
+.description {
+    font-size: .8rem;
+    margin-bottom: 2em;
+}
+
+.addButton {
+    color: white;
+    background-color: #793AFF;
+    height: 2.5em;
+    font-size: 1.25rem;
+    border-radius: .25em;
+    min-width: 10em;
+    border: none;
+    cursor: pointer;
+    max-width: 15em;
+}
+
+.addButton:hover {
+    color: black;
+}
+
+@media screen and (min-width: 600px) {
+    .primary-content {
         flex-direction: row;
+        justify-content: center;
+    }
+
+    .img-container {
+        order: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cover-img {
+        order: 1;
+        margin-left: 1.5em;
+        height: 85%;
+        width: auto;
+        max-height: 500px;
+    }
+
+    .description {
+        max-width: 50em;
     }
 }
 
+@media screen and (min-width: 800px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .show-info {
+        font-size: 1.2rem;
+        margin: 1.25em 0 1.25em 0;
+    }
+
+    .description {
+        font-size: .9rem;
+        margin-bottom: 3em;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .title {
+        font-size: 2.25rem;
+    }
+
+}

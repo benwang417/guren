@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react'
 import {Route, Link, useRouteMatch, useParams} from 'react-router-dom'
 import axios from 'axios'
-// import './AnimePage.css'
+import './AnimePage.css'
 import {ThemeContext} from '../ThemeContext'
 import Watch from './animePageComponents/Watch'
 import Characters from './animePageComponents/Characters'
@@ -38,7 +38,7 @@ function AnimePage() {
     function getRank() {
         const rank = anime.rankings.find(ranking => ranking.allTime && ranking.type === 'POPULAR')
         if (rank === undefined) {
-            return 
+            return null
         } 
         return rank.rank
     }
@@ -51,6 +51,7 @@ function AnimePage() {
                         id
                         title {
                             english
+                            romaji
                         }
                         description
                         coverImage {
@@ -62,6 +63,8 @@ function AnimePage() {
                         popularity
                         genres
                         episodes
+                        seasonYear
+                        format
                         studios {
                             edges {
                                 isMain
@@ -101,40 +104,37 @@ function AnimePage() {
     }, [])
 
     if (!anime) {
-        return <div className='animePage'></div>
+        return <div className='anime-page'></div>
     }
 
     //TODO: add checks for undefined properties
     return (
-        <div className='animePage'>
-            <div className='contentWrapper'>
-                <div className={`overviewContainer ${theme}`}> 
-                    <div className='contentBody'>
-                        <div className='topBar'>overview</div>
-                        <h1 className='title'>{anime.title.english}</h1>
-                        <div>
-                            <div className='showInfo'> 
-                                <div>Rating: {anime.averageScore}<p>{anime.popularity} users</p></div>
-                                <div className='middleInfo'>#{getRank()} most popular</div>
-                                <Link to={`/studios/${getStudioId()}/${getStudioName().replace(/\s/g , "-")}`}>{getStudioName()}</Link>
-                            </div>
-                        </div>
-                        <p className='mainText'>{anime.description.replace(/(<([^>]+)>)/gi, "")}</p>
+        <div className='anime-page'>
+            <div className='primary-content'>
+                <div className='img-container'>
+                    <img className='cover-img' src={anime.coverImage.extraLarge} alt=''/>
+                </div>
+                <div className='content-body'>
+                    <h1 className='title'>{anime.title.english ? anime.title.english : anime.title.romaji}</h1>
+                    <div className='subhead'>{anime.format} {anime.seasonYear}</div>
+                    <div className='show-info'> 
+                        <div>Average Score: {anime.averageScore}</div>
+                        <div>{getRank() ? `#${getRank()} most popular` : ''}</div>
+                        <Link className='standard-link' to={`/studios/${getStudioId()}/${getStudioName().replace(/\s/g , "-")}`}>{getStudioName()}</Link>
+                        <div>{anime.popularity} users</div>
                     </div>
-                    <div className='contentImg'>
-                        <img className='coverImg' src={anime.coverImage.extraLarge} alt=''/>
-                        <Modal show={anime} modalOpen={modalOpen} 
-                            setModalOpen={setModalOpen} userLists={userLists} isOnCard={false}
-                         />
-                    </div>
+                    <p className='description'>{anime.description.replace(/(<([^>]+)>)/gi, "")}</p>
+                    <Modal show={anime} modalOpen={modalOpen} 
+                        setModalOpen={setModalOpen} userLists={userLists} isOnCard={false}
+                    />
                 </div>
             </div>  
-            <div className='secondaryContent'>
+            <div className='secondary-content'>
                 <div className='selectionBar' style={{display: 'flex', justifyContent: 'space-evenly'}}>
-                    <Link to={`${url}`} className=''>watch</Link>
-                    <Link to={`${url}/characters`} className=''>characters</Link>
-                    <Link to={`${url}/stats`} className=''>stats</Link>
-                    <Link to={`${url}/staff`} className=''>staff</Link>
+                    <Link to={`${url}`} className='standard-link'>watch</Link>
+                    <Link to={`${url}/characters`} className='standard-link'>characters</Link>
+                    <Link to={`${url}/stats`} className='standard-link'>stats</Link>
+                    <Link to={`${url}/staff`} className='standard-link'>staff</Link>
                 </div>
                 <div>
                     <Route path={`${path}/`} exact>

@@ -77,23 +77,6 @@
     justify-content: space-between;
 }
 
-/* .description {
-    max-height: 10em;
-    overflow-y: hidden;
-    text-overflow: ellipsis;
-} */
-
-.addButton {
-    color: white;
-    background-color: #793AFF;
-    height: 3em;
-    font-size: 1.25rem;
-    border-radius: .25em;
-    min-width: 10em;
-    border: none;
-    cursor: pointer;
-}
-
 .top {
     display: flex;
     flex-wrap: wrap;
