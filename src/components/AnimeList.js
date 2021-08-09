@@ -9,6 +9,8 @@ function AnimeList() {
     const {listOwnerName} = useParams()
 
     useEffect(() => {
+        const CancelToken = axios.CancelToken
+        const source = CancelToken.source()
 
         const getListOwner = async () => {
             const query = `
@@ -65,14 +67,40 @@ function AnimeList() {
                 query,
                 variables,
                 headers
+            }, {
+                cancelToken: source.token
+            }).catch(function (error) {
+                if (error.response) {
+                  // The request was made and the server responded with a status code
+                  // that falls out of the range of 2xx
+                  console.log(error.response.data)
+                  console.log(error.response.status)
+                  console.log(error.response.headers)
+                } else if (error.request) {
+                  // The request was made but no response was received
+                  // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                  // http.ClientRequest in node.js
+                  console.log(error.request)
+                } else {
+                  // Something happened in setting up the request that triggered an Error
+                  console.log('Error', error.message)
+                }
+                console.log(error.config)
             })
-            setListOwner(response.data.data.User)
+            if (response) {
+                setListOwner(response.data.data.User)
+            }
         }
         getListOwner()
+
+        return () => source.cancel()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
+        const CancelToken = axios.CancelToken
+        const source = CancelToken.source()
+
         if (!listOwner) {
             return
         }
@@ -115,12 +143,34 @@ function AnimeList() {
                 query,
                 variables,
                 headers
+            }, {
+                cancelToken: source.token
+            }).catch(function (error) {
+                if (error.response) {
+                  // The request was made and the server responded with a status code
+                  // that falls out of the range of 2xx
+                  console.log(error.response.data)
+                  console.log(error.response.status)
+                  console.log(error.response.headers)
+                } else if (error.request) {
+                  // The request was made but no response was received
+                  // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                  // http.ClientRequest in node.js
+                  console.log(error.request)
+                } else {
+                  // Something happened in setting up the request that triggered an Error
+                  console.log('Error', error.message)
+                }
+                console.log(error.config)
             })
-            setLists(response.data.data.MediaListCollection.lists)
-            
+            if (response) {
+                setLists(response.data.data.MediaListCollection.lists)
+            }
         }
 
         getLists()
+
+        return () => source.cancel()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [listOwner])
 
