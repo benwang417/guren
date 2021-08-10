@@ -56,7 +56,7 @@
 }
 
 .show-info {
-    margin-bottom: 1em;
+    margin-bottom: .5em;
 }
 
 .info-title {
@@ -111,7 +111,7 @@
 .addButton {
     color: white;
     background-color: #793AFF;
-    height: 2em;
+    height: 2.25em;
     border-radius: .25em;
     border: none;
     cursor: pointer;
@@ -125,6 +125,15 @@
 
 .show-more {
     max-height: 10ch;
+}
+
+@media screen and (max-width: 700px) {
+    .img-container {
+        width: 100%
+    }
+    .content-body {
+        width: 100%
+    }
 }
 
 @media screen and (min-width: 700px) {
@@ -163,7 +172,13 @@
 }
 
 .selection-bar > * {
-    margin: 0 2em;
+    margin: 0 1em;
+}
+
+@media screen and (min-width: 700px) {
+    .selection-bar > * {
+        margin: 0 2em;
+    }
 }
 
 @media screen and (min-width: 900px) {

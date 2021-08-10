@@ -20,7 +20,16 @@ function Header() {
     })
 
     useEffect(() => {
+        if (theme === 'dark') {
+            document.body.style.backgroundColor = 'rgb(19, 19, 19)'
+        } else {
+            document.body.style.backgroundColor = '#f8f8f8'
+        }
+        
         localStorage.setItem('theme', theme)
+        return () => {
+            document.body.style.backgroundColor = null
+        }
     }, [theme])
 
     return (

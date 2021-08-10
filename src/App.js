@@ -54,9 +54,7 @@ function App() {
         }
 
         getCurrentUser()
-        // return () => {
-        //     cleanup
-        // }
+        
     }, [])
 
     useEffect(() => {

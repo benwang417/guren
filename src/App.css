@@ -1,5 +1,4 @@
 * {
-    overflow-x: hidden;
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
@@ -33,6 +32,10 @@
     --accent: var(--accent0);
     --gradient-light: var(--light1);
     --gradient-dark: var(--light2);
+}
+
+.body {
+    background-color: var(--bg);
 }
 
 .App {
