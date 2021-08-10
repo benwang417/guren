@@ -19,6 +19,21 @@ function AnimePage() {
     const {path, url} = useRouteMatch()
 
     // instead of using getStudio, refactor query to filter by studio: isMain
+    function getSeason(season) {
+        if (season === 'SPRING') {
+            return 'Spring'
+        }
+        if (season === 'SUMMER') {
+            return 'Summer'
+        }
+        if (season === 'FALL') {
+            return 'Fall'
+        }
+        if (season === 'WINTER') {
+            return 'Winter'
+        }
+    }
+
     function getStudioName() {
         const studio = anime.studios.edges.find(node => node.isMain)
         if (studio === undefined) {
@@ -115,7 +130,7 @@ function AnimePage() {
     return (
         <div className='anime-page'>
             <div className='content-container'>
-            <h1 className='title'>{anime.title.english ? anime.title.english : anime.title.romaji}</h1>
+            <div className='title'>{anime.title.english ? anime.title.english : anime.title.romaji}</div>
                 <div className='primary-content'>
                     <div className='img-container'>
                         <img className='cover-img' src={anime.coverImage.extraLarge} alt=''/>
@@ -131,7 +146,7 @@ function AnimePage() {
                         </div>
                         <div className='show-info'>
                             <div className='info-title'>aired</div>
-                            <div className='info'>{anime.season} {anime.seasonYear}</div>
+                            <div className='info'>{getSeason(anime.season)} {anime.seasonYear}</div>
                         </div>
                         <div className='show-info'>
                             <div className='info-title'>rank</div>

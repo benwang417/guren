@@ -11,9 +11,11 @@
 }
 
 .title {
+    padding-bottom: .25em;
     position: relative;
-    width: max-content;
     font-size: 1.5rem;
+    font-weight: 600;
+    overflow: wrap;
 }
 
 .title::after {
