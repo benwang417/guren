@@ -7,7 +7,7 @@
 .primary-content {
     margin: .75em 0 .75em 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .title {
@@ -28,26 +28,38 @@
     bottom: 0;
 }
 
+.large-screen {
+    display: none;
+}
+
 .img-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .cover-img {
     object-fit: cover;
-    width: 100%;
+    width: 90%;
     height: auto;
+    max-height: 450px;
+    max-width: 300px;
 }
 
 .content-body {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
 }
 
-
+.show-stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
 
 .show-info {
     display: flex;
     flex-direction: column;
+    margin-bottom: 1em;
 }
 
 .info-title {
@@ -59,6 +71,16 @@
 
 }
  
+.anime-genre {
+    text-decoration: none;
+    margin-right: .5em;
+    color: var(--accent);
+}
+
+.anime-genre:hover {
+    color: inherit;
+}
+
 .standard-link {
     text-decoration: none;
     color: inherit;
@@ -70,29 +92,77 @@
 
 .description {
     font-size: .8rem;
+    overflow-y: hidden;
 }
+
+.description-large {
+    max-width:700px;
+    margin-left: 1em;
+    margin-top: .5em;
+    font-size: .8rem;
+    overflow: hidden;
+    
+
+}
+
+.section-title {
+    margin-left: 1em;
+    margin-top: 1em;
+    font-weight: 600;
+    position: relative;
+    text-decoration: underline;
+}
+
 
 .addButton {
     color: white;
     background-color: #793AFF;
-    height: 2.5em;
+    height: 2em;
     font-size: 1.25rem;
     border-radius: .25em;
-    min-width: 10em;
     border: none;
     cursor: pointer;
-    max-width: 15em;
+    width: 90%;
+    margin-top: .5em;
 }
 
 .addButton:hover {
     color: black;
 }
 
-@media screen and (min-width: 600px) {
-   
+.show-more {
+    max-height: 10ch;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 700px) {
+   .small-screen {
+       display: none;
+   }
+
+   .large-screen {
+       display: block;
+   }
+
+   .show-stats {
+        flex-direction: row;
+        flex-wrap: wrap;
+        max-width: 700px;
+        justify-content: flex-start;
+        margin-top: 1em;
+        margin-left: 1em;
+   }
+
+   .show-info {
+       margin-right: 2em;
+   }
+
+   .description-large {
+       font-size: 1rem;
+   }
+
+}
+
+@media screen and (min-width: 700px) {
    
 }
 
