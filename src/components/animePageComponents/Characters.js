@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import CharacterCard from '../CharacterCard'
+import CardPlaceholder from '../CardPlaceholder'
 import './Characters.css'
 
 function Characters ({id}) {
@@ -69,10 +70,33 @@ function Characters ({id}) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    if (!characters) {
+    if (!characters.length) {
         return (
-            <div>
-                
+            <div className='char-container'>
+                <div className='card-pair'>
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                </div>
+                <div className='card-pair'>
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                </div>
+                <div className='card-pair'>
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                </div>
+                <div className='card-pair'>
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                </div>
+                <div className='card-pair'>
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                </div>
+                <div className='card-pair'>
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                </div>
             </div>
         )
     }

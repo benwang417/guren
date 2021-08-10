@@ -121,7 +121,10 @@ function AnimePage() {
     }, [])
 
     if (!anime) {
-        return <div className='anime-page'></div>
+        return (
+            <div className='anime-page'>
+            </div>
+        )
     }
 
     const renderedGenres = anime.genres.map((genre) => {
@@ -189,6 +192,7 @@ function AnimePage() {
                     <Link to={`${url}/staff`} className='standard-link'>staff</Link>
                 </div>
                 <div>
+                    <Characters id={id} />
                     <Route path={`${path}/`} exact>
                         <Watch />
                     </Route>
