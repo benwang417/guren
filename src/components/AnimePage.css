@@ -38,7 +38,6 @@
 }
 
 .cover-img {
-    object-fit: cover;
     width: 90%;
     height: auto;
     max-height: 450px;
@@ -57,8 +56,6 @@
 }
 
 .show-info {
-    display: flex;
-    flex-direction: column;
     margin-bottom: 1em;
 }
 
@@ -68,7 +65,7 @@
 }
 
 .info {
-
+    font-size: .85rem;
 }
  
 .anime-genre {
@@ -101,8 +98,6 @@
     margin-top: .5em;
     font-size: .8rem;
     overflow: hidden;
-    
-
 }
 
 .section-title {
@@ -118,12 +113,11 @@
     color: white;
     background-color: #793AFF;
     height: 2em;
-    font-size: 1.25rem;
     border-radius: .25em;
     border: none;
     cursor: pointer;
     width: 90%;
-    margin-top: .5em;
+    margin-top: 1em;
 }
 
 .addButton:hover {
@@ -135,6 +129,11 @@
 }
 
 @media screen and (min-width: 700px) {
+
+    .info {
+        font-size: 1rem;
+    }
+
    .small-screen {
        display: none;
    }

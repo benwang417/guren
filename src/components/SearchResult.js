@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react'
 import { Link } from 'react-router-dom'
-import './SearchResult.css'
+// import './SearchResult.css'
 import Modal from './Modal'
 import generateUrl from '../generateUrl'
 import { ThemeContext } from '../ThemeContext'

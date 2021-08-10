@@ -160,11 +160,11 @@ function AnimePage() {
                             </div>
                             <div className='show-info'>
                                 <div className='info-title'>studio</div>
-                                <Link className='standard-link' to={`/studios/${getStudioId()}/${getStudioName().replace(/\s/g , "-")}`}>{getStudioName()}</Link>
+                                <Link className='standard-link info' to={`/studios/${getStudioId()}/${getStudioName().replace(/\s/g , "-")}`}>{getStudioName()}</Link>
                             </div>
                             <div className='show-info'>
                                 <div className='info-title'>genres</div>
-                                <div className='info' style={{display: 'flex', flexWrap: 'wrap'}}>{renderedGenres}</div>
+                                <div className='info' style={{display: 'flex', flexWrap: 'wrap', width: '80%'}}>{renderedGenres}</div>
                             </div>
                         </div>
                         <div className='section-title large-screen'>description</div>
