@@ -182,7 +182,7 @@ function AnimePage() {
             <div className='small-screen' onClick={() => setShowMore(true)} style={{cursor: 'pointer'}}>show more</div>
             : <div className='small-screen' onClick={() => setShowMore(false)} style={{cursor: 'pointer'}}>show less</div>
             }<div className='secondary-content'>
-                <div className='selectionBar' style={{display: 'flex', justifyContent: 'space-evenly'}}>
+                <div className='selection-bar'>
                     <Link to={`${url}`} className='standard-link'>watch</Link>
                     <Link to={`${url}/characters`} className='standard-link'>characters</Link>
                     <Link to={`${url}/stats`} className='standard-link'>stats</Link>

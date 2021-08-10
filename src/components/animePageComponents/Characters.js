@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import CharacterCard from '../CharacterCard'
+import './Characters.css'
 
 function Characters ({id}) {
     const [characters, setCharacters] = useState([])
@@ -81,7 +82,7 @@ function Characters ({id}) {
         const voiceActor = character.voiceActors[0]
 
         return (
-            <div key={char.id} style={{display: 'flex'}}>
+            <div className='card-pair' key={char.id}>
                 <CharacterCard character={char} />
                 { voiceActor ? <CharacterCard character={voiceActor} isVoiceActor={true} /> : null}
             </div>
@@ -90,8 +91,7 @@ function Characters ({id}) {
     })
 
     return (
-        <div>
-            <h1>Characters</h1>
+        <div className='char-container'>
             {renderedChars}
         </div>
     )
