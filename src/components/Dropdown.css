@@ -8,10 +8,16 @@
 
 .inputWrap {
     cursor: pointer;
+    justify-content: space-between;
+}
+
+.selected {
+    color: var(--accent) !important;
 }
 
 .x {
     cursor: pointer;
+    align-self: center;
 }
 
 .x:hover {

@@ -3,7 +3,6 @@ import axios from 'axios'
 import SearchResult from './SearchResult'
 import Dropdown from './Dropdown'
 import './Search.css'
-import {ThemeContext} from '../ThemeContext'
 import {UserListContext} from '../UserListContext'
 import {useLocation, useHistory} from 'react-router-dom'
 
@@ -13,7 +12,6 @@ const seasonCollection = ['WINTER', 'SPRING', 'SUMMER', 'FALL']
 const sortCollection = ['SCORE_DESC', 'POPULARITY_DESC', 'TRENDING_DESC']
 
 function Search() {
-    const {theme} = useContext(ThemeContext)
     const {userLists} = useContext(UserListContext)
     // const [userLists, setUserLists] = useState([])
     const searchParams = new URLSearchParams(useLocation().search)
@@ -181,24 +179,9 @@ function Search() {
         )
     })
     
-    if (!searchResults.length || !userLists) {
+    if (!userLists) {
         return (
-            <div className='searchPage'>
-                <div className='filtersWrapper'>
-                    <div className='filterContainer'>
-                        <div className='filter'>
-                            <div className='filterTitle'>search</div>
-                            <div className={`inputWrap ${theme}`}>
-                                <input className='searchBar'
-                                    value={searchTerm}
-                                    onChange={onInputChange}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                No Search Results: Please enter valid search term
-            </div>
+            <div></div>
         )
     }
 
@@ -214,7 +197,7 @@ function Search() {
                     <div className='filterContainer'>
                         <div className='filter'>
                             <div className='filterTitle'>search</div>
-                            <div className={`inputWrap ${theme}`}>
+                            <div className='inputWrap'>
                                 <input className='searchBar'
                                     value={searchTerm}
                                     onChange={onInputChange}
@@ -243,9 +226,11 @@ function Search() {
                         canBeEmpty={false}
                     />
                 </div>
+                { searchResults.length ? 
                 <div className='searchContainer'>
                     {renderedSearchResults}
                 </div>
+                : null }
             </div>
         </div>
     )
