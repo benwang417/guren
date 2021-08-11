@@ -2,7 +2,6 @@ import React, {useState, useEffect, useContext} from 'react'
 import {Route, Link, useRouteMatch, useParams} from 'react-router-dom'
 import axios from 'axios'
 import './AnimePage.css'
-import {ThemeContext} from '../ThemeContext'
 import Watch from './animePageComponents/Watch'
 import Characters from './animePageComponents/Characters'
 import Stats from './animePageComponents/Stats'
@@ -12,7 +11,6 @@ import { UserListContext } from '../UserListContext'
 
 function AnimePage() {
     const {userLists} = useContext(UserListContext)
-    const {theme} = useContext(ThemeContext)
     const [anime, setAnime] = useState()
     const [modalOpen, setModalOpen] = useState(false)
     let {id} = useParams()
@@ -155,7 +153,7 @@ function AnimePage() {
                             </div>
                             <div className='show-info'>
                                 <div className='info-title'>aired</div>
-                                <div className='info'>{getSeason(anime.season)} {anime.seasonYear}</div>
+                                <Link to={`/search?year=${anime.seasonYear}&season=${getSeason(anime.season)}`} className='info standard-link'>{getSeason(anime.season)} {anime.seasonYear}</Link>
                             </div>
                             <div className='show-info'>
                                 <div className='info-title'>rank</div>
