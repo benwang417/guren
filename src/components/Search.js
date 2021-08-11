@@ -26,6 +26,26 @@ function Search() {
     const [sortSelection, setSortSelection] = useState(sortCollection[0])
 
     useEffect(() => {
+        if (genreSelection !== 'Any') {
+            searchParams.set('genre', genreSelection)
+        } else if (searchParams.has('genre')) {
+            searchParams.delete('genre')
+        }
+        if (yearSelection !== 'Any') {
+            searchParams.set('year', yearSelection)
+        } else if (searchParams.has('year')) {
+            searchParams.delete('year')
+        }
+        if (seasonSelection !== 'Any') {
+            searchParams.set('season', seasonSelection)
+        } else if (searchParams.has('season')) {
+            searchParams.delete('season')
+        }
+        if (searchParams.toString() !== '') {
+            history.push(`/search?${searchParams.toString()}`)
+        } else {
+            history.push('/search')
+        }   
         function mapSort() {
             if (sortSelection === 'Score') {
                 return 'SCORE_DESC'
@@ -132,11 +152,6 @@ function Search() {
             <AnimeCard key={result.id} result={result} progress={null}/>
         )
     })
-    
-    //TODO: add black background to bottom of screen when only a few search results are show, currently
-    //there is a large white area in dark mode
-    //TODO: add X button to clear search
-    //TODO: add search filters to query params: year, season, genre,
 
     return (
         <div>
@@ -180,6 +195,18 @@ function Search() {
                 </div>
                  :
                 <div className='search-results'>
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
                     <CardPlaceholder />
                     <CardPlaceholder />
                     <CardPlaceholder />
