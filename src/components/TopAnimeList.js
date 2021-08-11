@@ -44,7 +44,7 @@ const TopAnimeList = ({sortTerm, title}) => {
             const variables = {
                 search: query,
                 page: 1,
-                perPage: 14
+                perPage: 12
             }
 
             const headers = {
@@ -63,7 +63,6 @@ const TopAnimeList = ({sortTerm, title}) => {
         getAnimePreview()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    console.log(results)
 
     //TODO: add error check for no internet to api request
     //TODO: move axios calls to a seperate file

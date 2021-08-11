@@ -53,9 +53,8 @@
 
 @media screen and (max-width: 700px) {
     .cardList {
-        display: grid;
         grid-gap: 10px;
-        grid-template-columns: repeat(14, calc(50% - 10px));
+        grid-template-columns: repeat(30, calc(50% - 10px));
         grid-template-rows: minmax(200px, 1fr);
         overflow-x: scroll;
     }
@@ -67,7 +66,7 @@
 
 @media screen and (min-width: 700px) {
     .cardList {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         grid-gap: 2em;
     }
     .listTitle::after {

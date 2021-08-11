@@ -1,26 +1,27 @@
 .char-container {
+    margin-top: 1em;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 300px));
+    grid-template-columns: 1fr 1fr;
     grid-gap: 2em;
     justify-content: center;
 }
 
 .card-pair {
-    padding: 1em;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1em;
+    background-color: var(--bg-secondary);
 }
 
 @media screen and (min-width: 1000px) {
     .char-container {
         grid-template-columns: repeat(auto-fill, minmax(300px, 375px));
-        padding: 0 10em; 
+        padding: 0 5em; 
     }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1400px) {
     .char-container {
-        padding: 0 15em; 
+        padding: 0 10em; 
     }
 }

@@ -54,7 +54,7 @@ const SeasonalList = ({month, year}) => {
             const variables = {
                 search: query,
                 page: 1,
-                perPage: 14,
+                perPage: 12,
                 season: season,
                 seasonYear: year
             }
@@ -74,7 +74,6 @@ const SeasonalList = ({month, year}) => {
         getAnimePreview()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    console.log(results)
 
     //TODO: add error check for no internet to api request
     //TODO: move axios calls to a seperate file

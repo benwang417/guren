@@ -37,7 +37,7 @@ const CharacterList = () => {
             const variables = {
                 search: query,
                 page: 1,
-                perPage: 14
+                perPage: 12
             }
 
             const headers = {
