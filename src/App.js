@@ -19,11 +19,12 @@ import { UserListContext } from './UserListContext'
 import SeasonalList from './components/SeasonalList'
 
 function App() {
+    const date = new Date()
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light')
     const [user, setUser] = useState()
     const [userLists, setUserLists] = useState([])
     let token = (localStorage.getItem('token') || '')
-    console.log(userLists)
+   
     useEffect(() => {
         if (user || !token) {
             return 
@@ -124,7 +125,7 @@ function App() {
                                 <Auth />
                             </Route>
                             <Route path='/' exact>
-                                <SeasonalList title='This Season' year={2021} season='SUMMER'/>
+                                <SeasonalList title='This Season' year={date.getFullYear()} month={date.getMonth()} />
                                 <TopAnimeList sortTerm='SCORE_DESC' title='Top Rated'/>
                                 <TopAnimeList sortTerm='POPULARITY_DESC' title='Most Popular'/>
                                 { user ? <WatchList /> : null }

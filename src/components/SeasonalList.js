@@ -5,8 +5,18 @@ import './TopAnimeList.css'
 import AnimeCard from './AnimeCard'
 import CardPlaceholder from './CardPlaceholder'
 
-const SeasonalList = ({season, year, title}) => {
+const SeasonalList = ({month, year}) => {
     const [results, setResults] = useState([])
+    let season = ''
+    if (month >= 2 && month <= 4) {
+        season = 'SPRING'
+    } else if (month >= 5 && month <= 7) {
+        season = 'SUMMER'
+    } else if (month >= 8 && month <= 10) {
+        season = 'SUMMER'
+    } else {
+        season = 'WINTER'
+    }
 
     useEffect(() => {
         const getAnimePreview = async () => {
@@ -53,7 +63,6 @@ const SeasonalList = ({season, year, title}) => {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             }
-
             const response = await axios.post('https://graphql.anilist.co', {
                 query,
                 variables,
@@ -79,7 +88,7 @@ const SeasonalList = ({season, year, title}) => {
     if (!results.length) {
         return (
             <div className='container'>
-                <Link to='/anime' className='listTitle'>{title}</Link>
+                <Link to='/anime' className='listTitle'>This Season</Link>
                 <div className='cardList'>
                     <CardPlaceholder />
                     <CardPlaceholder />
@@ -94,7 +103,7 @@ const SeasonalList = ({season, year, title}) => {
 
     return (
         <div className='container'>
-            <Link to='/anime' className='listTitle'>{title}</Link>
+            <Link to='/anime' className='listTitle'>This Season</Link>
             <div className='cardList'>
                 {renderedResults} 
             </div>
