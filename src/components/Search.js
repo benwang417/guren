@@ -1,6 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react'
 import axios from 'axios'
-import SearchResult from './SearchResult'
 import Dropdown from './Dropdown'
 import CardPlaceholder from './CardPlaceholder'
 import AnimeCard from './AnimeCard'
@@ -14,6 +13,7 @@ const seasonCollection = ['Winter', 'SPRING', 'SUMMER', 'FALL']
 const sortCollection = ['Score', 'Popularity', 'Trending']
 
 function Search() {
+    const [isLoading, setIsLoading] = useState(true)
     const {userLists} = useContext(UserListContext)
     const searchParams = new URLSearchParams(useLocation().search)
     let history = useHistory()
@@ -58,6 +58,7 @@ function Search() {
                             id
                             title {
                                 english
+                                romaji
                             }
                             description
                             coverImage {
@@ -80,19 +81,21 @@ function Search() {
             const variables = {
                 search: searchTerm,
                 page: 1,
-                perPage: 30
+                perPage: 40
             }
 
             const headers = {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             }
-
+            setIsLoading(true)
             const response = await axios.post('https://graphql.anilist.co', {
                 query,
                 variables,
                 headers
             })
+            // console.log(response.data)
+            setIsLoading(false)
             setSearchResults(response.data.data.Page.media)
             setGenreCollection(response.data.data.GenreCollection)
         }
@@ -119,42 +122,17 @@ function Search() {
         }
 
     }
-    // const renderedSearchResults = searchResults.map((result) => {
-    //     // possible issue caused by only native or romaji title being available, instead: check for english, then romaji, then native, then return if all null
-    //     if (result.title.english === null || result.title.description === null) {
-    //         return null
-    //     }
 
-    //     return (
-    //         <SearchResult key={result.id} searchData={result} userLists={userLists}/>
-    //     )
-    // })
     const renderedSearchResults = searchResults.map((result) => {
+        if (result.title.english === null && result.title.romaji === null) {
+            console.log('error', result)
+            return
+        }
         return (
             <AnimeCard key={result.id} result={result} progress={null}/>
         )
     })
-
-    const placholderResults = () => {
-        return (
-            <div>
-                <CardPlaceholder />
-                <CardPlaceholder />
-                <CardPlaceholder />
-                <CardPlaceholder />
-                <CardPlaceholder />
-                <CardPlaceholder />
-            </div>
-        )
-    }
-    console.log(searchResults)
-    console.log(userLists)
-    if (!userLists) {
-        return (
-            <div></div>
-        )
-    }
-
+    
     //TODO: add black background to bottom of screen when only a few search results are show, currently
     //there is a large white area in dark mode
     //TODO: add X button to clear search
@@ -196,11 +174,19 @@ function Search() {
                         canBeEmpty={false}
                     />
                 </div>
-                { searchResults.length ? 
+                {isLoading === false ? 
                 <div className='search-results'>
                     {renderedSearchResults}
                 </div>
-                : null }
+                 :
+                <div className='search-results'>
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                    <CardPlaceholder />
+                </div> }
             </div>
         </div>
     )
