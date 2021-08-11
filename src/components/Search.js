@@ -2,18 +2,19 @@ import React, {useEffect, useState, useContext} from 'react'
 import axios from 'axios'
 import SearchResult from './SearchResult'
 import Dropdown from './Dropdown'
+import CardPlaceholder from './CardPlaceholder'
+import AnimeCard from './AnimeCard'
 import './Search.css'
 import {UserListContext} from '../UserListContext'
 import {useLocation, useHistory} from 'react-router-dom'
 
 const yearCollection = [2021, 2020, 2019, 2018, 2017, 2016, 
     2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006]
-const seasonCollection = ['WINTER', 'SPRING', 'SUMMER', 'FALL']
-const sortCollection = ['SCORE_DESC', 'POPULARITY_DESC', 'TRENDING_DESC']
+const seasonCollection = ['Winter', 'SPRING', 'SUMMER', 'FALL']
+const sortCollection = ['Score', 'Popularity', 'Trending']
 
 function Search() {
     const {userLists} = useContext(UserListContext)
-    // const [userLists, setUserLists] = useState([])
     const searchParams = new URLSearchParams(useLocation().search)
     let history = useHistory()
     const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '')
@@ -25,9 +26,21 @@ function Search() {
     const [sortSelection, setSortSelection] = useState(sortCollection[0])
 
     useEffect(() => {
+        function mapSort() {
+            if (sortSelection === 'Score') {
+                return 'SCORE_DESC'
+            } 
+            if (sortSelection === 'Popularity') {
+                return 'POPULARITY_DESC'
+            } 
+            if (sortSelection === 'Trending') {
+                return 'TRENDING_DESC'
+            } 
+        }
+
         const getSearchResults = async () => {
             const query = `
-                query ($page: Int, $perPage: Int, $search: String) {
+                query ($page: Int, $perPage: Int) {
                     GenreCollection
                     Page (page: $page, perPage: $perPage) {
                         pageInfo {
@@ -37,10 +50,10 @@ function Search() {
                             hasNextPage
                             perPage
                         }
-                        media (type: ANIME, search: $search, sort: ${sortSelection},
-                            ${genreSelection !== 'Any' ? `genre: ${`"${genreSelection}"`}` : ''},
+                        media (type: ANIME, isAdult: false, ${searchTerm ? `search: "${searchTerm}"` : ''}, sort: ${mapSort()},
+                            ${genreSelection !== 'Any' ? `genre: "${genreSelection}"` : ''},
                             ${yearSelection !== 'Any' ? `seasonYear: ${yearSelection}` : ''},
-                            ${seasonSelection !== 'Any' ? `season: ${seasonSelection}` : ''}
+                            ${seasonSelection !== 'Any' ? `season: ${seasonSelection.toUpperCase()}` : ''}
                             ) {
                             id
                             title {
@@ -67,7 +80,7 @@ function Search() {
             const variables = {
                 search: searchTerm,
                 page: 1,
-                perPage: 10
+                perPage: 30
             }
 
             const headers = {
@@ -84,73 +97,11 @@ function Search() {
             setGenreCollection(response.data.data.GenreCollection)
         }
 
-        const getDefaultResults = async () => {
-            const query = `
-                query ($page: Int, $perPage: Int) {
-                    GenreCollection
-                    Page (page: $page, perPage: $perPage) {
-                        pageInfo {
-                            total
-                            currentPage
-                            lastPage
-                            hasNextPage
-                            perPage
-                        }
-                        media (type: ANIME, sort: ${sortSelection},
-                            ${`${genreSelection !== 'Any' ? `genre: ${`"${genreSelection}"`}` : ''}`},
-                            ${`${yearSelection !== 'Any' ? `seasonYear: ${`${yearSelection}`}` : ''}`},
-                            ${`${seasonSelection !== 'Any' ? `season: ${`${seasonSelection}`}` : ''}`}
-                            ) {
-                            id
-                            title {
-                                english
-                            }
-                            description
-                            coverImage {
-                                extraLarge
-                                large
-                                medium
-                            }
-                            averageScore
-                            popularity
-                            genres
-                            format
-                            seasonYear
-                            isAdult
-                        }
-                    }
-                }
-            `
-
-            const variables = {
-                query,
-                page: 1,
-                perPage: 10
-            }
-
-            const headers = {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-
-            const response = await axios.post('https://graphql.anilist.co', {
-                query,
-                variables,
-                headers
-            })
-            setSearchResults(response.data.data.Page.media)
-            setGenreCollection(response.data.data.GenreCollection)
-        }
-
-        if (!searchTerm) {
-            getDefaultResults() // load top anime when there is no search term
-        } else if (searchTerm && !searchResults.length){
+        if (!searchResults.length){
             getSearchResults()
         } else {
             const timeoutId = setTimeout( () => {
-                if (searchTerm) {
-                    getSearchResults()
-                }
+                getSearchResults()
             }, 500)
             return () => {
                 clearTimeout(timeoutId)
@@ -168,17 +119,36 @@ function Search() {
         }
 
     }
-    const renderedSearchResults = searchResults.map((result) => {
-        // possible issue caused by only native or romaji title being available, instead: check for english, then romaji, then native, then return if all null
-        if (result.title.english === null || result.title.description === null || result.isAdult) {
-            return null
-        }
+    // const renderedSearchResults = searchResults.map((result) => {
+    //     // possible issue caused by only native or romaji title being available, instead: check for english, then romaji, then native, then return if all null
+    //     if (result.title.english === null || result.title.description === null) {
+    //         return null
+    //     }
 
+    //     return (
+    //         <SearchResult key={result.id} searchData={result} userLists={userLists}/>
+    //     )
+    // })
+    const renderedSearchResults = searchResults.map((result) => {
         return (
-            <SearchResult key={result.id} searchData={result} userLists={userLists}/>
+            <AnimeCard key={result.id} result={result} progress={null}/>
         )
     })
-    
+
+    const placholderResults = () => {
+        return (
+            <div>
+                <CardPlaceholder />
+                <CardPlaceholder />
+                <CardPlaceholder />
+                <CardPlaceholder />
+                <CardPlaceholder />
+                <CardPlaceholder />
+            </div>
+        )
+    }
+    console.log(searchResults)
+    console.log(userLists)
     if (!userLists) {
         return (
             <div></div>
@@ -227,7 +197,7 @@ function Search() {
                     />
                 </div>
                 { searchResults.length ? 
-                <div className='searchContainer'>
+                <div className='search-results'>
                     {renderedSearchResults}
                 </div>
                 : null }

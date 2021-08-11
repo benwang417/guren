@@ -128,7 +128,7 @@ function AnimePage() {
     }
 
     const renderedGenres = anime.genres.map((genre) => {
-        return <Link to='/' className='anime-genre' key={genre}>{genre}</Link>
+        return <Link to={`/search?genre=${genre}`} className='anime-genre' key={genre}>{genre}</Link>
     })
     //TODO: add checks for undefined properties
     return (

@@ -7,7 +7,7 @@
 .filtersWrapper {
     padding: 1em .5em;
     display: grid;
-    grid-template-columns: repeat(5, 200px);
+    grid-template-columns: repeat(5, 175px);
     grid-template-rows: 1fr;
     overflow-x: scroll;
     grid-gap: 1.5em;
@@ -26,7 +26,7 @@
 
 .filterTitle {
     padding: .5em 0;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 }
 
 .inputWrap {
@@ -40,8 +40,9 @@
     padding: .1em;
     background: transparent;
     border: none;
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: inherit;
+    width: 100%;
     max-width: 200px;
 }
 
@@ -49,3 +50,34 @@
     outline: none;
 }
 
+@media screen and (min-width: 1100px) {
+    .filtersWrapper {
+        justify-content: center;
+        overflow-x: hidden;
+    }
+}
+
+
+.search-results {
+    margin-top: 1em;
+    padding: .5em;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 1em;
+    position: relative;
+    margin-bottom: 3em;
+}
+
+@media screen and (min-width: 700px) {
+    .search-results {
+        grid-gap: 2em;
+        padding: 1em 5em;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .search-results {
+        grid-gap: 3em;
+        padding: 2em 10em;
+    }
+}
