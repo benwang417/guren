@@ -10,7 +10,7 @@
 }
 
 .card:hover {
-    border: 3px solid #793AFF;
+    border: 3px solid var(--accent);
     margin: -3px;
 }
 
@@ -55,7 +55,7 @@
 }
 
 .card-modal:hover {
-    color: var(--accent);
+    color: var(--accent2);
 }
 
 .card-title {
@@ -71,7 +71,7 @@
 }
 
 .card-score {
-    color: var(--accent);
+    color: var(--accent2);
     font-weight: 600;
 }
 

@@ -16,6 +16,7 @@ import Auth from './components/Auth'
 import { ThemeContext } from './ThemeContext'
 import { UserContext } from './UserContext'
 import { UserListContext } from './UserListContext'
+import SeasonalList from './components/SeasonalList'
 
 function App() {
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light')
@@ -123,10 +124,11 @@ function App() {
                                 <Auth />
                             </Route>
                             <Route path='/' exact>
+                                <SeasonalList title='This Season' year={2021} season='SUMMER'/>
                                 <TopAnimeList sortTerm='SCORE_DESC' title='Top Rated'/>
                                 <TopAnimeList sortTerm='POPULARITY_DESC' title='Most Popular'/>
-                                <TopAnimeList sortTerm='TRENDING_DESC' title='Trending'/>
                                 { user ? <WatchList /> : null }
+                                <TopAnimeList sortTerm='TRENDING_DESC' title='Trending'/>
                                 <CharacterList />
                             </Route>
                             <Route path='/search'>

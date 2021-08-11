@@ -2,13 +2,14 @@
 
 .container {
    margin-top: 3em;
-   padding-left: 1em;
-   padding-right: 1em;
+   padding-left: .5em;
+   padding-right: .5em;
    overflow: hidden;
 }
 
 .listTitle {
-    padding: 1.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     margin: .5rem;
     text-decoration: none;
     color: var(--text);
@@ -23,16 +24,16 @@
 .listTitle::after {
     content: '';
     position: absolute;
-    left: .75em;
+    left: 0;
     bottom: .5em;
     height: 4px;
     background: linear-gradient(90deg, #5100FC 20.94%, #0075FF 60.99%, #2883f3 100%);
-    width: 80vw;
+    width: 90vw;
 }
 
 .cardList {
-    margin: .5em;
-    padding: 1.5em;
+    margin-top: 1em;
+    padding: .5em;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     grid-gap: 1em;
@@ -43,20 +44,14 @@
 .cardList::before {
     content: '';
     position: absolute;
-    width: calc(100% - 3em);
-    left: 1.5em;
+    width: calc(100% - 1em);
+    top: -.75em;
+    left: .5em;
     height: 4px;
     background: linear-gradient(90deg, #5100FC 20.94%, #0075FF 60.99%, #2883f3 100%);
 }
 
 @media screen and (max-width: 700px) {
-    /* .cardList {
-       grid-template-columns: repeat(150px);
-       grid-auto-flow: column;
-       overflow-x: scroll;
-       overflow-y: hidden;
-    } */
-
     .cardList {
         display: grid;
         grid-gap: 10px;
@@ -79,8 +74,8 @@
         height: 0; 
     }
     .container {
-        padding-left: 10em;
-        padding-right: 10em;
+        padding-left: 3em;
+        padding-right: 3em;
     }
    
 }
