@@ -2,8 +2,12 @@
     cursor: pointer;
 }
 
-option:hover {
+.menu-item:hover {
     color: #793AFF;
+}
+
+.inputWrap {
+    cursor: pointer;
 }
 
 .x {

@@ -6,12 +6,12 @@ function Dropdown({filterTitle, options, selection, setSelection, canBeEmpty}) {
 
     const renderedOptions = options.map((option) => {
         return (
-            <option className='menu-item' key={option} onClick={() => {
+            <div className='menu-item' key={option} onClick={() => {
                 setSelection(option)
                 setOpen(!open)
                 }}>
                 {option}
-            </option>
+            </div>
         )
     })
 
@@ -19,7 +19,7 @@ function Dropdown({filterTitle, options, selection, setSelection, canBeEmpty}) {
         <div className='filterContainer'>
             <div className='filter'>
                 <div className='filterTitle'>{filterTitle}</div>
-                <div className={`inputWrap`} style={{display: 'flex', justifyContent: 'space-between'}}>
+                <div className='inputWrap' style={{display: 'flex', justifyContent: 'space-between'}}>
                     <div className='selection' onClick={() => setOpen(!open)}>
                         {selection}
                     </div>
