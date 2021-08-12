@@ -76,14 +76,19 @@
     align-items: center;
 }
 
+.user-link {
+    display: none;
+    align-items: center;
+}
+
 .avatar {
     height: auto;
     width: 2em;
-    margin-right: .5em;
+    margin-right: 1rem;
 }
 
 .burger {
-    margin-right: 1em;
+    margin-right: 1rem;
     font-size: 2rem;
     cursor: pointer;
 }
@@ -96,6 +101,16 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+@media screen and (min-width: 500px) {
+    .burger, .avatar {
+        margin-right: 1.5rem;
+    }
+
+    .user-link {
+        display: flex;
+    }
 }
 
 @media screen and (min-width: 800px) {

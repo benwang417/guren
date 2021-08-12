@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './Header.css'
 import { FiMenu } from 'react-icons/fi'
+import { AiOutlineSearch } from 'react-icons/ai'
 import { FaMoon, FaSun } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { ThemeContext } from '../ThemeContext'
@@ -39,9 +40,9 @@ function Header() {
                     <Link to='/' className='logo'>guren | ぐれん</Link>
                 </h4>
                 <div className='nav-links'>
+                    <AiOutlineSearch className='burger' />
                     <Link to='/' className='link'>home</Link>
-                    <Link to='/anime' className='link'>top anime</Link>
-                    <Link to='/search' className='link'>search</Link>
+                    <Link to='/search' className='link'>top anime</Link>
                     { !user ? 
                     <a className='link' href='https://anilist.co/api/v2/oauth/authorize?client_id=6197&response_type=token'>login</a>
                      :
@@ -58,6 +59,12 @@ function Header() {
                     }
                 </div>
                 <div className='mobile-nav'>
+                <AiOutlineSearch className='burger' />
+                { user ?
+                <Link to={`/user/${user.name}/animelist`} className='user-link'>
+                    <img src={user.avatar.medium} className='avatar'/>
+                </Link>
+                : null }
                 <FiMenu className={burgerOpen ? 'burger active' : 'burger'} onClick={() => setBurgerOpen(!burgerOpen)} />
                 </div>
             </div>
