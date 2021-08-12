@@ -42,7 +42,7 @@ function Header() {
                     <Link to='/' className='logo'>guren | ぐれん</Link>
                 </h4>
                 <div className='nav-links'>
-                    <AiOutlineSearch className='burger'  onClick={() => setSearchBarOpen(!searchBarOpen)}/>
+                    <AiOutlineSearch className={`burger ${searchBarOpen ? 'active' : ''}`}  onClick={() => setSearchBarOpen(!searchBarOpen)}/>
                     <Link to='/' className='link'>home</Link>
                     <Link to='/search' className='link'>top anime</Link>
                     { !user ? 
@@ -61,7 +61,7 @@ function Header() {
                     }
                 </div>
                 <div className='mobile-nav'>
-                <AiOutlineSearch className='burger' onClick={() => setSearchBarOpen(!searchBarOpen)} />
+                <AiOutlineSearch className={`burger ${searchBarOpen ? 'active' : ''}`} onClick={() => setSearchBarOpen(!searchBarOpen)} />
                 { user ?
                 <Link to={`/user/${user.name}/animelist`} className='user-link'>
                     <img src={user.avatar.medium} className='avatar'/>
