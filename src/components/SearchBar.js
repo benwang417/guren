@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+import generateUrl from '../generateUrl'
 
 function SearchBar() {
     const [searchTerm, setSearchTerm] = useState('')
@@ -121,18 +123,21 @@ function SearchBar() {
 
     const renderedShows = showResults.map((show) => {
         const title = show.title.english ? show.title.english : show.title.romaji
+        const url = generateUrl(title, show.id)
         return (
-            <div>{title}</div>
+            <Link to={url}>{title}</Link>
         )
     })
     const renderedChars = charResults.map((char) => {
+        const url = `/characters/${char.id}/${char.name.full.replace(/\s/g , "-")}`
         return (
-            <div>{char.name.full}</div>
+            <Link to={url}>{char.name.full}</Link>
         )
     })
     const renderedStudios = studioResults.map((studio) => {
+        const url = `/studios/${studio.id}/${studio.name.replace(/\s/g , "-")}`
         return (
-            <div>{studio.name}</div>
+            <Link to={url}>{studio.name}</Link>
         )
     })
     // console.log(showResults)
