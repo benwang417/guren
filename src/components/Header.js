@@ -6,11 +6,13 @@ import { FaMoon, FaSun } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { ThemeContext } from '../ThemeContext'
 import { UserContext } from '../UserContext'
+import SearchBar from './SearchBar'
 
 function Header() {
     const {theme, setTheme} = useContext(ThemeContext)
     const {user} = useContext(UserContext)
     const [burgerOpen, setBurgerOpen] = useState(false)
+    const [searchBarOpen, setSearchBarOpen] = useState(false)
 
     const toggleTheme = (() => {
         if (theme === 'light') {
@@ -40,7 +42,7 @@ function Header() {
                     <Link to='/' className='logo'>guren | ぐれん</Link>
                 </h4>
                 <div className='nav-links'>
-                    <AiOutlineSearch className='burger' />
+                    <AiOutlineSearch className='burger'  onClick={() => setSearchBarOpen(!searchBarOpen)}/>
                     <Link to='/' className='link'>home</Link>
                     <Link to='/search' className='link'>top anime</Link>
                     { !user ? 
@@ -59,7 +61,7 @@ function Header() {
                     }
                 </div>
                 <div className='mobile-nav'>
-                <AiOutlineSearch className='burger' />
+                <AiOutlineSearch className='burger' onClick={() => setSearchBarOpen(!searchBarOpen)} />
                 { user ?
                 <Link to={`/user/${user.name}/animelist`} className='user-link'>
                     <img src={user.avatar.medium} className='avatar'/>
@@ -86,6 +88,9 @@ function Header() {
                     }</div>
             </div> : null
             }
+            { searchBarOpen ? 
+            <SearchBar />
+            : null }
         </div>
     )
 }
