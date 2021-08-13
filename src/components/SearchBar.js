@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import generateUrl from '../generateUrl'
+import SearchResult from './SearchResult'
 
 function SearchBar() {
     const [searchTerm, setSearchTerm] = useState('')
@@ -107,37 +108,26 @@ function SearchBar() {
             })
             setStudioResults(responseStudios.data.data.Page.studios)
         }
-        if (searchTerm && (!showResults || !charResults || !studioResults)){
-            getSearchResults()
-        } else {
-            const timeoutId = setTimeout( () => {
-                if (searchTerm) {
-                    getSearchResults()
-                }
-            }, 500)
-            return () => {
-                clearTimeout(timeoutId)
-            }
-        }
+        getSearchResults()
     }, [searchTerm])
 
     const renderedShows = showResults.map((show) => {
         const title = show.title.english ? show.title.english : show.title.romaji
         const url = generateUrl(title, show.id)
         return (
-            <Link to={url}>{title}</Link>
+            <Link to={url}><SearchResult title={title} image={show.coverImage.medium} /></Link>
         )
     })
     const renderedChars = charResults.map((char) => {
         const url = `/characters/${char.id}/${char.name.full.replace(/\s/g , "-")}`
         return (
-            <Link to={url}>{char.name.full}</Link>
+            <Link to={url}><SearchResult title={char.name.full} image={char.image.medium} /></Link>
         )
     })
     const renderedStudios = studioResults.map((studio) => {
         const url = `/studios/${studio.id}/${studio.name.replace(/\s/g , "-")}`
         return (
-            <Link to={url}>{studio.name}</Link>
+            <Link to={url}><SearchResult title={studio.name} image={null} /></Link>
         )
     })
     // console.log(showResults)
@@ -150,8 +140,11 @@ function SearchBar() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
+            Anime
             {renderedShows}
+            Characters
             {renderedChars}
+            Studios
             {renderedStudios}
         </div>
     )
