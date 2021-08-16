@@ -70,6 +70,8 @@ function App() {
                             entries {
                                 id
                                 progress
+                                score
+                                status
                                 media {
                                     id
                                     title {

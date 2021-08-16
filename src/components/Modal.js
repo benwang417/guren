@@ -51,16 +51,15 @@ function Modal({show, modalOpen, setModalOpen, userLists, isOnCard}) {
     }
 
     const progressIsValid = () => {
+        console.log(progress)
         if (typeof(progress) !== 'number') {
             setProgress(0)
-        }
-        if (progress > show.episodes) {
+        } else if (progress > show.episodes) {
             setProgress(show.episodes)
-        }
-        if (progress < 0) {
+        } else if (progress < 0) {
             setProgress(0)
         }
-
+        console.log(progress)
     }
 
     const findInLists = () => {
@@ -75,19 +74,21 @@ function Modal({show, modalOpen, setModalOpen, userLists, isOnCard}) {
     const submit = async () => {
         scoreIsValid() //check if score is num between 0-100
         progressIsValid() //check if progress is num between 0 and numEpisodes
+        console.log(entryId)
         const query = `
-                mutation ($mediaId: Int, $status: MediaListStatus, $score: Float) {
-                    SaveMediaListEntry (mediaId: $mediaId, status: $status, score: $score) {
+                mutation ($mediaId: Int, $status: MediaListStatus, $score: Float, $progress: Int) {
+                    SaveMediaListEntry (${entryId !== 0 ? `id: ${entryId},` : ''} mediaId: $mediaId, status: $status, score: $score, progress: $progress) {
                         id
                         status
                     }
                 }
             `
-
+        console.log(query)
         const variables = {
             mediaId: show.id,
             status: statusSelection.toUpperCase(),
-            score: score
+            score: score,
+            progress: progress
         }
 
         const headers = {
@@ -140,7 +141,11 @@ function Modal({show, modalOpen, setModalOpen, userLists, isOnCard}) {
     useEffect(() => {
         if (findInLists()) {
             console.log(findInLists())
-            setEntryId(findInLists()[0].id)
+            const entry = findInLists()[0]
+            setEntryId(entry.id)
+            setProgress(entry.progress)
+            setScore(entry.score)
+            setStatusSelection(entry.status.toLowerCase())
         } 
     }, [userLists])
 
@@ -160,7 +165,7 @@ function Modal({show, modalOpen, setModalOpen, userLists, isOnCard}) {
         if (isOnCard === false) {
             return (
                 <button onClick={() => setModalOpen(true)} className='addButton'>
-                    {entryId !== 0 ? 'edit' : 'add to my list'}
+                    {entryId !== 0 ? `${statusSelection.toLowerCase()}` : 'add to my list'}
                 </button> 
             )
         } else {
