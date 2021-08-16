@@ -59,7 +59,6 @@ function Modal({show, modalOpen, setModalOpen, userLists, isOnCard}) {
         } else if (progress < 0) {
             setProgress(0)
         }
-        console.log(progress)
     }
 
     const findInLists = () => {
@@ -74,7 +73,6 @@ function Modal({show, modalOpen, setModalOpen, userLists, isOnCard}) {
     const submit = async () => {
         scoreIsValid() //check if score is num between 0-100
         progressIsValid() //check if progress is num between 0 and numEpisodes
-        console.log(entryId)
         const query = `
                 mutation ($mediaId: Int, $status: MediaListStatus, $score: Float, $progress: Int) {
                     SaveMediaListEntry (${entryId !== 0 ? `id: ${entryId},` : ''} mediaId: $mediaId, status: $status, score: $score, progress: $progress) {
@@ -83,7 +81,6 @@ function Modal({show, modalOpen, setModalOpen, userLists, isOnCard}) {
                     }
                 }
             `
-        console.log(query)
         const variables = {
             mediaId: show.id,
             status: statusSelection.toUpperCase(),
@@ -140,7 +137,7 @@ function Modal({show, modalOpen, setModalOpen, userLists, isOnCard}) {
 
     useEffect(() => {
         if (findInLists()) {
-            console.log(findInLists())
+            // console.log(findInLists())
             const entry = findInLists()[0]
             setEntryId(entry.id)
             setProgress(entry.progress)

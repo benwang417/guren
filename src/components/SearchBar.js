@@ -115,19 +115,19 @@ function SearchBar() {
         const title = show.title.english ? show.title.english : show.title.romaji
         const url = generateUrl(title, show.id)
         return (
-            <Link to={url}><SearchResult title={title} image={show.coverImage.medium} /></Link>
+            <Link key={show.id} to={url}><SearchResult title={title} image={show.coverImage.medium} /></Link>
         )
     })
     const renderedChars = charResults.map((char) => {
         const url = `/characters/${char.id}/${char.name.full.replace(/\s/g , "-")}`
         return (
-            <Link to={url}><SearchResult title={char.name.full} image={char.image.medium} /></Link>
+            <Link key={char.id} to={url}><SearchResult title={char.name.full} image={char.image.medium} /></Link>
         )
     })
     const renderedStudios = studioResults.map((studio) => {
         const url = `/studios/${studio.id}/${studio.name.replace(/\s/g , "-")}`
         return (
-            <Link to={url}><SearchResult title={studio.name} image={null} /></Link>
+            <Link key={studio.id} to={url}><SearchResult title={studio.name} image={null} /></Link>
         )
     })
     // console.log(showResults)
@@ -140,12 +140,21 @@ function SearchBar() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-            Anime
-            {renderedShows}
+            { showResults.length ?
+             <div>
+                Anime
+                {renderedShows}
+            </div> : null }
+            { charResults.length ?
+            <div>
             Characters
             {renderedChars}
+            </div> : null }
+            { studioResults.length ?
+            <div>
             Studios
             {renderedStudios}
+            </div> : null }
         </div>
     )
 }
