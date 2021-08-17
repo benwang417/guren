@@ -135,11 +135,13 @@ function SearchBar({setSearchBarOpen}) {
     // console.log(studioResults)
     return (
         <div className='search-container'>
-            SearchBar
-            <input 
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-            />
+            <div className='search-bar'>
+                <input 
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className='input'
+                />
+            </div>
             <div className='results-container'> 
                 { showResults.length ?
                 <div>

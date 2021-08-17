@@ -1,8 +1,21 @@
 .search-container {
-    position: static;
+    background-color: var(--bg);
+    padding: 1em;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+}
+
+.input {
+    background: var(--bg-secondary);
+    border: none;
+    border-radius: .5em;
+    height: 2em;
+    color: inherit;
 }
 
 .results-container {
-    position: static;
 
 }
