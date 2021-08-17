@@ -17,12 +17,14 @@ import { ThemeContext } from './ThemeContext'
 import { UserContext } from './UserContext'
 import { UserListContext } from './UserListContext'
 import SeasonalList from './components/SeasonalList'
+import SearchBar from './components/SearchBar'
 
 function App() {
     const date = new Date()
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light')
     const [user, setUser] = useState()
     const [userLists, setUserLists] = useState([])
+    const [searchBarOpen, setSearchBarOpen] = useState(false)
     let token = (localStorage.getItem('token') || '')
    
     useEffect(() => {
@@ -118,7 +120,10 @@ function App() {
             <UserContext.Provider value={{user, setUser}}>
                 <UserListContext.Provider value={{userLists, setUserLists}}>
                     <div className={`App ${theme}`}>
-                        <Header />
+                        <Header setSearchBarOpen={setSearchBarOpen} searchBarOpen={searchBarOpen} />
+                        { searchBarOpen ? 
+                        <SearchBar setSearchBarOpen={setSearchBarOpen} />
+                        : null }
                         <div className='lists'>
                             <Route path='/user/:listOwnerName/animelist'>
                                 <AnimeList />

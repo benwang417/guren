@@ -1,3 +1,14 @@
 .search-result {
     display: flex;
+    padding: 1em;
+    background-color: var(--bg);
+}
+
+.result-img {
+
+}
+
+.result-title {
+    text-decoration: none;
+    color: inherit;
 }
