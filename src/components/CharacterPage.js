@@ -102,18 +102,21 @@ function CharacterPage() {
                             <div className='info-title'>favorites</div>  
                             <div className='info'>{character.favourites}</div>  
                         </div>
+                        {character.age ?
                         <div className='show-info'>
                             <div className='info-title'>age</div>  
                             <div className='info'>{character.age}</div>  
-                        </div>
+                        </div> : null}
+                        {character.dateOfBirth.day && character.dateOfBirth.month ? 
                         <div className='show-info'>
                             <div className='info-title'>birthday</div>  
-                            <div className='info'>{character.dateOfBirth.month}/{character.dateOfBirth.day}/{character.dateOfBirth.year}</div>  
-                        </div>
+                            <div className='info'>{character.dateOfBirth.month}/{character.dateOfBirth.day}{character.dateOfBirth.year ? `/${character.dateOfBirth.year}` : null}</div>  
+                        </div> : null}
+                        {character.gender ?
                         <div className='show-info'>
                             <div className='info-title'>gender</div>  
                             <div className='info'>{character.gender}</div>  
-                        </div>
+                        </div> : null}
                     </div>
                     <div className={`description-large large-screen ${!showMore ? 'show-more' : ''}`} dangerouslySetInnerHTML={{__html: character.description}}></div>
                     { !showMore ? 

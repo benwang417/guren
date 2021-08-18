@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 import generateUrl from '../generateUrl'
+import CharacterCard from './CharacterCard'
+import AnimeCard from './AnimeCard'
 
 function VoiceActorPage() {
     const {id} = useParams()
     const [voiceActor, setVoiceActor] = useState()
+    const [showMore, setShowMore] = useState(false)
 
     useEffect(() => {
         const getVoiceActor = async () => {
@@ -17,9 +20,16 @@ function VoiceActorPage() {
                         }
                         image {
                             medium
+                            large
                         }
                         description (asHtml: true)
                         age
+                        gender
+                        dateOfBirth {
+                            year
+                            month
+                            day
+                        }
                         favourites
                         characters (sort: FAVOURITES_DESC){
                             edges {
@@ -30,6 +40,7 @@ function VoiceActorPage() {
                                     }
                                     image {
                                         medium
+                                        large
                                     }
                                     favourites
                                 }
@@ -41,7 +52,10 @@ function VoiceActorPage() {
                                     }
                                     coverImage {
                                         medium
+                                        large
                                     }
+                                    popularity
+                                    averageScore
                                 }
                             }
                         }
@@ -78,39 +92,62 @@ function VoiceActorPage() {
         )
     }
 
-    //TODO: sort characters by popularity
-    const renderedChars = voiceActor.characters.edges.map((character) => {
+    const renderedCards = voiceActor.characters.edges.map((character) => {
         const char = character.node
-        const charName = char.name.full
-        const show = character.media[0]
 
-        const charURL = `/characters/${char.id}/${charName.replace(/\s/g , "-")}`
-        const showURL = show.title.english ? generateUrl(show.title.english, show.id) : generateUrl(show.title.romaji, show.id)
         return (
-            <div key={char.id} style={{display: 'flex'}}>
-                <Link to={charURL}>
-                    <div>{charName}</div>
-                    <img loading='lazy' src={char.image.medium} alt='character'/>
-                </Link>
-                <Link to={showURL}>
-                    <div>{show.title.english ? show.title.english : show.title.romaji}</div>
-                    <img loading='lazy' src={show.coverImage.medium} alt='show'/>
-                </Link>
-                {char.favourites}
-            </div>
+            <CharacterCard character={char} />
         )
+
     })
 
     console.log(voiceActor)
 
-    //TODO: parse description
     return (
-        <div>
-            <h1>{voiceActor.name.full}</h1>
-            <img src={voiceActor.image.medium} alt=''/>
-            <div dangerouslySetInnerHTML={{__html: voiceActor.description}}></div>
-            <h3>Characters</h3>
-            {renderedChars}
+        <div className='anime-page'>
+            <div className='title small-screen'>{voiceActor.name.full}</div>
+            <div className='primary-content'>
+                <div className='img-container'>
+                    <img className='cover-img' src={voiceActor.image.large} alt=''/>
+                </div>
+                <div className='content-body'>
+                    <div className='title large-screen'>{voiceActor.name.full}</div>
+                    <div className='show-stats'>
+                        <div className='show-info'>
+                            <div className='info-title'>favorites</div>  
+                            <div className='info'>{voiceActor.favourites}</div>  
+                        </div>
+                        <div className='show-info'>
+                            <div className='info-title'>age</div>  
+                            <div className='info'>{voiceActor.age}</div>  
+                        </div>
+                        <div className='show-info'>
+                            <div className='info-title'>birthday</div>  
+                            <div className='info'>{voiceActor.dateOfBirth.month}/{voiceActor.dateOfBirth.day}/{voiceActor.dateOfBirth.year}</div>  
+                        </div>
+                        <div className='show-info'>
+                            <div className='info-title'>gender</div>  
+                            <div className='info'>{voiceActor.gender}</div>  
+                        </div>
+                    </div>
+                    <div className={`description-large large-screen ${!showMore ? 'show-more' : ''}`} dangerouslySetInnerHTML={{__html: voiceActor.description}}></div>
+                    { !showMore ? 
+                    <div className='large-screen' onClick={() => setShowMore(true)} style={{cursor: 'pointer', width: 'max-content', marginLeft: '1em'}}>show more</div>
+                    : <div  className='large-screen' onClick={() => setShowMore(false)} style={{cursor: 'pointer', width: 'max-content', marginLeft: '1em'}}>show less</div>
+                    }
+                </div>
+            </div>
+            <div className={`description small-screen ${!showMore ? 'show-more' : ''}`} dangerouslySetInnerHTML={{__html: voiceActor.description}}></div>
+            { !showMore ? 
+            <div className='small-screen' onClick={() => setShowMore(true)} style={{cursor: 'pointer'}}>show more</div>
+            : <div className='small-screen' onClick={() => setShowMore(false)} style={{cursor: 'pointer'}}>show less</div>
+            }
+            <div className='container'>
+                <div className='listTitle'>Characters</div>
+                <div className='cardList'>
+                    {renderedCards}
+                </div>
+            </div>
         </div>
     )
 }
