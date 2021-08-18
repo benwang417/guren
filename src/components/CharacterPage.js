@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import AnimeCard from './AnimeCard'
 
 function CharacterPage() {
     const {id} = useParams()
@@ -28,6 +29,26 @@ function CharacterPage() {
                             day
                         }
                         favourites
+                        media (type: ANIME, sort: POPULARITY_DESC) {
+                            nodes {
+                                id
+                                title {
+                                    english
+                                    romaji
+                                }
+                                description
+                                bannerImage
+                                coverImage {
+                                    extraLarge
+                                    large
+                                    medium
+                                }
+                                averageScore
+                                popularity
+                                genres
+                            }
+                        }
+                               
                     }
                 }
             `
@@ -47,7 +68,6 @@ function CharacterPage() {
                 headers
             })
             setCharacter(response.data.data.Character)
-            
         }
 
         getCharacter()
@@ -61,6 +81,13 @@ function CharacterPage() {
 
     //TODO: parse description and hide spoilers
     console.log(character)
+
+    const renderedShows = character.media.nodes.map((result) => {
+        return (
+            <AnimeCard key={result.id} result={result} progress={null}/>
+        )
+    })
+
     return (
         <div className='anime-page'>
             <div className='title small-screen'>{character.name.full}</div>
@@ -100,9 +127,11 @@ function CharacterPage() {
             <div className='small-screen' onClick={() => setShowMore(true)} style={{cursor: 'pointer'}}>show more</div>
             : <div className='small-screen' onClick={() => setShowMore(false)} style={{cursor: 'pointer'}}>show less</div>
             }
-            <div className='next-content'>
-                <div className='title appears-in'>Appears In</div>
-                
+            <div className='container'>
+                <div className='listTitle'>Appears In</div>
+                <div className='cardList'>
+                    {renderedShows}
+                </div>
             </div>
         </div>
     )
