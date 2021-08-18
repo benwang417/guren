@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import generateUrl from '../generateUrl'
+import AnimeCard from './AnimeCard'
 
 function StudioPage() {
     const {id} = useParams()
@@ -24,7 +24,9 @@ function StudioPage() {
                                     }
                                     coverImage {
                                         medium
+                                        large
                                     }
+                                    averageScore
                                 }
                             }
                         }
@@ -63,26 +65,19 @@ function StudioPage() {
     const renderedShows = studio.media.edges.map((show) => {
         const anime = show.node
 
-        const showURL = anime.title.english ? generateUrl(anime.title.english, anime.id) : ''
-        //TODO: show romaji title if english not available
-
         return (
-            <div key={anime.id}>
-                <Link to={showURL}>
-                    <div>{anime.title.english}</div>
-                    <img loading='lazy' src={anime.coverImage.medium} alt='show'/>
-                </Link>
-                {anime.popularity}
-            </div>
+            <AnimeCard key={anime.id} result={anime} progress={null}/>
         )
     })
 
     //TODO: sort shows by score, year released, popularity etc
     console.log(studio)
     return (
-        <div>
-            <h1>{studio.name}</h1>
-            {renderedShows}
+        <div className='container'>
+            <div className='listTitle'>{studio.name}</div>
+            <div className='cardList'>
+                {renderedShows} 
+            </div>
         </div>
     )
 }
