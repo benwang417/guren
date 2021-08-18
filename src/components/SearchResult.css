@@ -1,14 +1,16 @@
 .search-result {
     display: flex;
     padding: 1em 0;
-    background-color: var(--bg);
     text-decoration: none;
+    color: inherit;
 }
-
+.search-result:hover {
+    color: var(--accent);
+    border: 3px solid var(--accent);
+    margin: -3px;
+}
 .result-img {
-
+    height: 150px;
+    width: 100px;
 }
 
-.result-title {
-    text-decoration: none;
-}

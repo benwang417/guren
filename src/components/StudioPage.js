@@ -52,7 +52,7 @@ function StudioPage() {
 
         getStudio()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [id])
 
     if (!studio) {
         return (

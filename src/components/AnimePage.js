@@ -116,7 +116,7 @@ function AnimePage() {
         }
         getAnime()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [url])
 
     if (!anime) {
         return (

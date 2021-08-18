@@ -115,24 +115,22 @@ function SearchBar({setSearchBarOpen}) {
         const title = show.title.english ? show.title.english : show.title.romaji
         const url = generateUrl(title, show.id)
         return (
-            <Link onClick={() => setSearchBarOpen(false)} key={show.id} to={url}><SearchResult title={title} image={show.coverImage.medium} /></Link>
+            <SearchResult key={show.id} title={title} image={show.coverImage.medium} url={url} setSearchBarOpen={setSearchBarOpen} />
         )
     })
     const renderedChars = charResults.map((char) => {
         const url = `/characters/${char.id}/${char.name.full.replace(/\s/g , "-")}`
         return (
-            <Link onClick={() => setSearchBarOpen(false)} key={char.id} to={url}><SearchResult title={char.name.full} image={char.image.medium} /></Link>
+            <SearchResult key={char.id} title={char.name.full} image={char.image.medium} url={url} setSearchBarOpen={setSearchBarOpen}/>
         )
     })
     const renderedStudios = studioResults.map((studio) => {
         const url = `/studios/${studio.id}/${studio.name.replace(/\s/g , "-")}`
         return (
-            <Link onClick={() => setSearchBarOpen(false)} key={studio.id} to={url}><SearchResult title={studio.name} image={null} /></Link>
-        )
+            <SearchResult key={studio.id} title={studio.name} image={null} url={url} setSearchBarOpen={setSearchBarOpen}/>
+            )
     })
-    // console.log(showResults)
-    // console.log(charResults)
-    // console.log(studioResults)
+
     return (
         <div className='search-container'>
             <div className='search-bar'>
@@ -145,17 +143,17 @@ function SearchBar({setSearchBarOpen}) {
             <div className='results-container'> 
                 { showResults.length ?
                 <div>
-                    Anime
+                    <div className='section-name'>Anime</div>
                     {renderedShows}
                 </div> : null }
                 { charResults.length ?
                 <div>
-                Characters
+                <div className='section-name'>Characters</div>
                 {renderedChars}
                 </div> : null }
                 { studioResults.length ?
                 <div>
-                Studios
+                <div className='section-name'>Studios</div>
                 {renderedStudios}
                 </div> : null }
             </div>
