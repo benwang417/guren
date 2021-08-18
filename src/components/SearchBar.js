@@ -134,11 +134,14 @@ function SearchBar({setSearchBarOpen}) {
     return (
         <div className='search-container'>
             <div className='search-bar'>
-                <input 
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className='input'
-                />
+                <div className='search-wrap'>
+                    <input 
+                        placeholder='search guren'
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className='input'
+                    />
+                </div>
             </div>
             <div className='results-container'> 
                 { showResults.length ?
