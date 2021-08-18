@@ -177,6 +177,13 @@
     margin: 0 1em;
 }
 
+.next-content {
+    justify-self: center;
+    display: flex;
+    max-width: 50em;
+    justify-content: center;
+}
+
 @media screen and (min-width: 700px) {
     .selection-bar > * {
         margin: 0 2em;

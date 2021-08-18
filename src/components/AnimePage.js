@@ -132,7 +132,7 @@ function AnimePage() {
     return (
         <div className='anime-page'>
             <div className='content-container'>
-            <div className='title small-screen'>{anime.title.english ? anime.title.english : anime.title.romaji}</div>
+                <div className='title small-screen'>{anime.title.english ? anime.title.english : anime.title.romaji}</div>
                 <div className='primary-content'>
                     <div className='img-container'>
                         <img className='cover-img' src={anime.coverImage.extraLarge} alt=''/>
