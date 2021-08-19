@@ -149,6 +149,7 @@ function Modal({show, modalOpen, setModalOpen, userLists, isOnCard}) {
     const handleClick = e => {
         e.preventDefault()
         e.stopPropagation()
+        e.nativeEvent.stopImmediatePropagation()
         setModalOpen(true)
     }
 
@@ -178,8 +179,14 @@ function Modal({show, modalOpen, setModalOpen, userLists, isOnCard}) {
         }
     }
 
+    const handleClickAnywhere = e => {
+        e.preventDefault()
+        e.stopPropagation()
+        e.nativeEvent.stopImmediatePropagation()
+    }
+
     return ReactDOM.createPortal(
-        <div style={OVERLAY_STYLES}>
+        <div style={OVERLAY_STYLES} onClick={handleClickAnywhere}>
             <div style={MODAL_STYLES}>
                 <h1>modal</h1>
                 <div>
