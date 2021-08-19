@@ -36,6 +36,7 @@ const TopAnimeList = ({sortTerm, title}) => {
                             averageScore
                             popularity
                             genres
+                            episodes
                         }
                     }
                 }
@@ -63,11 +64,9 @@ const TopAnimeList = ({sortTerm, title}) => {
         getAnimePreview()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    //TODO: add error check for no internet to api request
-    //TODO: move axios calls to a seperate file
-    
     const renderedResults = results.map((result) => {
+        console.log(result)
+
         return (
             <AnimeCard key={result.id} result={result} progress={null}/>
         )

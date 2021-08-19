@@ -1,0 +1,83 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .7);
+    z-index: 1000;
+}
+
+.modal {
+    position: fixed;
+    top: 20em;
+    left: 5em;
+    right: 5em;
+    background-color: var(--bg);
+    color: var(--text);
+    padding: 2em;
+    z-index: 1000;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.progress-input {
+    padding: .1em;
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    color: inherit;
+    width: 50%;
+    /* max-width: 200px; */
+}
+
+.progress-input:focus {
+    outline: none;
+}
+
+.progress-label {
+    position: absolute;
+    right: .5em;
+}
+
+.modal-button {
+    border: none;
+    background-color: var(--accent1);
+    padding: .5em;
+    border-radius: .25em;
+    color: black;
+    cursor: pointer;
+    margin-right: 1em;
+}
+
+.delete {
+    background-color: rgb(255, 85, 85);
+}
+
+.modal-button:hover {
+    color: white;
+}
+
+.accent {
+    color: var(--accent) !important;
+}
+
+@media screen and (min-width: 700px) {
+    .progress-input {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .modal {
+        left: 15em;
+        right: 15em;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    .modal {
+        left: 30em;
+        right: 30em;
+    }
+}

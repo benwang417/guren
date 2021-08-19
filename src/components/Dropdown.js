@@ -20,7 +20,7 @@ function Dropdown({filterTitle, options, selection, setSelection, canBeEmpty}) {
             <div className='filter'>
                 <div className='filterTitle'>{filterTitle}</div>
                 <div className='inputWrap' style={{display: 'flex', justifyContent: 'space-between'}}>
-                    <div className={`selection ${selection !== 'Any' && canBeEmpty === true  ? 'selected' : ''}`} onClick={() => setOpen(!open)}>
+                    <div className={`selection accent ${selection !== 'Any' && canBeEmpty === true  ? 'selected' : ''}`} onClick={() => setOpen(!open)}>
                         {selection}
                     </div>
                     {canBeEmpty && selection !== 'Any' ?

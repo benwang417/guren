@@ -46,6 +46,7 @@ const SeasonalList = ({month, year}) => {
                             averageScore
                             popularity
                             genres
+                            episodes
                         }
                     }
                 }

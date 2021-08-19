@@ -5,33 +5,17 @@ import { MdEdit} from 'react-icons/md'
 import { BiPlus} from 'react-icons/bi'
 import Dropdown from './Dropdown'
 import { UserContext } from '../UserContext'
+import { ThemeContext } from '../ThemeContext'
+import './Modal.css'
 
 const watchStatus = [
     'current', 'planning', 'completed', 'dropped', 'paused', 'repeating'
 ]
 
-const MODAL_STYLES = {
-    position: 'fixed',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    backgroundColor: 'white',
-    padding: '50px',
-    zIndex: 1000
-}
-
-const OVERLAY_STYLES = {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, .7)',
-    zIndex: '1000'
-}
 
 function Modal({show, modalOpen, setModalOpen, userLists, isOnCard}) {
     const {user} = useContext(UserContext)
+    const {theme} = useContext(ThemeContext)
     const token = localStorage.getItem('token')
     const [score, setScore] = useState(0)
     const [progress, setProgress] = useState(0)
@@ -185,37 +169,47 @@ function Modal({show, modalOpen, setModalOpen, userLists, isOnCard}) {
         e.nativeEvent.stopImmediatePropagation()
     }
 
+    console.log(show)
     return ReactDOM.createPortal(
-        <div style={OVERLAY_STYLES} onClick={handleClickAnywhere}>
-            <div style={MODAL_STYLES}>
-                <h1>modal</h1>
+        <div className='overlay' onClick={handleClickAnywhere}>
+            <div className={`modal ${theme === 'light' ? 'light' : 'dark'}`}>
                 <div>
-                    score
-                    <input
-                        value={score}
-                        onChange={(e) => setScore(e.target.value)}
-                    />
+                    <div className='filter' style={{marginBottom: '2em'}}>
+                        <div className='filterTitle'>score</div>
+                        <div className='inputWrap'>
+                            <input
+                                className='searchBar accent'
+                                value={score}
+                                onChange={(e) => setScore(e.target.value)}
+                            />
+                        </div>
+                    </div>
                     <Dropdown 
                             options={watchStatus} filterTitle='status' 
                             selection={statusSelection} setSelection={setStatusSelection}
                             canBeEmpty={false}
                     />
-                    progress
-                    <input
-                        value={progress}
-                        onChange={(e) => setProgress(e.target.value)}
-                    />
-                    / {show.episodes}
+                    <div className='filter' style={{marginTop: '2em', marginBottom: '2em'}}>
+                        <div className='filterTitle'>progress</div>
+                        <div className='inputWrap' style={{position: 'relative'}}>
+                            <input
+                            className='progress-input accent'
+                            value={progress}
+                            onChange={(e) => setProgress(e.target.value)}
+                            />
+                            <span className='progress-label'>/{show.episodes} episodes</span>
+                        </div>
+                    </div>
                 </div>
                 <div style={{display: 'flex'}}>
-                    <div onClick={() => setModalOpen(false)}>
+                    <button className='modal-button' onClick={() => setModalOpen(false)}>
                         cancel
-                    </div>
-                    <button onClick={submit}>
+                    </button>
+                    <button  className='modal-button' onClick={submit}>
                         save
                     </button>
                     {entryId !== 0 ?
-                    <button onClick={deleteEntry}>
+                    <button  className='modal-button delete' onClick={deleteEntry}>
                         delete
                     </button> : null
                     }
