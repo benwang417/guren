@@ -90,7 +90,7 @@ const TopAnimeList = ({sortTerm, title}) => {
 
     return (
         <div className='container'>
-            <Link to='/anime' className='listTitle'>{title}</Link>
+            <Link to='/' className='listTitle'>{title}</Link>
             <div className='cardList'>
                 {renderedResults} 
             </div>

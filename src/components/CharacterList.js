@@ -81,7 +81,7 @@ const CharacterList = () => {
 
     return (
         <div className='container'>
-            <Link to='/anime' className='listTitle'>Top Characters</Link>
+            <Link to='/' className='listTitle'>Top Characters</Link>
             <div className='cardList'>
                 {renderedResults}
             </div>

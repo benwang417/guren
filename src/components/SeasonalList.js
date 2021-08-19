@@ -88,7 +88,7 @@ const SeasonalList = ({month, year}) => {
     if (!results.length) {
         return (
             <div className='container'>
-                <Link to='/anime' className='listTitle'>This Season</Link>
+                <Link to='/' className='listTitle'>This Season</Link>
                 <div className='cardList'>
                     <CardPlaceholder />
                     <CardPlaceholder />
@@ -103,7 +103,7 @@ const SeasonalList = ({month, year}) => {
 
     return (
         <div className='container'>
-            <Link to='/anime' className='listTitle'>This Season</Link>
+            <Link to={`/search?year=${year}&season=${season.toLowerCase()}`} className='listTitle'>This Season</Link>
             <div className='cardList'>
                 {renderedResults} 
             </div>
