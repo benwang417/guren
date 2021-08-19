@@ -1,0 +1,40 @@
+.list-head {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.banner-image {
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.userlist-avatar {
+    position: absolute;
+    bottom: 0;
+    left: 3em
+}
+
+.userlist-title {
+    position: absolute;
+    bottom: -2em;
+    left: 2em;
+}
+
+@media screen and (min-width: 750px) {
+    .banner-image {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    .userlist-avatar {
+        left: 15em
+    }
+    
+    .userlist-title {
+        left: 10em;
+    }
+}

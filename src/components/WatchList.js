@@ -57,10 +57,9 @@ const WatchList = () => {
         )
     }
 
-    //TODO: make horizontal cards for watchlist
     const renderedList = watchList.map((entry) => {
         return (
-            <AnimeCard key={entry.media.id} result={entry.media} progress={entry.progress}/>
+            <AnimeCard key={entry.media.id} result={entry.media} progress={entry.progress} userScore={entry.score}/>
         )
     })
 

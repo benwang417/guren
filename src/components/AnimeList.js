@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import generateUrl from '../generateUrl'
+import AnimeCard from './AnimeCard'
+import './AnimeList.css'
 
 function AnimeList() {
     const [lists, setLists] = useState([])
@@ -29,10 +30,15 @@ function AnimeList() {
                                         id
                                         title {
                                             english
+                                            romaji
                                         }
                                         coverImage {
                                             medium
+                                            large
                                         }
+                                        episodes
+                                        popularity
+                                        averageScore
                                     }
                                 }
                             }
@@ -113,13 +119,16 @@ function AnimeList() {
                             status
                             entries {
                                 media {
-                                title {
-                                    english
-                                }
-                                id
-                                coverImage {
-                                    medium
+                                    title {
+                                        english
+                                        romaji
                                     }
+                                    id
+                                    coverImage {
+                                        medium
+                                        large
+                                    }
+                                    episodes
                                 }
                                 score
                                 progress
@@ -187,17 +196,10 @@ function AnimeList() {
         return (
             [...list].sort((a,b) => a.score > b.score ? -1 : 1).map((listEntry) => {
                 const show = listEntry.media
-                const showURL = show.title.english ? generateUrl(show.title.english, show.id) : ''
                 return (
-                    <div key={show.id} style={{}}>
-                        <Link to={showURL}>
-                            <div>{show.title.english}</div>
-                            <img loading='lazy' src={show.coverImage.medium} alt='show'/>
-                        </Link>
-                        <div>
-                            Score: {listEntry.score}
-                        </div>
-                    </div>
+                    <AnimeCard key={show.id} result={show}
+                        progress={listEntry.progress} userScore={listEntry.score}
+                    />
                 )
             })
         )
@@ -205,14 +207,29 @@ function AnimeList() {
 
     return (
         <div>
-            <h1>{listOwnerName}</h1>
-            <img src={listOwner.avatar.medium} alt='user'/>
-            <h2>watching</h2>
-            {renderList(lists[lists.findIndex((list) => list.name === 'Watching')].entries)}
-            <h2>completed</h2>
-            {renderList(lists[lists.findIndex((list) => list.name === 'Completed')].entries)}
-            <h2>plan to watch</h2>
-            {renderList(lists[lists.findIndex((list) => list.name === 'Planning')].entries)}
+            <div className='list-head'>
+                <img className='banner-image' src={listOwner.bannerImage} />
+                <img className='userlist-avatar' src={listOwner.avatar.medium} alt='user'/>
+                <div className='userlist-title title'>{listOwner.name}'s list</div>
+            </div>
+            <div className='container'>
+                <div className='listTitle'>Watching</div>
+                <div className='cardList'>
+                    {renderList(lists[lists.findIndex((list) => list.name === 'Watching')].entries)} 
+                </div>
+            </div>
+            <div className='container'>
+                <div className='listTitle'>Completed</div>
+                <div className='cardList'>
+                    {renderList(lists[lists.findIndex((list) => list.name === 'Completed')].entries)}
+                </div>
+            </div>
+            <div className='container'>
+                <div className='listTitle'>Watch List</div>
+                <div className='cardList'>
+                    {renderList(lists[lists.findIndex((list) => list.name === 'Planning')].entries)}
+                </div>
+            </div>
         </div>
     )
 }

@@ -5,7 +5,7 @@ import './AnimeCard.css'
 import Modal from './Modal'
 import { UserListContext } from '../UserListContext'
 
-function AnimeCard({result, progress}) {
+function AnimeCard({result, progress, userScore}) {
     const {userLists} = useContext(UserListContext)
     const [modalOpen, setModalOpen] = useState(false)
     const title = result.title.english ? result.title.english : result.title.romaji
@@ -23,15 +23,16 @@ function AnimeCard({result, progress}) {
             </div>
             <div className='card-body'>
                 <h2 className='card-title'>{title}</h2>
-                { progress !== null ? 
                 <div className='card-info'>
-                    <div className='card-popularity'>Progress: {progress}/{result.episodes}</div>
-                </div> : 
-                <div className='card-info'>
+                    {userScore ? 
+                    <div className='card-score'>{userScore}</div> :
                     <div className='card-score'>{result.averageScore}</div>
+                    }
+                    { progress !== null ? 
+                    <div className='card-popularity'><span style={{color: '#793AFF'}}>{progress}/{result.episodes}</span><span> episodes</span></div> :
                     <div className='card-popularity'>{result.popularity} users</div>
+                    }
                 </div>
-                }
             </div>
         </Link>
     )
